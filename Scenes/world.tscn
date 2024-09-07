@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://ddmlaq0toslu2"]
+[gd_scene load_steps=13 format=3 uid="uid://ddmlaq0toslu2"]
 
 [ext_resource type="PackedScene" uid="uid://dpdyvqyi3u2x7" path="res://Scenes/player.tscn" id="1_b63kr"]
 [ext_resource type="Script" path="res://Scripts/Dummy.cs" id="2_pejnx"]
 [ext_resource type="Script" path="res://Scripts/Window.cs" id="3_qskyf"]
+[ext_resource type="PackedScene" uid="uid://ddskmerpugecg" path="res://Scenes/zombie.tscn" id="4_khtyv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x3ct3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -17,11 +18,11 @@ sky = SubResource("Sky_452v2")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ulb5q"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vj7hm"]
 albedo_color = Color(0.0263726, 0.398937, 6.73831e-07, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_v1she"]
-material = SubResource("StandardMaterial3D_ulb5q")
+material = SubResource("StandardMaterial3D_vj7hm")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dccrf"]
 
@@ -196,3 +197,6 @@ transform = Transform3D(1, 0, 0, 0, 0.983054, -0.183317, 0, 0.183317, 0.983054, 
 visible = false
 size = Vector3(0.108887, 0.252563, 1)
 material = SubResource("StandardMaterial3D_fipho")
+
+[node name="Zombie" parent="." instance=ExtResource("4_khtyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.51527, 2.46579, 0)

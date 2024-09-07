@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://ddskmerpugecg"]
+
+[ext_resource type="Script" path="res://Scripts/Zombie.cs" id="1_4dhbu"]
+[ext_resource type="Script" path="res://Scripts/StateMachine.cs" id="2_8tvha"]
+[ext_resource type="Script" path="res://Scripts/ZombieStates/Idle.cs" id="3_gl2xo"]
+[ext_resource type="Script" path="res://Scenes/Agro.cs" id="4_kiaei"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ulb5q"]
+albedo_color = Color(0.0120491, 0.272531, 1.92523e-07, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_oanwe"]
+material = SubResource("StandardMaterial3D_ulb5q")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n1h3b"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5rwjy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_n4trq"]
+radius = 3.15298
+
+[node name="Zombie" type="CharacterBody3D" groups=["enemy"]]
+script = ExtResource("1_4dhbu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_oanwe")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_n1h3b")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_8tvha")
+initialNode = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_gl2xo")
+
+[node name="Agro" type="Node" parent="StateMachine"]
+script = ExtResource("4_kiaei")
+
+[node name="Pain" type="Node" parent="StateMachine"]
+
+[node name="Death" type="Node" parent="StateMachine"]
+
+[node name="HeadBox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0.511777, 0)
+shape = SubResource("SphereShape3D_5rwjy")
+
+[node name="AgroBox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AgroBox"]
+shape = SubResource("SphereShape3D_n4trq")
+
+[connection signal="body_entered" from="AgroBox" to="StateMachine/Idle" method="OnEnterAgroBox"]

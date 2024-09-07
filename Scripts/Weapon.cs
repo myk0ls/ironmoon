@@ -108,11 +108,10 @@ public partial class Weapon : Node3D
 	{
         if (rayCast.IsColliding() && rayCast != null && animName == "shoot")
 		{
-        GD.Print(animName);
 			var collider = rayCast.GetCollider() as Node3D;
 			if (collider.IsInGroup("enemy"))
 			{
-				collider.Call("ReceiveDamage", 0);
+				collider.Call("ReceiveDamage", 50);
 			}
 		}
     }

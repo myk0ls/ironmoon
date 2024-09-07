@@ -6,10 +6,13 @@ public partial class Player : CharacterBody3D
 	public float Speed { get; set; } = 5f;
 	public const float DefaultSpeed = 5.0f;
 	public const float SprintSpeed = 8f;
+    public const float CrouchSpeed = 3.5f;
     public const float ADSSpeed = 3.5f;
     public const float JumpVelocity = 4.5f;
 	public const float Sensitivity = 1.1f;
 	float PositionC;
+	Vector3 StandingPostion = new Vector3(0, (float)0.5, 0);
+    Vector3 CrouchingPostion = new Vector3(0, (float)0.15, 0);
 
     Camera3D Camera;
     public float SprintFOV = 80f;
@@ -20,8 +23,7 @@ public partial class Player : CharacterBody3D
     {
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		Camera = GetNode<Camera3D>("Camera3D");
-        PositionC = Camera.GlobalPosition.Y;
-		
+        PositionC = Camera.Transform.Origin.Y;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -91,19 +93,21 @@ public partial class Player : CharacterBody3D
             else DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
         }
 
-        if (Input.IsActionPressed("crouch"))
+        if (Input.IsActionJustPressed("crouch"))
 		{
-			if (Camera.GlobalPosition.Y > 2)
-			{
-				float currentPosition = Camera.GlobalPosition.Y;
-				currentPosition -= 0.5f;
+			GD.Print(Camera.Position.ToString());
+            Camera.Position = Camera.Position.Lerp(CrouchingPostion, 1);
+            GD.Print(Camera.Position.ToString());
 
-                Camera.GlobalPosition = new Vector3(Camera.GlobalPosition.X, currentPosition, Camera.GlobalPosition.Z);
-			}
-		}
+			//if (IsOnFloor())
+			Speed = CrouchSpeed;
+        }
+
 		if (Input.IsActionJustReleased("crouch"))
 		{
-			Camera.GlobalPosition = new Vector3(Camera.GlobalPosition.X, PositionC, Camera.GlobalPosition.Z);
-        }
+            Camera.Position = Camera.Position.Lerp(StandingPostion, 1);
+            GD.Print(Camera.Position.ToString() + " ENDING POSITION");
+			Speed = DefaultSpeed;
+		}
     }
 }
