@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://ddmlaq0toslu2"]
+[gd_scene load_steps=12 format=3 uid="uid://ddmlaq0toslu2"]
 
 [ext_resource type="PackedScene" uid="uid://dpdyvqyi3u2x7" path="res://Scenes/player.tscn" id="1_b63kr"]
-[ext_resource type="Script" path="res://Scripts/Dummy.cs" id="2_pejnx"]
 [ext_resource type="Script" path="res://Scripts/Window.cs" id="3_qskyf"]
-[ext_resource type="PackedScene" uid="uid://ddskmerpugecg" path="res://Scenes/zombie.tscn" id="4_khtyv"]
+[ext_resource type="Script" path="res://Scenes/PathSpawner.cs" id="3_ygtur"]
+[ext_resource type="PackedScene" uid="uid://cvwl5uey45pry" path="res://Scenes/pathFollowSpawn.tscn" id="4_o861c"]
+[ext_resource type="PackedScene" uid="uid://d1o8ldhompkph" path="res://Scenes/tower.tscn" id="5_780iw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x3ct3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -18,19 +19,18 @@ sky = SubResource("Sky_452v2")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vj7hm"]
-albedo_color = Color(0.0263726, 0.398937, 6.73831e-07, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_v1she"]
-material = SubResource("StandardMaterial3D_vj7hm")
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dccrf"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_nlfxw"]
 size = Vector3(1, 3.33105, 2.18994)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fipho"]
 albedo_color = Color(0.383896, 0.148163, 0.0411139, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_atsit"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.178671, -0.593097, -5.93671, 0, 0, 0, 0, 0, 0, -0.234333, -0.423485, 1.12724, 0, 0, 0, 0, 0, 0, 0.37498, -0.536666, 7.94928, 0, 0, 0, 0, 0, 0, 0.597521, -0.685313, 14.5685),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
 
 [node name="World" type="Node3D"]
 
@@ -48,44 +48,6 @@ size = Vector3(33.3808, 0.0464478, 38.843)
 
 [node name="Player" parent="." instance=ExtResource("1_b63kr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1159, 0)
-
-[node name="Dummy" type="CharacterBody3D" parent="." groups=["enemy"]]
-script = ExtResource("2_pejnx")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Dummy"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8463, -5.23539)
-mesh = SubResource("CapsuleMesh_v1she")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummy"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8463, -5.23539)
-shape = SubResource("CapsuleShape3D_dccrf")
-
-[node name="Dummy2" type="CharacterBody3D" parent="." groups=["enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.39534, 0, 0)
-script = ExtResource("2_pejnx")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Dummy2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8463, -5.23539)
-mesh = SubResource("CapsuleMesh_v1she")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummy2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8463, -5.23539)
-shape = SubResource("CapsuleShape3D_dccrf")
-
-[node name="Dummy3" type="CharacterBody3D" parent="." groups=["enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.94285, 0, 0)
-script = ExtResource("2_pejnx")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Dummy3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8463, -5.23539)
-mesh = SubResource("CapsuleMesh_v1she")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummy3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8463, -5.23539)
-shape = SubResource("CapsuleShape3D_dccrf")
 
 [node name="Window" type="StaticBody3D" parent="."]
 script = ExtResource("3_qskyf")
@@ -198,5 +160,17 @@ visible = false
 size = Vector3(0.108887, 0.252563, 1)
 material = SubResource("StandardMaterial3D_fipho")
 
-[node name="Zombie" parent="." instance=ExtResource("4_khtyv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.51527, 2.46579, 0)
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.19764, 2.12205, -5.3266)
+curve = SubResource("Curve3D_atsit")
+script = ExtResource("3_ygtur")
+
+[node name="PathTimer" type="Timer" parent="Path3D"]
+wait_time = 1.5
+autostart = true
+
+[node name="PathFollow3D" parent="Path3D" instance=ExtResource("4_o861c")]
+transform = Transform3D(-0.99829, 0.00139864, 0.0583499, -5.82074e-11, 0.999706, -0.023963, -0.0583666, -0.0239221, -0.998005, 0.178671, -0.593097, -5.93671)
+
+[node name="Tower" parent="." instance=ExtResource("5_780iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6884, 0.743591, -4.92612)

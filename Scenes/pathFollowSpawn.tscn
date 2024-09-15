@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvwl5uey45pry"]
+
+[ext_resource type="PackedScene" uid="uid://ddskmerpugecg" path="res://Scenes/zombie.tscn" id="1_iwair"]
+
+[node name="PathFollow3D" type="PathFollow3D"]
+transform = Transform3D(-0.998291, 0.00139864, 0.05835, 5.82074e-11, 0.999707, -0.023963, -0.0583667, -0.0239221, -0.998006, 0.178671, -0.593097, -5.93671)
+loop = false
+
+[node name="Zombie" parent="." instance=ExtResource("1_iwair")]
+transform = Transform3D(-0.998297, -2.32434e-10, -0.058367, 0.00139866, 0.999716, -0.0239223, 0.0583501, -0.0239631, -0.998009, 0.119179, 0.168645, -0.0783234)

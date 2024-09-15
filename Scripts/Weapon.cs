@@ -106,6 +106,7 @@ public partial class Weapon : Node3D
 
     public void Attack(StringName animName)
 	{
+        /*
         if (rayCast.IsColliding() && rayCast != null && animName == "shoot")
 		{
 			var collider = rayCast.GetCollider() as Node3D;
@@ -114,6 +115,28 @@ public partial class Weapon : Node3D
 				collider.Call("ReceiveDamage", 50);
 			}
 		}
+        */
+        if (rayCast.IsColliding() && rayCast != null && animName == "shoot")
+        {
+            var collider = rayCast.GetCollider() as Node3D;
+            if (collider.IsInGroup("enemy"))
+            {
+                var shapeIndex = rayCast.GetColliderShape();
+                GD.Print(shapeIndex);
+
+                switch(shapeIndex)
+                {
+                    case 0:
+                        collider.Call("ReceiveDamage", 50);
+                    break;
+
+                    case 1:
+                        collider.Call("ReceiveDamage", 100);
+                    break;
+                }
+            }
+        }
+
     }
 
     void WeaponSwayBob(double delta)

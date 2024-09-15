@@ -6,8 +6,13 @@ public partial class Zombie : CharacterBody3D
     public float Health = 100;
     public float WalkSpeed = 1.5f;
 
+    [Signal] public delegate void DeathEventHandler();
+
+    PathFollow3D pathToFollow;
+
     public override void _Ready()
     {
+        pathToFollow = GetParent<PathFollow3D>();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -19,6 +24,13 @@ public partial class Zombie : CharacterBody3D
         {
             velocity += GetGravity() * (float)delta;
         }
+
+        var pathProgress = pathToFollow.Progress + WalkSpeed * (float)delta;
+
+        if (pathToFollow.ProgressRatio == 1)
+            QueueFree();
+
+        pathToFollow.Progress = pathProgress;
 
         Velocity = velocity;
         MoveAndSlide();
@@ -35,5 +47,6 @@ public partial class Zombie : CharacterBody3D
     public void Die()
     {
         QueueFree();
+        EmitSignal(nameof(Death));
     }
 }
