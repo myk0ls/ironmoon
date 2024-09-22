@@ -1,22 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1o8ldhompkph"]
+[gd_scene load_steps=5 format=3 uid="uid://d1o8ldhompkph"]
 
 [ext_resource type="Script" path="res://Scripts/Tower.cs" id="1_46m32"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_hpouo"]
+[ext_resource type="PackedScene" uid="uid://b8e8wijrjfn6y" path="res://Assets/TowerBuild.glb" id="2_yn37s"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1blkk"]
 radius = 4.24389
 
-[node name="Tower" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lptp8"]
+radius = 0.887864
+height = 2.87482
+
+[node name="Tower" type="StaticBody3D"]
 script = ExtResource("1_46m32")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 3.22021, 0, 0, 0, 1, 0, 1.08611, 0)
-mesh = SubResource("BoxMesh_hpouo")
-
 [node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07315, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.30629, 0)
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11854, 0)
@@ -25,6 +23,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11854, 0)
 shape = SubResource("SphereShape3D_1blkk")
 
 [node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="TowerBuild" parent="." instance=ExtResource("2_yn37s")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999955, 0.00952935, 0, -0.00952935, 0.999955, 0, 0.65776, 0)
+shape = SubResource("CapsuleShape3D_lptp8")
 
 [connection signal="body_entered" from="Area3D" to="." method="OnBodyEntered"]
 [connection signal="body_exited" from="Area3D" to="." method="OnBodyExited"]

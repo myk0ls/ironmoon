@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://dpdyvqyi3u2x7"]
+[gd_scene load_steps=15 format=3 uid="uid://dpdyvqyi3u2x7"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_fo5ap"]
 [ext_resource type="Script" path="res://Scripts/Weapon.cs" id="2_4hrrm"]
 [ext_resource type="Script" path="res://Scripts/InteractionArea.cs" id="3_43rur"]
+[ext_resource type="PackedScene" uid="uid://dym3upxpoybh3" path="res://Assets/Crossbow.glb" id="3_qaqww"]
 [ext_resource type="PackedScene" uid="uid://c2y42xsbvwoqb" path="res://Assets/pistol.blend" id="3_yphy6"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5xvmq"]
@@ -21,7 +22,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(-0.156207, -3.14159, -1.37682e-08)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -33,7 +34,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.468, -0.309, -0.769)]
+"values": [Vector3(0.489, -0.432, -0.39)]
 }
 
 [sub_resource type="Animation" id="Animation_ouckx"]
@@ -49,7 +50,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(-0.156207, -3.14159, -1.37682e-08)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -61,12 +62,12 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.468, -0.309, -0.769)]
+"values": [Vector3(0.489, -0.432, -0.39)]
 }
 
 [sub_resource type="Animation" id="Animation_o42ts"]
 resource_name = "shoot"
-length = 0.45
+length = 0.54
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -74,10 +75,10 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0.0333333, 0.1, 0.166667, 0.366667, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.174533, 0, 0), Vector3(0.226893, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, -3.14159, 0), Vector3(-0.0271573, -3.14159, -2.37475e-09), Vector3(-0.0716239, -3.14159, -9.10406e-09), Vector3(-0.0626748, -3.14159, -7.74716e-09), Vector3(-0.0626748, -3.14159, -7.74716e-09)]
 }
 
 [sub_resource type="Animation" id="Animation_fcb8m"]
@@ -94,7 +95,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.404916, 0.202458, 0)]
+"values": [Vector3(0.406662, -2.93913, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -119,10 +120,10 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667),
+"times": PackedFloat32Array(0, 0.133333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.404916, 0.202458, 0)]
+"values": [Vector3(-0.0506145, -3.14159, 0), Vector3(0.406662, -2.93913, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -131,10 +132,10 @@ tracks/1/path = NodePath(".:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.166667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.468, -0.309, -0.769), Vector3(0.468, -0.359, -0.769), Vector3(0.368, -0.459, -0.769)]
+"values": [Vector3(0.489, -0.432, -0.39), Vector3(0.368, -0.459, -0.769)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qgacr"]
@@ -158,8 +159,11 @@ mesh = SubResource("CapsuleMesh_5xvmq")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_h1n2p")
 
+[node name="Build" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.741)
+
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.182629)
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0264735, -0.00701773, -0.013231)
@@ -167,11 +171,20 @@ target_position = Vector3(0, 0, -20)
 
 [node name="Weapon" type="Node3D" parent="Camera3D"]
 script = ExtResource("2_4hrrm")
-DefaultPosition = Vector3(0.468, -0.309, -0.769)
-ADSPosition = Vector3(0, -0.12, -0.669)
+DefaultPosition = Vector3(0.489, -0.432, -0.39)
+ADSPosition = Vector3(0, -0.075, -0.369)
+
+[node name="Crossbow" parent="Camera3D/Weapon" instance=ExtResource("3_qaqww")]
+transform = Transform3D(-0.1, 9.72257e-10, -1.49157e-08, -1.36006e-09, 0.0987824, 0.0155572, 1.48854e-08, 0.0155572, -0.0987824, 0.489, -0.432, -0.39)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D/Weapon/Crossbow"]
+libraries = {
+"": SubResource("AnimationLibrary_qgacr")
+}
 
 [node name="Pistol" parent="Camera3D/Weapon" instance=ExtResource("3_yphy6")]
-transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0.468, -0.309, -0.769)
+transform = Transform3D(-0.12, 1.16671e-09, -1.78989e-08, -1.63207e-09, 0.118539, 0.0186687, 1.78625e-08, 0.0186687, -0.118539, 0.489, -0.432, -0.39)
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D/Weapon/Pistol"]
 libraries = {
@@ -183,6 +196,9 @@ script = ExtResource("3_43rur")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
 shape = SubResource("SphereShape3D_wxth3")
+
+[node name="SellTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="OnBodyEntered"]
 [connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="OnBodyExited"]

@@ -1,7 +1,7 @@
-using Godot;
+	using Godot;
 using System;
 
-public partial class Tower : Node3D
+public partial class Tower : StaticBody3D
 {
 	Timer AttackTimer;
 	Node3D Head;
@@ -10,6 +10,8 @@ public partial class Tower : Node3D
 
 	Node3D TargetNode;
 	Zombie TargetZombie;
+
+	public bool CanAttack;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -21,6 +23,7 @@ public partial class Tower : Node3D
 
 		TargetNode = null;
 		TargetZombie = null;
+		CanAttack = false;
 
 		AttackTimer.Timeout += Fire;
 	}
@@ -30,14 +33,28 @@ public partial class Tower : Node3D
 	{
 	}
 
+	void SetTargetNode(Node3D node)
+	{
+        TargetNode = node;
+        TargetZombie = (Zombie)TargetNode;
+        TargetZombie.Death += RemoveTarget;
+        TargetZombie.Death += ScanForTarget;
+    }	
+	void RemoveTarget()
+	{
+		if (TargetNode != null)
+		{
+			TargetNode = null;
+            TargetZombie.Death -= RemoveTarget;
+            TargetZombie.Death -= ScanForTarget;
+        }
+    }
+
 	public void OnBodyEntered(Node3D node)
 	{
 		if (TargetNode is null && node.IsInGroup("enemy"))
 		{
-			TargetNode = node;
-			TargetZombie = (Zombie)TargetNode;
-            TargetZombie.Death += RemoveTarget;
-			TargetZombie.Death += ScanForTarget;
+			SetTargetNode(node);
             Fire();
 			AttackTimer.Start();
 		}
@@ -52,21 +69,15 @@ public partial class Tower : Node3D
         }
     }
 
-	void RemoveTarget()
-	{
-		if (TargetNode != null)
-		{
-			TargetNode = null;
-            TargetZombie.Death -= RemoveTarget;
-            TargetZombie.Death -= ScanForTarget;
-        }
-    }
 
-	public void Fire()
+	public virtual void Fire()
 	{
-		Bullet newBullet = (Bullet)Bullet.Instantiate();
-		newBullet.SetTarget(TargetNode);
-		Head.AddChild(newBullet);
+		if (TargetNode != null && CanAttack == true)
+		{
+			Bullet newBullet = (Bullet)Bullet.Instantiate();
+			newBullet.SetTarget(TargetNode);
+			Head.AddChild(newBullet);
+		}
 	}
 
 	void ScanForTarget()
@@ -78,10 +89,10 @@ public partial class Tower : Node3D
 			for (int i = 0;i < bodies.Count;i++)
 			{
 				GD.Print(bodies[i].ToString());
-				if (bodies[i] is CharacterBody3D)
+				if (bodies[i] is CharacterBody3D &&
+					bodies[i].IsInGroup("enemy"))
 				{
-                    TargetNode = (Node3D)bodies[i];
-                    TargetZombie = (Zombie)TargetNode;
+					SetTargetNode(bodies[i]);
 					break;
                 }
 			}
@@ -89,4 +100,9 @@ public partial class Tower : Node3D
 		else
             AttackTimer.Stop();
     }
+
+	public void Remove()
+	{
+		QueueFree();
+	}
 }

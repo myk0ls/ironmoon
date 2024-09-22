@@ -47,7 +47,10 @@ public partial class Weapon : Node3D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
 	{
+    }
 
+    public void _ProcessCombat(double delta)
+    {
         if (Input.IsActionJustPressed("sprint") && weaponAnim.IsPlaying() == false && !Input.IsActionPressed("attack2"))
         {
             weaponAnim.Play("sprintStart");
@@ -92,8 +95,10 @@ public partial class Weapon : Node3D
         }
 
         // Sway and bob weapon
-        WeaponSwayBob(delta);
-	}
+        WeaponSway(delta);
+        WeaponBob(delta);
+
+    }
 
     public override void _Input(InputEvent @event)
     {
@@ -106,16 +111,6 @@ public partial class Weapon : Node3D
 
     public void Attack(StringName animName)
 	{
-        /*
-        if (rayCast.IsColliding() && rayCast != null && animName == "shoot")
-		{
-			var collider = rayCast.GetCollider() as Node3D;
-			if (collider.IsInGroup("enemy"))
-			{
-				collider.Call("ReceiveDamage", 50);
-			}
-		}
-        */
         if (rayCast.IsColliding() && rayCast != null && animName == "shoot")
         {
             var collider = rayCast.GetCollider() as Node3D;
@@ -139,7 +134,7 @@ public partial class Weapon : Node3D
 
     }
 
-    void WeaponSwayBob(double delta)
+    void WeaponSway(double delta)
     {
         // sway
         var mouseMovLength = MouseMov.Length();
@@ -150,6 +145,15 @@ public partial class Weapon : Node3D
         }
         else
             Rotation = Rotation.Lerp(DefaultRotation, SwaySpeed * (float)delta);
+
+    }
+
+    void WeaponBob(double delta)
+    {
+        if (Input.IsActionPressed("attack2"))
+        {
+            Position = new Vector3(Position.X, (float)StartY, Position.Z);
+        }
 
         // bob
         if (player.IsOnFloor() && player.Velocity.Length() != 0 && !Input.IsActionPressed("attack2"))

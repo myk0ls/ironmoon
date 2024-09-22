@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmsvwi8h28wt2"]
+
+[ext_resource type="Script" path="res://Scripts/Towers/LaserTower.cs" id="1_pryor"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g56f2"]
+albedo_color = Color(0.497474, 0.497474, 0.497474, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rol5l"]
+material = SubResource("StandardMaterial3D_g56f2")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_b81tj"]
+radius = 4.24389
+
+[node name="LazerTower" type="Node3D"]
+script = ExtResource("1_pryor")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 3.22021, 0, 0, 0, 1, 0, 1.08611, 0)
+mesh = SubResource("BoxMesh_rol5l")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07315, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11854, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_b81tj")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="body_entered" from="Area3D" to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="Area3D" to="." method="OnBodyExited"]
