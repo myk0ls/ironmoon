@@ -48,5 +48,7 @@ public partial class Zombie : CharacterBody3D
     {
         QueueFree();
         EmitSignal(nameof(Death));
+        PlayerStats.Instance.GainGold(5);
+        PlayerStats.Instance.EmitSignal(nameof(PlayerStats.Instance.UpdateGoldLabel));
     }
 }

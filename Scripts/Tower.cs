@@ -1,4 +1,4 @@
-	using Godot;
+using Godot;
 using System;
 
 public partial class Tower : StaticBody3D
@@ -7,25 +7,35 @@ public partial class Tower : StaticBody3D
 	Node3D Head;
 	PackedScene Bullet;
 	Area3D DetectionArea;
+	MeshInstance3D DistanceRadius;
+
+	Player PlayerNode;
 
 	Node3D TargetNode;
 	Zombie TargetZombie;
+
+	CustomSignals CSignals;
 
 	public bool CanAttack;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		PlayerNode = GetNode<Player>("/root/World/Player");
 		Bullet = ResourceLoader.Load<PackedScene>("res://Scenes/bullet.tscn");
 		Head = GetNode<Node3D>("Head");
 		AttackTimer = GetNode<Timer>("AttackTimer");
 		DetectionArea = GetNode<Area3D>("Area3D");
+		DistanceRadius = GetNode<MeshInstance3D>("DistanceRadius");
+
+		CSignals = GetNode<CustomSignals>("/root/CustomSignals");
 
 		TargetNode = null;
 		TargetZombie = null;
 		CanAttack = false;
 
 		AttackTimer.Timeout += Fire;
+		CSignals.GameModeChanged += ToggleDistanceRadius;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -104,5 +114,17 @@ public partial class Tower : StaticBody3D
 	public void Remove()
 	{
 		QueueFree();
-	}
+        CSignals.GameModeChanged -= ToggleDistanceRadius;
+		GD.Print("REMOVED");
+    }
+
+	void ToggleDistanceRadius()
+	{
+        if (PlayerNode.currentMode == PlayerMode.Build)
+        {
+            DistanceRadius.Visible = true;
+        }
+        else
+            DistanceRadius.Visible = false;
+    }
 }

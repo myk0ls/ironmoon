@@ -122,11 +122,11 @@ public partial class Weapon : Node3D
                 switch(shapeIndex)
                 {
                     case 0:
-                        collider.Call("ReceiveDamage", 50);
+                        collider.Call("ReceiveDamage", 24);
                     break;
 
                     case 1:
-                        collider.Call("ReceiveDamage", 100);
+                        collider.Call("ReceiveDamage", 35);
                     break;
                 }
             }

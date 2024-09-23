@@ -6,7 +6,7 @@ public partial class Player : CharacterBody3D
 	public float Speed { get; set; } = 5f;
 	public const float DefaultSpeed = 5.0f;
 	public const float SprintSpeed = 8f;
-    public const float CrouchSpeed = 3.5f;
+    public const float CrouchSpeed = 2.5f;
     public const float ADSSpeed = 3.5f;
     public const float JumpVelocity = 4.5f;
 	public const float Sensitivity = 1.1f;
@@ -25,10 +25,11 @@ public partial class Player : CharacterBody3D
 	Node3D Build;
 
 	PackedScene TowerScene;
+	CustomSignals CSignals;
 
 	Tower TargetTower;
 
-	PlayerMode currentMode {get; set;}
+	public PlayerMode currentMode {get; private set;}
     
 	public override void _Ready()
     {
@@ -39,6 +40,7 @@ public partial class Player : CharacterBody3D
 		SellTimer = GetNode<Timer>("SellTimer");
 		Weapon = GetNode<Node3D>("Camera3D/Weapon");
         Build = GetNode<Node3D>("Build");
+		CSignals = GetNode<CustomSignals>("/root/CustomSignals");
 
         TowerScene = ResourceLoader.Load<PackedScene>("res://Scenes/tower.tscn");
 
@@ -147,6 +149,8 @@ public partial class Player : CharacterBody3D
 		{
 			EnterCombatMode();
 		}
+		
+		CSignals.EmitSignal(nameof(CSignals.GameModeChanged));
 	}
 
 	void EnterBuildMode()
@@ -163,12 +167,14 @@ public partial class Player : CharacterBody3D
 		
 		foreach (Node child in Build.GetChildren())
 		{
-			child.QueueFree();
+			child.Call("Remove");
+
 		}
 
 		Build.Visible = false;
-		Weapon.Visible = true;
-        GD.Print("COMBATAS");
+		Weapon.Visible = true;        
+		
+		GD.Print("COMBATAS");
     }
 
 	void _ProcessCombat(double delta)
@@ -204,7 +210,7 @@ public partial class Player : CharacterBody3D
                 }
 
                 PlayerStats.Instance.Gold -= 100;
-
+                PlayerStats.Instance.EmitSignal(nameof(PlayerStats.Instance.UpdateGoldLabel));
                 GD.Print("GOLD:" + PlayerStats.Instance.Gold);
             }
 		}
@@ -272,7 +278,7 @@ public partial class Player : CharacterBody3D
 				Tower collider = (Tower)RayCast.GetCollider().Call("Remove");
 
 				PlayerStats.Instance.Gold += 100;
-
+				PlayerStats.Instance.EmitSignal(nameof(PlayerStats.Instance.UpdateGoldLabel));
                 GD.Print("GOLD:" + PlayerStats.Instance.Gold);
                 GD.Print("BAIGE SUDA");
             }

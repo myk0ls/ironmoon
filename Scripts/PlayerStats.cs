@@ -8,8 +8,11 @@ public partial class PlayerStats : Node
 	public int Gold = 350;
 	public static PlayerStats Instance { get; private set; }
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+
+    [Signal] public delegate void UpdateGoldLabelEventHandler();
+
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
 	{
 		Instance = this;
 	}
@@ -19,5 +22,8 @@ public partial class PlayerStats : Node
 	{
 	}
 
-
+	public void GainGold(int Amount)
+	{
+		Gold += Amount;
+	}
 }

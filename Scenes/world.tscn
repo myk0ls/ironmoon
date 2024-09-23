@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ddmlaq0toslu2"]
+[gd_scene load_steps=15 format=3 uid="uid://ddmlaq0toslu2"]
 
 [ext_resource type="PackedScene" uid="uid://dpdyvqyi3u2x7" path="res://Scenes/player.tscn" id="1_b63kr"]
 [ext_resource type="Script" path="res://Scripts/Window.cs" id="3_qskyf"]
@@ -29,10 +29,13 @@ albedo_color = Color(0.383896, 0.148163, 0.0411139, 1)
 
 [sub_resource type="Curve3D" id="Curve3D_atsit"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.178671, -0.593097, -5.93671, 0, 0, 0, 0, 0, 0, -0.234333, -0.423485, 1.12724, 0, 0, 0, 0, 0, 0, 0.37498, -0.536666, 7.94928, 0, 0, 0, 0, 0, 0, 0.597521, -0.685313, 14.5685),
-"tilts": PackedFloat32Array(0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.178671, -0.593097, -5.93671, 0, 0, 0, 0, 0, 0, -0.234333, -0.423485, 1.12724, 0, 0, 0, 0, 0, 0, 0.37498, -0.536666, 7.94928, 0, 0, 0, 0, 0, 0, 0.597521, -0.685313, 11.5259, 0, 0, 0, 0, 0, 0, -5.01067, -0.87852, 11.623, 0, 0, 0, 0, 0, 0, -9.67883, -0.747176, 11.2216, 0, 0, 0, 0, 0, 0, -8.64442, -0.7802, 11.4199, 0, 0, 0, 0, 0, 0, -8.83401, -0.850441, 3.09149, 0, 0, 0, 0, 0, 0, -8.96285, -0.892586, -3.24398, 0, 0, 0, 0, 0, 0, -8.89585, -0.962954, -8.23229),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
-point_count = 4
+point_count = 10
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mu3y"]
+albedo_color = Color(0.89059, 0.89059, 0.89059, 1)
 
 [node name="World" type="Node3D"]
 
@@ -43,15 +46,11 @@ environment = SubResource("Environment_p0es7")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.22314, 0.21436, 2.85622)
-use_collision = true
-size = Vector3(177.341, 0.0464478, 173.252)
-
 [node name="Player" parent="." instance=ExtResource("1_b63kr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1159, 0)
 
 [node name="Window" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.9924, 0, 0)
 script = ExtResource("3_qskyf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Window"]
@@ -107,7 +106,7 @@ size = Vector3(0.108887, 0.252563, 1)
 material = SubResource("StandardMaterial3D_fipho")
 
 [node name="Window2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.72711)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.9924, 0, 6.72711)
 script = ExtResource("3_qskyf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Window2"]
@@ -172,13 +171,7 @@ wait_time = 1.5
 autostart = true
 
 [node name="PathFollow3D" parent="Path3D" instance=ExtResource("4_o861c")]
-transform = Transform3D(-0.998287, 0.00139864, 0.0583497, -5.82072e-11, 0.999703, -0.023963, -0.0583664, -0.023922, -0.998002, 0.178671, -0.593097, -5.93671)
-
-[node name="TowerBig" parent="." instance=ExtResource("7_rtawa")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -1.54976, 4.36108, -11.3227)
-
-[node name="Barrel" parent="." instance=ExtResource("8_c6kci")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0216062, 0.922998, -8.73433)
+transform = Transform3D(-0.998278, 0.00139864, 0.0583492, -5.82066e-11, 0.999701, -0.0239627, -0.0583659, -0.023922, -0.997994, 0.178671, -0.593097, -5.93671)
 
 [node name="UI" type="Control" parent="."]
 layout_direction = 1
@@ -201,3 +194,63 @@ grow_horizontal = 2
 grow_vertical = 2
 max_value = 1.0
 metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="UI"]
+layout_mode = 0
+offset_top = 567.0
+offset_right = 116.0
+offset_bottom = 613.0
+
+[node name="GoldLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -71.0
+offset_right = 252.0
+grow_vertical = 0
+text = "Gold:
+"
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.22314, 0.21436, 2.85622)
+use_collision = true
+size = Vector3(177.341, 0.0464478, 173.252)
+material = SubResource("StandardMaterial3D_3mu3y")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.65346, -0.0233346, -4.58862)
+use_collision = true
+size = Vector3(3.60571, 1, 15.5181)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.943, -0.0233346, -0.754253)
+use_collision = true
+size = Vector3(3.60571, 1, 23.1378)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.29841, -0.0233346, -13.7414)
+use_collision = true
+size = Vector3(12.8948, 1, 2.90632)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.08867, -0.0233346, -1.94164)
+use_collision = true
+size = Vector3(3.60571, 1, 25.5126)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.97359, -0.0233346, 10.4486)
+use_collision = true
+size = Vector3(21.5445, 1, 3.53681)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.93921, -0.0233346, 10.4486)
+size = Vector3(21.6132, 1, 3.53681)
+
+[node name="TowerBig" parent="Level" instance=ExtResource("7_rtawa")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.242639, 4.36108, -16.9721)
+
+[node name="Barrel" parent="Level" instance=ExtResource("8_c6kci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81401, 0.922998, -14.3837)
