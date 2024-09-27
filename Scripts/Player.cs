@@ -21,6 +21,8 @@ public partial class Player : CharacterBody3D
     public float DefaultFOV = 75f;
 	public float ADSFOV = 60f;
 
+	bool isInSelection = false;
+
 	Node3D Weapon;
 	Node3D Build;
 
@@ -202,10 +204,11 @@ public partial class Player : CharacterBody3D
 				Tower placeTower = (Tower)Build.GetChild(0);
 				placeTower.GlobalTransform = Build.GlobalTransform;
 
-				
+				isInSelection = false;
 
 				placeTower.CanAttack = true;
 				placeTower.Reparent(GetParent());
+				placeTower.CollisionLayer = 1;
 
                 foreach (Node child in Build.GetChildren())
                 {
@@ -253,8 +256,19 @@ public partial class Player : CharacterBody3D
 		//pick first tower
         if (Input.IsActionJustPressed("one"))
         {
-            GD.Print("TOWER1");
-            TestTower();
+			if (!isInSelection)
+			{
+				TestTower();
+				isInSelection = true;
+			}
+			else if (isInSelection)
+			{
+                foreach (Node child in Build.GetChildren())
+                {
+                    child.QueueFree();
+                }
+				isInSelection = false;
+            }
         }
 
     }
@@ -264,8 +278,11 @@ public partial class Player : CharacterBody3D
 		Tower newTower = (Tower)TowerScene.Instantiate();
 		newTower.AxisLockAngularZ = true;
 		newTower.AxisLockLinearZ = true;
-		Build.AddChild(newTower);
+		newTower.CollisionLayer = 2;
+        Build.AddChild(newTower);
     }
+
+
 
 	void StartSellBuilding()
 	{

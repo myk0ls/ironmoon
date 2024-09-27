@@ -26,7 +26,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11854, 0)
 shape = SubResource("SphereShape3D_1blkk")
 
 [node name="AttackTimer" type="Timer" parent="."]
-wait_time = 0.5
 
 [node name="TowerBuild" parent="." instance=ExtResource("2_yn37s")]
 

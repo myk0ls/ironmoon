@@ -119,15 +119,17 @@ public partial class Weapon : Node3D
                 var shapeIndex = rayCast.GetColliderShape();
                 GD.Print(shapeIndex);
 
-                switch(shapeIndex)
+                switch (shapeIndex)
                 {
                     case 0:
                         collider.Call("ReceiveDamage", 24);
-                    break;
+                        DamageNumbers.Instance.DisplayNumber(24, GetAdjustedCollisionPoint(), false);
+                        break;
 
                     case 1:
                         collider.Call("ReceiveDamage", 35);
-                    break;
+                        DamageNumbers.Instance.DisplayNumber(35, GetAdjustedCollisionPoint(), true);
+                        break;
                 }
             }
         }
@@ -168,5 +170,14 @@ public partial class Weapon : Node3D
         }
         else
             Position = Position.Lerp(new Vector3(Position.X, (float)StartY, Position.Z), BobSpeed);
+    }
+
+    Vector3 GetAdjustedCollisionPoint()
+    {
+        Vector3 collisionPoint = rayCast.GetCollisionPoint();
+        Vector3 directionToPlayer = (player.GlobalPosition - collisionPoint).Normalized();
+        Vector3 adjustedCollisionPoint = collisionPoint + directionToPlayer * (float)1;
+
+        return adjustedCollisionPoint;
     }
 }

@@ -7,6 +7,7 @@ public partial class Tower : StaticBody3D
 	Node3D Head;
 	PackedScene Bullet;
 	Area3D DetectionArea;
+	Area3D CollisionArea;
 	MeshInstance3D DistanceRadius;
 
 	Player PlayerNode;
@@ -27,6 +28,7 @@ public partial class Tower : StaticBody3D
 		AttackTimer = GetNode<Timer>("AttackTimer");
 		DetectionArea = GetNode<Area3D>("Area3D");
 		DistanceRadius = GetNode<MeshInstance3D>("DistanceRadius");
+		//CollisionArea = GetNode<Area3D>("");
 
 		CSignals = GetNode<CustomSignals>("/root/CustomSignals");
 
@@ -120,11 +122,14 @@ public partial class Tower : StaticBody3D
 
 	void ToggleDistanceRadius()
 	{
-        if (PlayerNode.currentMode == PlayerMode.Build)
-        {
-            DistanceRadius.Visible = true;
-        }
-        else
-            DistanceRadius.Visible = false;
+		if (IsInstanceValid(DistanceRadius))
+		{
+			if (PlayerNode.currentMode == PlayerMode.Build)
+			{
+				DistanceRadius.Visible = true;
+			}
+			else
+				DistanceRadius.Visible = false;
+		}
     }
 }
