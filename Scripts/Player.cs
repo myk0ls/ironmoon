@@ -198,8 +198,11 @@ public partial class Player : CharacterBody3D
 		{
 			if (Build.GetChildCount() != 0 && PlayerStats.Instance.Gold >= 100)
 			{
+
 				Tower placeTower = (Tower)Build.GetChild(0);
 				placeTower.GlobalTransform = Build.GlobalTransform;
+
+				
 
 				placeTower.CanAttack = true;
 				placeTower.Reparent(GetParent());
@@ -266,7 +269,6 @@ public partial class Player : CharacterBody3D
 
 	void StartSellBuilding()
 	{
-
 	}
 
 	void FinishSellBuilding()

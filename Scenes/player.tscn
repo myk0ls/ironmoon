@@ -175,7 +175,7 @@ DefaultPosition = Vector3(0.489, -0.432, -0.39)
 ADSPosition = Vector3(0, -0.075, -0.369)
 
 [node name="Crossbow" parent="Camera3D/Weapon" instance=ExtResource("3_qaqww")]
-transform = Transform3D(-0.1, -4.42297e-10, 8.73108e-09, 0, 0.0998719, 0.00505929, -8.74228e-09, 0.00505929, -0.0998719, 0.489, -0.432, -0.39)
+transform = Transform3D(-0.1, 1.28262e-08, -2.53193e-07, 0, 0.0998719, 0.00505929, 2.53518e-07, 0.00505929, -0.0998719, 0.489, -0.432, -0.39)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D/Weapon/Crossbow"]
 libraries = {
@@ -183,7 +183,7 @@ libraries = {
 }
 
 [node name="Pistol" parent="Camera3D/Weapon" instance=ExtResource("3_yphy6")]
-transform = Transform3D(-0.12, -5.30757e-10, 1.04773e-08, 0, 0.119846, 0.00607116, -1.04907e-08, 0.00607116, -0.119846, 0.489, -0.432, -0.39)
+transform = Transform3D(-0.12, 1.53914e-08, -3.03831e-07, 0, 0.119846, 0.00607113, 3.04222e-07, 0.00607113, -0.119846, 0.489, -0.432, -0.39)
 visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D/Weapon/Pistol"]

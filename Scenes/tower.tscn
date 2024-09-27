@@ -31,7 +31,7 @@ wait_time = 0.5
 [node name="TowerBuild" parent="." instance=ExtResource("2_yn37s")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999955, 0.00952935, 0, -0.00952935, 0.999955, 0, 0.65776, 0)
+transform = Transform3D(1.1, 0, 0, 0, 1.09995, 0.0104823, 0, -0.0104823, 1.09995, 0, 0.31276, 0)
 shape = SubResource("CapsuleShape3D_lptp8")
 
 [node name="DistanceRadius" type="MeshInstance3D" parent="."]
