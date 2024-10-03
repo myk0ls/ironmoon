@@ -111,7 +111,7 @@ public partial class Weapon : Node3D
 
     public void Attack(StringName animName)
 	{
-        if (rayCast.IsColliding() && rayCast != null && animName == "shoot")
+        if (rayCast.IsColliding() && rayCast != null && animName == "shoot" && rayCast.GetCollider() != null)
         {
             var collider = rayCast.GetCollider() as Node3D;
             if (collider.IsInGroup("enemy"))

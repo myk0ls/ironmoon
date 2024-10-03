@@ -37,5 +37,8 @@ shape = SubResource("CapsuleShape3D_lptp8")
 transform = Transform3D(4.2, 0, 0, 0, 1, 0, 0, 0, 4.2, 0, -0.736615, 0)
 mesh = SubResource("TorusMesh_irdvi")
 
+[node name="BuildRayCast" type="RayCast3D" parent="."]
+target_position = Vector3(0, -1.2, 0)
+
 [connection signal="body_entered" from="Area3D" to="." method="OnBodyEntered"]
 [connection signal="body_exited" from="Area3D" to="." method="OnBodyExited"]

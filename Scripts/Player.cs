@@ -15,24 +15,21 @@ public partial class Player : CharacterBody3D
     Vector3 CrouchingPostion = new Vector3(0, (float)0.15, 0);
 
     public Camera3D Camera;
-	RayCast3D RayCast;
+	public RayCast3D RayCast;
 	public Timer SellTimer;
     public float SprintFOV = 80f;
     public float DefaultFOV = 75f;
 	public float ADSFOV = 60f;
 
-	bool isInSelection = false;
-
 	Node3D Weapon;
-	Node3D Build;
+	Node3D Builder;
 
-	PackedScene TowerScene;
 	CustomSignals CSignals;
 
-	Tower TargetTower;
-
+	
 	public PlayerMode currentMode {get; private set;}
     
+
 	public override void _Ready()
     {
 		Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -41,14 +38,10 @@ public partial class Player : CharacterBody3D
 		RayCast = GetNode<RayCast3D>("Camera3D/RayCast3D");
 		SellTimer = GetNode<Timer>("SellTimer");
 		Weapon = GetNode<Node3D>("Camera3D/Weapon");
-        Build = GetNode<Node3D>("Build");
+        Builder = GetNode<Node3D>("Builder");
 		CSignals = GetNode<CustomSignals>("/root/CustomSignals");
-
-        TowerScene = ResourceLoader.Load<PackedScene>("res://Scenes/tower.tscn");
-
+		
 		PositionC = Camera.Transform.Origin.Y;
-
-		SellTimer.Timeout += FinishSellBuilding;
     }
 
     public override void _Process(double delta)
@@ -159,7 +152,7 @@ public partial class Player : CharacterBody3D
 	{
 		currentMode = PlayerMode.Build;
 		Weapon.Hide();
-		Build.Visible = true;
+		Builder.Visible = true;
 		GD.Print("BUILDAS");
 	}
 
@@ -167,13 +160,13 @@ public partial class Player : CharacterBody3D
     {
         currentMode = PlayerMode.Combat;
 		
-		foreach (Node child in Build.GetChildren())
+		foreach (Node child in Builder.GetChildren())
 		{
 			child.Call("Remove");
 
 		}
 
-		Build.Visible = false;
+		Builder.Visible = false;
 		Weapon.Visible = true;        
 		
 		GD.Print("COMBATAS");
@@ -195,114 +188,8 @@ public partial class Player : CharacterBody3D
 
     void _ProcessBuild(double delta)
     {
-		// build a towewr
-		if (Input.IsActionJustPressed("attack"))
-		{
-			if (Build.GetChildCount() != 0 && PlayerStats.Instance.Gold >= 100)
-			{
-
-				Tower placeTower = (Tower)Build.GetChild(0);
-				placeTower.GlobalTransform = Build.GlobalTransform;
-
-				isInSelection = false;
-
-				placeTower.CanAttack = true;
-				placeTower.Reparent(GetParent());
-				placeTower.CollisionLayer = 1;
-
-                foreach (Node child in Build.GetChildren())
-                {
-                    child.QueueFree();
-                }
-
-                PlayerStats.Instance.Gold -= 100;
-                PlayerStats.Instance.EmitSignal(nameof(PlayerStats.Instance.UpdateGoldLabel));
-                GD.Print("GOLD:" + PlayerStats.Instance.Gold);
-            }
-		}
-
-		//sell a tower by starting timer
-		if (Input.IsActionJustPressed("attack2"))
-		{
-			if (RayCast.IsColliding())
-			{
-				if (RayCast.GetCollider() is Tower)
-				{
-                    TargetTower = (Tower)RayCast.GetCollider();
-                    
-					if (TargetTower.CanAttack == true)
-					{
-						SellTimer.Start();
-						GD.Print("PRADEJO SUDA");
-					}
-				}
-			}
-		}
-		
-		// cancel sell
-		if (Input.IsActionJustReleased("attack2") && !SellTimer.IsStopped() && (RayCast.GetCollider() is not Tower))
-		{
-			SellTimer.Stop();
-		}
-
-        // if you look away mid sell
-        if (Input.IsActionPressed("attack2"))
-		{
-            if (RayCast.GetCollider() is not Tower)
-				SellTimer.Stop();
-
-        }
-
-		//pick first tower
-        if (Input.IsActionJustPressed("one"))
-        {
-			if (!isInSelection)
-			{
-				TestTower();
-				isInSelection = true;
-			}
-			else if (isInSelection)
-			{
-                foreach (Node child in Build.GetChildren())
-                {
-                    child.QueueFree();
-                }
-				isInSelection = false;
-            }
-        }
-
+		Builder.Call("_ProcessBuild", delta);
     }
-
-	void TestTower()
-	{
-		Tower newTower = (Tower)TowerScene.Instantiate();
-		newTower.AxisLockAngularZ = true;
-		newTower.AxisLockLinearZ = true;
-		newTower.CollisionLayer = 2;
-        Build.AddChild(newTower);
-    }
-
-
-
-	void StartSellBuilding()
-	{
-	}
-
-	void FinishSellBuilding()
-	{
-		if (RayCast.IsColliding() && Input.IsActionPressed("attack2"))
-		{
-			if (RayCast.GetCollider() == TargetTower)
-			{
-				Tower collider = (Tower)RayCast.GetCollider().Call("Remove");
-
-				PlayerStats.Instance.Gold += 100;
-				PlayerStats.Instance.EmitSignal(nameof(PlayerStats.Instance.UpdateGoldLabel));
-                GD.Print("GOLD:" + PlayerStats.Instance.Gold);
-                GD.Print("BAIGE SUDA");
-            }
-        }
-	}
 }
 
 public enum PlayerMode

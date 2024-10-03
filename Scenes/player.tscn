@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dpdyvqyi3u2x7"]
+[gd_scene load_steps=16 format=3 uid="uid://dpdyvqyi3u2x7"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_fo5ap"]
 [ext_resource type="Script" path="res://Scripts/Weapon.cs" id="2_4hrrm"]
+[ext_resource type="Script" path="res://Scripts/Builder.cs" id="2_a3r0s"]
 [ext_resource type="Script" path="res://Scripts/InteractionArea.cs" id="3_43rur"]
 [ext_resource type="PackedScene" uid="uid://dym3upxpoybh3" path="res://Assets/Crossbow.glb" id="3_qaqww"]
 [ext_resource type="PackedScene" uid="uid://c2y42xsbvwoqb" path="res://Assets/pistol.blend" id="3_yphy6"]
@@ -159,8 +160,9 @@ mesh = SubResource("CapsuleMesh_5xvmq")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_h1n2p")
 
-[node name="Build" type="Node3D" parent="."]
+[node name="Builder" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.741)
+script = ExtResource("2_a3r0s")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.182629)

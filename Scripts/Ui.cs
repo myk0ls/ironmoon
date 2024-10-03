@@ -25,7 +25,7 @@ public partial class Ui : Control
 		PlayerStats.Instance.UpdateGoldLabel += UpdateGold;
 		CSignals.GameModeChanged += ToggleHotBar;
 
-        GoldLabel.Text = String.Format("GOLD: {0}", PlayerStats.Instance.Gold);
+        GoldLabel.Text = String.Format("GEARS: {0}", PlayerStats.Instance.Gold);
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -74,7 +74,7 @@ public partial class Ui : Control
 
     void UpdateGold()
 	{
-		GoldLabel.Text = String.Format("GOLD: {0}", PlayerStats.Instance.Gold);
+		GoldLabel.Text = String.Format("GEARS: {0}", PlayerStats.Instance.Gold);
 	}
 
 	void ToggleHotBar()

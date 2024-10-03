@@ -6,9 +6,10 @@ public partial class Tower : StaticBody3D
 	Timer AttackTimer;
 	Node3D Head;
 	PackedScene Bullet;
-	Area3D DetectionArea;
+	public Area3D DetectionArea;
 	Area3D CollisionArea;
 	MeshInstance3D DistanceRadius;
+	public RayCast3D RayCast;
 
 	Player PlayerNode;
 
@@ -28,6 +29,7 @@ public partial class Tower : StaticBody3D
 		AttackTimer = GetNode<Timer>("AttackTimer");
 		DetectionArea = GetNode<Area3D>("Area3D");
 		DistanceRadius = GetNode<MeshInstance3D>("DistanceRadius");
+		RayCast = GetNode<RayCast3D>("BuildRayCast");
 		//CollisionArea = GetNode<Area3D>("");
 
 		CSignals = GetNode<CustomSignals>("/root/CustomSignals");
@@ -35,6 +37,8 @@ public partial class Tower : StaticBody3D
 		TargetNode = null;
 		TargetZombie = null;
 		CanAttack = false;
+
+		DetectionArea.Monitoring = true;
 
 		AttackTimer.Timeout += Fire;
 		CSignals.GameModeChanged += ToggleDistanceRadius;
