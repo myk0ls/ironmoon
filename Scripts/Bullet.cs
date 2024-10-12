@@ -37,13 +37,13 @@ public partial class Bullet : Node3D
             Direction = (Target.GlobalPosition - GlobalPosition).Normalized();
             Vector3 movement = Direction * Speed * (float)delta;
 
-			//GlobalPosition = movement;
+            //GlobalPosition = movement;
 
-			//Vector3 LookDir = GlobalPosition.DirectionTo(Target.GlobalPosition);
-			//Rotation = LookDir;
+            //Vector3 LookDir = GlobalPosition.DirectionTo(Target.GlobalPosition);
+            //Rotation = LookDir;
 
-			//LookAt(GlobalPosition + movement, Vector3.Up);
-			LookAt(Target.GlobalPosition, Vector3.Up);
+            //LookAt(GlobalPosition + movement, Vector3.Up);
+            LookAt(Target.GlobalPosition, Vector3.Up);
 
 			//Translate(movement);
 

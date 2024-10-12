@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://bilchqhvk5r0"]
+
+[ext_resource type="Script" path="res://Scripts/SingleTargetTower.cs" id="1_tt6f7"]
+[ext_resource type="PackedScene" uid="uid://b8e8wijrjfn6y" path="res://Assets/TowerBuild.glb" id="2_htpsk"]
+[ext_resource type="PackedScene" uid="uid://d0n4i0kfjiehe" path="res://Assets/Models/MachineGunTower/machine_gun_tower.tscn" id="3_cmnel"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1blkk"]
+radius = 4.80494
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lptp8"]
+radius = 0.887864
+height = 2.87482
+
+[sub_resource type="TorusMesh" id="TorusMesh_irdvi"]
+inner_radius = 0.95
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_roxdu"]
+viewport_path = NodePath("SubViewport")
+
+[node name="SingleTargetTower" type="StaticBody3D" groups=["building"]]
+script = ExtResource("1_tt6f7")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0260615, 1.11014, -0.0220504)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_1blkk")
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="TowerBuild" parent="." instance=ExtResource("2_htpsk")]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.1, 0, 0, 0, 1.09995, 0.0104823, 0, -0.0104823, 1.09995, 0, 0.31276, 0)
+shape = SubResource("CapsuleShape3D_lptp8")
+
+[node name="DistanceRadius" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.2, 0, 0, 0, 1, 0, 0, 0, 4.2, 0, -0.736615, 0)
+mesh = SubResource("TorusMesh_irdvi")
+
+[node name="BuildRayCast" type="RayCast3D" parent="."]
+target_position = Vector3(0, -1.2, 0)
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(256, 256)
+
+[node name="HealthBar" type="ProgressBar" parent="SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 1.0
+
+[node name="HealthBarSprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24409, 0)
+visible = false
+billboard = 2
+texture = SubResource("ViewportTexture_roxdu")
+
+[node name="MachineGunTower" parent="." instance=ExtResource("3_cmnel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.01791, 0)
+
+[connection signal="body_entered" from="Area3D" to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="Area3D" to="." method="OnBodyExited"]

@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://c0jqid5na6r1d"]
+
+[ext_resource type="Script" path="res://Scripts/AoETower.cs" id="1_egpbm"]
+[ext_resource type="PackedScene" uid="uid://b8e8wijrjfn6y" path="res://Assets/TowerBuild.glb" id="2_2vdnn"]
+[ext_resource type="PackedScene" uid="uid://bjm6cy0eo2ir4" path="res://Assets/Models/ElectricTower/electric_tower.tscn" id="3_ovbtq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oh0ln"]
+radius = 4.80494
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lptp8"]
+radius = 0.887864
+height = 2.87482
+
+[sub_resource type="TorusMesh" id="TorusMesh_irdvi"]
+inner_radius = 0.95
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qk5hw"]
+viewport_path = NodePath("SubViewport")
+
+[node name="AoETower" type="StaticBody3D" groups=["building"]]
+script = ExtResource("1_egpbm")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11854, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_oh0ln")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="TowerBuild" parent="." instance=ExtResource("2_2vdnn")]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.1, 0, 0, 0, 1.09995, 0.0104823, 0, -0.0104823, 1.09995, 0, 0.31276, 0)
+shape = SubResource("CapsuleShape3D_lptp8")
+
+[node name="DistanceRadius" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.2, 0, 0, 0, 1, 0, 0, 0, 4.2, 0, -0.736615, 0)
+mesh = SubResource("TorusMesh_irdvi")
+
+[node name="BuildRayCast" type="RayCast3D" parent="."]
+target_position = Vector3(0, -1.2, 0)
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(256, 256)
+
+[node name="HealthBar" type="ProgressBar" parent="SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 1.0
+
+[node name="HealthBarSprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24335, 0)
+visible = false
+billboard = 2
+texture = SubResource("ViewportTexture_qk5hw")
+
+[node name="ElectricTower" parent="." instance=ExtResource("3_ovbtq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.02337, 0)
