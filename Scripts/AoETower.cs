@@ -34,8 +34,8 @@ public partial class AoETower : Building
         if (node.IsInGroup("enemy"))
         {
             node.Call("ReceiveDamage", 24); 
-            Zombie zomb = node as Zombie;
-            GD.Print("AFTER AOE DAMAGE: " + zomb.Health);
+            Enemy enem = node as Enemy;
+            GD.Print("AFTER AOE DAMAGE: " + enem.EnemyStats.Health);
         }
     }
 }

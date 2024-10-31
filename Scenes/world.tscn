@@ -22,7 +22,7 @@ glow_enabled = true
 
 [sub_resource type="Curve3D" id="Curve3D_atsit"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.178671, -0.593097, -5.93671, 0, 0, 0, 0, 0, 0, -0.234333, -0.423485, 1.12724, 0, 0, 0, 0, 0, 0, 0.37498, -0.536666, 7.94928, 0, 0, 0, 0, 0, 0, 0.597521, -0.685313, 11.5259, 0, 0, 0, 0, 0, 0, -5.01067, -0.87852, 11.623, 0, 0, 0, 0, 0, 0, -9.08808, -0.747176, 11.2216, 0, 0, 0, 0, 0, 0, -9.10186, -0.7802, 10.319, 0, 0, 0, 0, 0, 0, -8.83401, -0.850441, 3.09149, 0, 0, 0, 0, 0, 0, -8.96285, -0.892586, -3.24398, 0, 0, 0, 0, 0, 0, -8.89585, -0.962954, -8.23229),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.178671, -0.593097, -5.93671, 0, 0, 0, 0, 0, 0, -0.234333, -0.423485, 1.12724, 0, 0, 0, 0, 0, 0, 0.37498, -0.536666, 7.94928, 0, 0, 0, 0, 0, 0, 0.597521, -0.685313, 11.5259, 0, 0, 0, 0, 0, 0, -5.01067, -0.607536, 11.623, 0, 0, 0, 0, 0, 0, -9.08808, -0.605387, 11.2216, 0, 0, 0, 0, 0, 0, -9.10186, -0.638411, 10.319, 0, 0, 0, 0, 0, 0, -8.83401, -0.708652, 3.09149, 0, 0, 0, 0, 0, 0, -8.96285, -0.567113, -3.24398, 0, 0, 0, 0, 0, 0, -8.89585, -0.637481, -8.23229),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 10
@@ -46,7 +46,7 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1159, 0)
 
 [node name="Path3D" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.19764, 2.12205, -5.3266)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.19764, 5.76667, -4.79671)
 curve = SubResource("Curve3D_atsit")
 script = ExtResource("3_ygtur")
 
@@ -122,6 +122,22 @@ item_count = 2
 max_columns = 3
 item_0/text = "1"
 item_0/icon = ExtResource("6_8laws")
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.294118)
 
 [node name="Level" type="Node3D" parent="."]
 

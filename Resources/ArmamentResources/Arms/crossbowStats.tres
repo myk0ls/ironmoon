@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ArmamentStats" load_steps=2 format=3 uid="uid://muyo4xk8edgx"]
+
+[ext_resource type="Script" path="res://Resources/ArmamentResources/ArmamentStats.cs" id="1_f2841"]
+
+[resource]
+script = ExtResource("1_f2841")
+BaseDamage = 50.0
+Range = 30.0
+ClipSize = 1.0
+TotalClipSize = 45.0
+KnockBack = 0.0
+RecoilAmount = 0.1
+RecoilSpeed = 5.0
+MaxRecoil = 5.0

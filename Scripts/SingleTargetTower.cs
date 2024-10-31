@@ -10,7 +10,7 @@ public partial class SingleTargetTower : Building
     AnimationPlayer TowerAnim;
 
     Node3D TargetNode;
-    Zombie TargetZombie;
+    Enemy TargetEnemy;
 
     public override void _Ready()
     {
@@ -21,15 +21,15 @@ public partial class SingleTargetTower : Building
         TowerAnim = GetNode<AnimationPlayer>("MachineGunTower/AnimationPlayer");
 
         TargetNode = null;
-        TargetZombie = null;
+        TargetEnemy = null;
     }
 
     void SetTargetNode(Node3D node)
     {
         TargetNode = node;
-        TargetZombie = (Zombie)TargetNode;
-        TargetZombie.Death += RemoveTarget;
-        TargetZombie.Death += ScanForTarget;
+        TargetEnemy = (Enemy)TargetNode;
+        TargetEnemy.Death += RemoveTarget;
+        TargetEnemy.Death += ScanForTarget;
     }
 
     void RemoveTarget()
@@ -37,8 +37,8 @@ public partial class SingleTargetTower : Building
         if (TargetNode != null)
         {
             TargetNode = null;
-            TargetZombie.Death -= RemoveTarget;
-            TargetZombie.Death -= ScanForTarget;
+            TargetEnemy.Death -= RemoveTarget;
+            TargetEnemy.Death -= ScanForTarget;
         }
     }
 
@@ -57,7 +57,7 @@ public partial class SingleTargetTower : Building
         if (node == TargetNode)
         {
             RemoveTarget();
-            TargetZombie = null;
+            TargetEnemy = null;
         }
     }
 

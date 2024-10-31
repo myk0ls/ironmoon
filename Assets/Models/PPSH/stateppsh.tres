@@ -1,0 +1,66 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=16 format=3 uid="uid://dddj6hdec45wf"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s4gkj"]
+animation = &"ppsh/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xm7gn"]
+animation = &"ppsh/reload"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tbbjq"]
+animation = &"ppsh/shoot"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_01eb3"]
+animation = &"ppsh/sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_61hg2"]
+xfade_time = 0.05
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_61lnp"]
+xfade_time = 0.3
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_goyjh"]
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jqjwp"]
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iqlip"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tv2op"]
+xfade_time = 0.3
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j3fh7"]
+xfade_time = 0.3
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ige5v"]
+xfade_time = 0.3
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i4f03"]
+switch_mode = 1
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_52kfi"]
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h1sm5"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[resource]
+states/Start/position = Vector2(103, 100)
+states/idle/node = SubResource("AnimationNodeAnimation_s4gkj")
+states/idle/position = Vector2(344, 100)
+states/reload/node = SubResource("AnimationNodeAnimation_xm7gn")
+states/reload/position = Vector2(325, 187)
+states/shoot/node = SubResource("AnimationNodeAnimation_tbbjq")
+states/shoot/position = Vector2(488, 174)
+states/sprint/node = SubResource("AnimationNodeAnimation_01eb3")
+states/sprint/position = Vector2(488, 60)
+transitions = ["sprint", "shoot", SubResource("AnimationNodeStateMachineTransition_61hg2"), "shoot", "sprint", SubResource("AnimationNodeStateMachineTransition_61lnp"), "sprint", "End", SubResource("AnimationNodeStateMachineTransition_goyjh"), "shoot", "End", SubResource("AnimationNodeStateMachineTransition_jqjwp"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_iqlip"), "idle", "sprint", SubResource("AnimationNodeStateMachineTransition_tv2op"), "sprint", "idle", SubResource("AnimationNodeStateMachineTransition_j3fh7"), "idle", "shoot", SubResource("AnimationNodeStateMachineTransition_ige5v"), "shoot", "idle", SubResource("AnimationNodeStateMachineTransition_i4f03"), "idle", "reload", SubResource("AnimationNodeStateMachineTransition_52kfi"), "reload", "idle", SubResource("AnimationNodeStateMachineTransition_h1sm5")]

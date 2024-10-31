@@ -30,7 +30,7 @@ public partial class Zombie : CharacterBody3D
         if (pathToFollow.ProgressRatio == 1)
         {
             QueueFree();
-            GetTree().ReloadCurrentScene();
+            //GetTree().ReloadCurrentScene();
         }
 
         pathToFollow.Progress = pathProgress;

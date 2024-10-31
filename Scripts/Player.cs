@@ -17,11 +17,12 @@ public partial class Player : CharacterBody3D
     public Camera3D Camera;
 	public RayCast3D RayCast;
 	public Timer SellTimer;
-    public float SprintFOV = 80f;
+    public float SprintFOV = 90f;
     public float DefaultFOV = 75f;
 	public float ADSFOV = 60f;
+	const float SprintLerp = 20f;
 
-	Node3D Weapon;
+	Node3D WeaponController;
 	Node3D Builder;
 
 	CustomSignals CSignals;
@@ -37,7 +38,7 @@ public partial class Player : CharacterBody3D
 		Camera = GetNode<Camera3D>("Camera3D");
 		RayCast = GetNode<RayCast3D>("Camera3D/RayCast3D");
 		SellTimer = GetNode<Timer>("SellTimer");
-		Weapon = GetNode<Node3D>("Camera3D/Weapon");
+		WeaponController = GetNode<Node3D>("Camera3D/WeaponController");
         Builder = GetNode<Node3D>("Builder");
 		CSignals = GetNode<CustomSignals>("/root/CustomSignals");
 		
@@ -68,13 +69,7 @@ public partial class Player : CharacterBody3D
 			velocity.Y = JumpVelocity;
 		}
 
-		//Handle Sprint.
-		if (Input.IsActionPressed("sprint"))
-		{
-			Speed = SprintSpeed;
-		}
-		else if (Input.IsActionJustReleased("sprint"))
-			Speed = DefaultSpeed;
+
 
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
@@ -90,6 +85,32 @@ public partial class Player : CharacterBody3D
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
 			velocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
 		}
+
+		//Handle Sprint.
+		if (Input.IsActionPressed("sprint") && inputDir != Vector2.Zero)
+		{
+			Speed = SprintSpeed;
+			
+			if (Camera.Fov != SprintFOV)
+			{
+                GD.Print(Camera.Fov);
+                Camera.Fov = Mathf.Lerp(Camera.Fov, SprintFOV, SprintLerp * (float)delta);
+				//Camera.Fov = SprintFOV;
+				GD.Print(Camera.Fov);
+
+			}
+			
+        }
+		else if (Input.IsActionJustReleased("sprint"))
+		{
+			Speed = DefaultSpeed;
+
+			if (Camera.Fov == SprintFOV)
+			{
+				Camera.Fov = Mathf.Lerp(Camera.Fov, DefaultFOV, SprintLerp * (float)delta);
+				//Camera.Fov = DefaultFOV;
+			}
+        }
 
 		Velocity = velocity;
 		MoveAndSlide();
@@ -151,7 +172,7 @@ public partial class Player : CharacterBody3D
 	void EnterBuildMode()
 	{
 		currentMode = PlayerMode.Build;
-		Weapon.Hide();
+		WeaponController.Hide();
 		Builder.Visible = true;
 		GD.Print("BUILDAS");
 	}
@@ -167,7 +188,7 @@ public partial class Player : CharacterBody3D
 		}
 
 		Builder.Visible = false;
-		Weapon.Visible = true;        
+		WeaponController.Visible = true;        
 		
 		GD.Print("COMBATAS");
     }
@@ -183,7 +204,7 @@ public partial class Player : CharacterBody3D
             Speed = DefaultSpeed;
 
 		//All Weapon calls
-		Weapon.Call("_ProcessCombat", delta);
+		WeaponController.Call("_ProcessCombat", delta);
     }
 
     void _ProcessBuild(double delta)

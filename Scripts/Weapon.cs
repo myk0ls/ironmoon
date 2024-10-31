@@ -30,6 +30,8 @@ public partial class Weapon : Node3D
     Camera3D camera3D;
     AnimationPlayer weaponAnim;
 
+    
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -51,6 +53,12 @@ public partial class Weapon : Node3D
 
     public void _ProcessCombat(double delta)
     {
+        if (Input.IsActionJustPressed("one"))
+        {
+
+        }
+
+
         if (Input.IsActionJustPressed("sprint") && weaponAnim.IsPlaying() == false && !Input.IsActionPressed("attack2"))
         {
             weaponAnim.Play("sprintStart");
@@ -179,5 +187,12 @@ public partial class Weapon : Node3D
         Vector3 adjustedCollisionPoint = collisionPoint + directionToPlayer * (float)1;
 
         return adjustedCollisionPoint;
+    }
+
+    void SwitchWeapon(int newIndex)
+    {
+        WeaponNode.Visible = false;
+
+
     }
 }

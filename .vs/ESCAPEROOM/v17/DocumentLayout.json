@@ -1,0 +1,485 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scenes\\pathspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scenes\\pathspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\armaments\\armament.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\armaments\\armament.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\enemies\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\enemies\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\weaponcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\weaponcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\zombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\zombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\resources\\enemyresources\\enemystats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:resources\\enemyresources\\enemystats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\singletargettower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\singletargettower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\aoetower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\aoetower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\building.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\building.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\tower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\tower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scenes\\agro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scenes\\agro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\zombiestates\\idle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\zombiestates\\idle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\statemachine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\statemachine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\resources\\armamentresources\\armamentstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:resources\\armamentresources\\armamentstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\builder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\builder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\ui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\ui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\damagenumber.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\damagenumber.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\damagenumbers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\damagenumbers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\towers\\lasertower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\towers\\lasertower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\playerstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\playerstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\customsignals.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\customsignals.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\window.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\window.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\state.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\state.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\interactionarea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\interactionarea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|c:\\users\\mykolas\\documents\\github\\zombie\\scripts\\dummy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63087A16-6B49-48E4-A022-F2BA5D6DEB3E}|escaperoom.csproj|solutionrelative:scripts\\dummy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 197,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Zombie.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Zombie.cs",
+              "RelativeDocumentMoniker": "Scripts\\Zombie.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Zombie.cs",
+              "RelativeToolTip": "Scripts\\Zombie.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:50.712Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Armament.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Armaments\\Armament.cs",
+              "RelativeDocumentMoniker": "Scripts\\Armaments\\Armament.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Armaments\\Armament.cs",
+              "RelativeToolTip": "Scripts\\Armaments\\Armament.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T16:53:43.042Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "StateMachine.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\StateMachine.cs",
+              "RelativeDocumentMoniker": "Scripts\\StateMachine.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\StateMachine.cs",
+              "RelativeToolTip": "Scripts\\StateMachine.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:52.302Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Idle.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\ZombieStates\\Idle.cs",
+              "RelativeDocumentMoniker": "Scripts\\ZombieStates\\Idle.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\ZombieStates\\Idle.cs",
+              "RelativeToolTip": "Scripts\\ZombieStates\\Idle.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:52.3Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PathSpawner.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scenes\\PathSpawner.cs",
+              "RelativeDocumentMoniker": "Scenes\\PathSpawner.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scenes\\PathSpawner.cs",
+              "RelativeToolTip": "Scenes\\PathSpawner.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:50.709Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SingleTargetTower.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\SingleTargetTower.cs",
+              "RelativeDocumentMoniker": "Scripts\\SingleTargetTower.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\SingleTargetTower.cs",
+              "RelativeToolTip": "Scripts\\SingleTargetTower.cs",
+              "ViewState": "AQIAAEIAAAAAAAAAAAAmwGIAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:50.641Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Player.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Player.cs",
+              "RelativeDocumentMoniker": "Scripts\\Player.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Player.cs",
+              "RelativeToolTip": "Scripts\\Player.cs",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAcwFkAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:51.514Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Agro.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scenes\\Agro.cs",
+              "RelativeDocumentMoniker": "Scenes\\Agro.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scenes\\Agro.cs",
+              "RelativeToolTip": "Scenes\\Agro.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:50.711Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ArmamentStats.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Resources\\ArmamentResources\\ArmamentStats.cs",
+              "RelativeDocumentMoniker": "Resources\\ArmamentResources\\ArmamentStats.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Resources\\ArmamentResources\\ArmamentStats.cs",
+              "RelativeToolTip": "Resources\\ArmamentResources\\ArmamentStats.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAowB0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T16:55:33.826Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Builder.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Builder.cs",
+              "RelativeDocumentMoniker": "Scripts\\Builder.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Builder.cs",
+              "RelativeToolTip": "Scripts\\Builder.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvzIAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:50.713Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Bullet.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Bullet.cs",
+              "RelativeDocumentMoniker": "Scripts\\Bullet.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Bullet.cs",
+              "RelativeToolTip": "Scripts\\Bullet.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAASwCYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:50.712Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Ui.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Ui.cs",
+              "RelativeDocumentMoniker": "Scripts\\Ui.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Ui.cs",
+              "RelativeToolTip": "Scripts\\Ui.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADQAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:50.714Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "LaserTower.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Towers\\LaserTower.cs",
+              "RelativeDocumentMoniker": "Scripts\\Towers\\LaserTower.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Towers\\LaserTower.cs",
+              "RelativeToolTip": "Scripts\\Towers\\LaserTower.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:52.298Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "DamageNumbers.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\DamageNumbers.cs",
+              "RelativeDocumentMoniker": "Scripts\\DamageNumbers.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\DamageNumbers.cs",
+              "RelativeToolTip": "Scripts\\DamageNumbers.cs",
+              "ViewState": "AQIAACoAAAAAAAAAAAAowEgAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:52.299Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "State.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\State.cs",
+              "RelativeDocumentMoniker": "Scripts\\State.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\State.cs",
+              "RelativeToolTip": "Scripts\\State.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:52.301Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Window.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Window.cs",
+              "RelativeDocumentMoniker": "Scripts\\Window.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Window.cs",
+              "RelativeToolTip": "Scripts\\Window.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:52.302Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "InteractionArea.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\InteractionArea.cs",
+              "RelativeDocumentMoniker": "Scripts\\InteractionArea.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\InteractionArea.cs",
+              "RelativeToolTip": "Scripts\\InteractionArea.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:52.303Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Dummy.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Dummy.cs",
+              "RelativeDocumentMoniker": "Scripts\\Dummy.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Dummy.cs",
+              "RelativeToolTip": "Scripts\\Dummy.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:52.304Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "DamageNumber.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\DamageNumber.cs",
+              "RelativeDocumentMoniker": "Scripts\\DamageNumber.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\DamageNumber.cs",
+              "RelativeToolTip": "Scripts\\DamageNumber.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:52.305Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "PlayerStats.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\PlayerStats.cs",
+              "RelativeDocumentMoniker": "Scripts\\PlayerStats.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\PlayerStats.cs",
+              "RelativeToolTip": "Scripts\\PlayerStats.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:52.306Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "CustomSignals.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\CustomSignals.cs",
+              "RelativeDocumentMoniker": "Scripts\\CustomSignals.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\CustomSignals.cs",
+              "RelativeToolTip": "Scripts\\CustomSignals.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:52.307Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 203,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "EnemyStats.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Resources\\EnemyResources\\EnemyStats.cs",
+              "RelativeDocumentMoniker": "Resources\\EnemyResources\\EnemyStats.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Resources\\EnemyResources\\EnemyStats.cs",
+              "RelativeToolTip": "Resources\\EnemyResources\\EnemyStats.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-21T17:03:38.25Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Enemy.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Enemies\\Enemy.cs",
+              "RelativeDocumentMoniker": "Scripts\\Enemies\\Enemy.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Enemies\\Enemy.cs",
+              "RelativeToolTip": "Scripts\\Enemies\\Enemy.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAG4AAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-21T17:02:02.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "WeaponController.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\WeaponController.cs",
+              "RelativeDocumentMoniker": "Scripts\\WeaponController.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\WeaponController.cs",
+              "RelativeToolTip": "Scripts\\WeaponController.cs",
+              "ViewState": "AgIAAO0AAAAAAAAAAAAAAAMBAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-20T16:26:21.08Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Weapon.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Weapon.cs",
+              "RelativeDocumentMoniker": "Scripts\\Weapon.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Weapon.cs",
+              "RelativeToolTip": "Scripts\\Weapon.cs",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAIwAYAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:52.315Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Tower.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Tower.cs",
+              "RelativeDocumentMoniker": "Scripts\\Tower.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Tower.cs",
+              "RelativeToolTip": "Scripts\\Tower.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAQwBQAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:52.323Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Building.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Building.cs",
+              "RelativeDocumentMoniker": "Scripts\\Building.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\Building.cs",
+              "RelativeToolTip": "Scripts\\Building.cs",
+              "ViewState": "AQIAADsAAAAAAAAAAAAuwGAAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:52.325Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AoETower.cs",
+              "DocumentMoniker": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\AoETower.cs",
+              "RelativeDocumentMoniker": "Scripts\\AoETower.cs",
+              "ToolTip": "C:\\Users\\Mykolas\\Documents\\GitHub\\zombie\\Scripts\\AoETower.cs",
+              "RelativeToolTip": "Scripts\\AoETower.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T14:17:52.327Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
