@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://3cpikuh1emcu"]
+
+[ext_resource type="PackedScene" uid="uid://b42b4y6tvr2wd" path="res://Scenes/big_robot_spider.tscn" id="1_a5lkh"]
+
+[node name="BigPathFollow3D" type="PathFollow3D"]
+transform = Transform3D(-0.998291, 0.00139864, 0.05835, 5.82074e-11, 0.999707, -0.023963, -0.0583667, -0.0239221, -0.998006, 0.178671, -0.593097, -5.93671)
+loop = false
+
+[node name="BigRobotSpider" parent="." groups=["enemy"] instance=ExtResource("1_a5lkh")]
+transform = Transform3D(2, -4.65661e-10, 0, 0, 2, 0, 0, 7.45058e-09, 2, 1.49012e-08, 0.810461, -0.0194268)

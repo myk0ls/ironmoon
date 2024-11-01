@@ -17,9 +17,9 @@ public partial class Player : CharacterBody3D
     public Camera3D Camera;
 	public RayCast3D RayCast;
 	public Timer SellTimer;
-    public float SprintFOV = 90f;
-    public float DefaultFOV = 75f;
-	public float ADSFOV = 60f;
+    public float SprintFOV = 85.0f;
+    public float DefaultFOV = 75.0f;
+	public float ADSFOV = 60.0f;
 	const float SprintLerp = 20f;
 
 	Node3D WeaponController;
@@ -86,33 +86,23 @@ public partial class Player : CharacterBody3D
 			velocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
 		}
 
-		//Handle Sprint.
-		if (Input.IsActionPressed("sprint") && inputDir != Vector2.Zero)
-		{
-			Speed = SprintSpeed;
-			
-			if (Camera.Fov != SprintFOV)
-			{
-                GD.Print(Camera.Fov);
-                Camera.Fov = Mathf.Lerp(Camera.Fov, SprintFOV, SprintLerp * (float)delta);
-				//Camera.Fov = SprintFOV;
-				GD.Print(Camera.Fov);
+		
+        if (Input.IsActionPressed("sprint") && inputDir != Vector2.Zero && !Input.IsActionPressed("attack2"))
+        {
+            Speed = SprintSpeed;
+            Camera.Fov = Mathf.Lerp(Camera.Fov, SprintFOV, SprintLerp * (float)delta);
+			//GD.Print(Camera.Fov);
 
-			}
-			
+		}
+        else if (Input.IsActionJustReleased("sprint"))
+        {
+            Speed = DefaultSpeed;
+            Camera.Fov = Mathf.Lerp(Camera.Fov, DefaultFOV, SprintLerp * (float)delta);
+            //GD.Print(Camera.Fov);
         }
-		else if (Input.IsActionJustReleased("sprint"))
-		{
-			Speed = DefaultSpeed;
+		
 
-			if (Camera.Fov == SprintFOV)
-			{
-				Camera.Fov = Mathf.Lerp(Camera.Fov, DefaultFOV, SprintLerp * (float)delta);
-				//Camera.Fov = DefaultFOV;
-			}
-        }
-
-		Velocity = velocity;
+        Velocity = velocity;
 		MoveAndSlide();
 	}
 

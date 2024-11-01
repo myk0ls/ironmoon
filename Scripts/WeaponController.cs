@@ -31,7 +31,7 @@ public partial class WeaponController : Node3D
     //arm array
     Godot.Collections.Array<Armament> ArmArray = new Godot.Collections.Array<Armament>();
     int CurrentWeaponIndex { get; set; } = -1;
-    Armament CurrentArm = null;
+    public Armament CurrentArm = null;
 
     Player player;
     RayCast3D rayCast;
@@ -96,46 +96,51 @@ public partial class WeaponController : Node3D
             //CurrentArm.ArmPlayer.Play("sprintStart");
             CurrentArm.AnimStateMachine.Travel("sprint");
         }
-        /*
-        if (Input.IsActionPressed("sprint") && CurrentArm.ArmPlayer.CurrentAnimation != "sprintStart" && !Input.IsActionPressed("attack2"))
-        {
-            //CurrentArm.ArmPlayer.Play("sprint");
-            CurrentArm.AnimStateMachine.Travel("sprint");
-        }
-        */
+
         if (Input.IsActionJustReleased("sprint") && !Input.IsActionPressed("attack2"))
         {
-            //CurrentArm.ArmPlayer.PlayBackwards("sprintStart");
             CurrentArm.AnimStateMachine.Travel("idle");
         }
 
-        if (Input.IsActionJustPressed("reload"))
+        if (Input.IsActionJustPressed("reload")
+            )
         {
-            CurrentArm.AnimStateMachine.Travel("reload");
+            if (CurrentArm.ArmStats.ClipSize < CurrentArm.ArmStats.TotalClipSize
+                && PlayerStats.Instance.GetAmmo(CurrentArm.Name) > 0
+                && CurrentArm.AnimStateMachine.GetCurrentNode() != "shoot"
+                )
+            {
+                SfxManager.Instance.Play(CurrentArm.Name + "Reload", this);
+                CurrentArm.AnimStateMachine.Travel("reload");
+                //Reload();
+            }
         }
 
 
-        if (CurrentArm.IsAuto == false)
+        if (CurrentArm.IsAuto == false
+            && CurrentArm.ArmStats.ClipSize > 0)
         {
             if (Input.IsActionJustPressed("attack"))
             {
-                //Attack();
-                //CurrentArm.ArmPlayer.Play("shoot");
                 CurrentArm.AnimStateMachine.Travel("shoot");
             }
         }
-        else if (CurrentArm.IsAuto == true)
+        else if (CurrentArm.IsAuto == true
+            && CurrentArm.ArmStats.ClipSize > 0)
         {
             if (Input.IsActionPressed("attack"))
             {
-                //Attack();
-                //CurrentArm.ArmPlayer.Play("shoot");
                 CurrentArm.AnimStateMachine.Travel("shoot");
             }
         }
-
+        
+        
         //Aim down sights
-        if (Input.IsActionPressed("attack2") && !Input.IsActionPressed("sprint") && CurrentArm.AnimStateMachine.GetCurrentNode() != "sprint")
+        if (Input.IsActionPressed("attack2") 
+            && !Input.IsActionPressed("sprint") 
+            && CurrentArm.AnimStateMachine.GetCurrentNode() != "sprint"
+            && CurrentArm.AnimStateMachine.GetCurrentNode() != "reload"
+            )
         {
             Transform3D newTransform = CurrentArm.Transform;
             newTransform.Origin = newTransform.Origin.Lerp(CurrentArm.ADSPosition, ADSLerp * (float)delta);
@@ -144,7 +149,9 @@ public partial class WeaponController : Node3D
 
             camera3D.Fov = Mathf.Lerp(camera3D.Fov, player.ADSFOV, ADSLerp * (float)delta);
         }
-        else
+        else if (CurrentArm.AnimStateMachine.GetCurrentNode() == "idle"
+            || CurrentArm.AnimStateMachine.GetCurrentNode() == "reload"
+            )
         {
             Transform3D newTransform = CurrentArm.Transform;
             newTransform.Origin = newTransform.Origin.Lerp(CurrentArm.DefaultPosition, ADSLerp * (float)delta);
@@ -152,8 +159,9 @@ public partial class WeaponController : Node3D
 
             SwayAmount = 0.15f;
 
-            camera3D.Fov = Mathf.Lerp(camera3D.Fov, player.DefaultFOV, ADSLerp * (float)delta);
+            camera3D.Fov = Mathf.Lerp(camera3D.Fov, player.DefaultFOV, ADSLerp * (float)delta); 
         }
+        
 
         // Sway and bob weapon
         WeaponSway(delta);
@@ -174,8 +182,17 @@ public partial class WeaponController : Node3D
 
     public void Attack(StringName animName)
     {
-        if (rayCast.IsColliding() && rayCast != null && animName == "shoot" && rayCast.GetCollider() != null)
+        if (rayCast.IsColliding() && rayCast != null 
+            && animName == "shoot" 
+            && rayCast.GetCollider() != null
+            && CurrentArm.ArmStats.ClipSize > 0
+            )
         {
+            CurrentArm.ArmStats.ClipSize -= 1;
+            GD.Print(CurrentArm.ArmStats.ClipSize);
+
+            SfxManager.Instance.Play(CurrentArm.Name + "Shot",this);
+
             var collider = rayCast.GetCollider() as Node3D;
             if (collider.IsInGroup("enemy"))
             {
@@ -301,5 +318,19 @@ public partial class WeaponController : Node3D
     void TriggerShake()
     {
         _shakeTimer = shakeDuration;
+    }
+
+    void Reload()
+    {
+        for (int i = 0; i <= CurrentArm.ArmStats.TotalClipSize; i++)
+        {
+            if (PlayerStats.Instance.GetAmmo(CurrentArm.Name) > 0 
+                && CurrentArm.ArmStats.ClipSize != CurrentArm.ArmStats.TotalClipSize
+                )
+            {
+                CurrentArm.ArmStats.ClipSize += 1;
+                PlayerStats.Instance.RemoveAmmo(CurrentArm.Name);
+            }
+        }
     }
 }

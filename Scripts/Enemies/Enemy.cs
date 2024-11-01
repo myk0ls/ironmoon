@@ -98,6 +98,7 @@ public partial class Enemy : CharacterBody3D
     public void ReceiveDamage(float Damage)
     {
         EnemyStats.Health -= Damage;
+        SfxManager.Instance.Play("RobotHit", this);
 
         if (EnemyStats.Health <= 0)
         {
@@ -132,6 +133,7 @@ public partial class Enemy : CharacterBody3D
             PlayerStats.Instance.GainGold(5);
             PlayerStats.Instance.EmitSignal(nameof(PlayerStats.Instance.UpdateGoldLabel));
         RemoveTimer.Start();
+        SfxManager.Instance.Play("RobotDeath", this);
         
     }
 

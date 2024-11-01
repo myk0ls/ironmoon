@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://bshti4v1mw4j3"]
+
+[ext_resource type="Script" path="res://Resources/EnemyResources/EnemyStats.cs" id="1_gb3ol"]
+
+[resource]
+script = ExtResource("1_gb3ol")
+Health = 150.0
+WalkSpeed = 1.5
+CriticalHitChance = 20.0
+DropChance = 0.0
+AttackDamage = 0.0
+AttackSpeed = 0.0

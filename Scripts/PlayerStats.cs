@@ -1,11 +1,17 @@
 using Godot;
 using System;
+using System.Reflection;
 
 public partial class PlayerStats : Node
 {
 	public int Health = 100;
 	public int Mana = 100;
 	public int Gold = 350;
+
+	public int ShotgunAmmo = 0;
+    public int HandCannonAmmo = 100;
+	public int PPSHAmmo = 100;
+
 	public static PlayerStats Instance { get; private set; }
 
 
@@ -26,4 +32,52 @@ public partial class PlayerStats : Node
 	{
 		Gold += Amount;
 	}
+
+	public void GainAmmo(string AmmoName, int amount)
+	{
+		switch (AmmoName)
+		{
+			case "Shotgun":
+				ShotgunAmmo += amount;
+				break;
+			case "HandCannon":
+				HandCannonAmmo += amount; 
+				break;
+			case "PPSH":
+				PPSHAmmo += amount;
+				break;
+		}
+	}
+
+	public void RemoveAmmo(string GunName)
+	{
+        switch (GunName)
+        {
+            case "Shotgun":
+                ShotgunAmmo -= 1;
+                break;
+            case "HandCannon":
+                HandCannonAmmo -= 1;
+                break;
+            case "PPSH":
+                PPSHAmmo -= 1;
+                break;
+        }
+    }
+
+	public float GetAmmo(string GunName)
+	{
+        switch (GunName)
+        {
+            case "Shotgun":
+				return ShotgunAmmo;
+            case "HandCannon":
+				return HandCannonAmmo;
+            case "PPSH":
+				return PPSHAmmo;
+			default:
+				return 0f;
+
+        }
+    }
 }
