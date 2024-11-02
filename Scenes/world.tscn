@@ -161,6 +161,27 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.294118)
 
+[node name="Panel2" type="Panel" parent="UI"]
+layout_mode = 0
+offset_left = 1091.0
+offset_top = 628.0
+offset_right = 1151.0
+offset_bottom = 645.0
+
+[node name="AmmoLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "0/0
+"
+
 [node name="Level" type="Node3D" parent="."]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Level"]

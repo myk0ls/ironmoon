@@ -28,6 +28,11 @@ public partial class ArmamentStats : Resource
     [Export]
     public float MaxRecoil { get; set; }
 
+    [Export]
+    public float ShakeAmount {  get; set; }
+
+    [Export]
+    public float ShakeDuration { get; set; }
     public ArmamentStats() : this(0, 0, 0, 0, 0) { }
 
     public ArmamentStats(float BaseDamage, float Range, float ClipSize, float TotalClipSize,
@@ -38,5 +43,7 @@ public partial class ArmamentStats : Resource
         this.ClipSize = ClipSize;
         this.TotalClipSize = TotalClipSize;
         this.KnockBack = KnockBack;
+        this.ShakeAmount = ShakeAmount;
+        this.ShakeDuration = ShakeDuration;
     }
 }

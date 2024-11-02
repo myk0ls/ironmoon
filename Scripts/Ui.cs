@@ -7,6 +7,7 @@ public partial class Ui : Control
 	ProgressBar SellBar;
 	Label GoldLabel;
 	Label FPSLabel;
+	Label AmmoLabel;
 	ItemList TowerList;
 	CustomSignals CSignals;
 
@@ -19,11 +20,13 @@ public partial class Ui : Control
         GoldLabel = GetNode<Label>("GoldLabel");
 		FPSLabel = GetNode<Label>("FPSLabel");
 		TowerList = GetNode<ItemList>("TowerList");
+		AmmoLabel = GetNode<Label>("AmmoLabel");
 
         SellBar.Value = PlayerNode.SellTimer.WaitTime - PlayerNode.SellTimer.TimeLeft;
 
 		PlayerStats.Instance.UpdateGoldLabel += UpdateGold;
 		CSignals.GameModeChanged += ToggleHotBar;
+		CSignals.UpdateAmmoLabel += UpdateAmmoLabel;
 
         GoldLabel.Text = String.Format("GEARS: {0}", PlayerStats.Instance.Gold);
     }
@@ -85,5 +88,12 @@ public partial class Ui : Control
 		}
 		else
 			TowerList.Visible = false;
+	}
+
+	void UpdateAmmoLabel()
+	{
+		var weapon = PlayerNode.WeaponController as WeaponController;
+		AmmoLabel.Text = weapon.CurrentArm.ArmStats.ClipSize.ToString() + "/" +
+			PlayerStats.Instance.GetAmmo(weapon.CurrentArm.Name);
 	}
 }

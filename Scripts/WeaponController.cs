@@ -20,12 +20,14 @@ public partial class WeaponController : Node3D
     Vector3 DefaultRotation;
     //
 
-    private float shakeAmount = 0.02f; // Amount of shake
-    private float shakeDuration = 0.05f; // Duration of shake in seconds
-    Vector3 _originalPosition;
+    private bool _shakeTriggered = false;
+    private float shakeAmount = 0.004f; // Amount of shake
+    private float shakeDuration = 0.02f; // Duration of shake in seconds
+    Vector3 _originalRotation;
 
     public float CurrentRecoil = 0f;
     public float _shakeTimer = 0f;
+    private Vector3 _shakeOffset;
 
 
     //arm array
@@ -36,6 +38,7 @@ public partial class WeaponController : Node3D
     Player player;
     RayCast3D rayCast;
     Camera3D camera3D;
+    CustomSignals CSignals;
 
 
 
@@ -56,13 +59,14 @@ public partial class WeaponController : Node3D
         camera3D = (Camera3D)GetParent();
         player = GetNode<Player>("/root/World/Player");
         rayCast = GetParent().GetNode<RayCast3D>("RayCast3D");
+        CSignals = GetNode<CustomSignals>("/root/CustomSignals");
 
         //CurrentArm = ArmArray[CurrentWeaponIndex];
         SwitchWeapon(0);
-        
 
 
-        _originalPosition = Position;
+
+        _originalRotation = camera3D.Transform.Origin;
         DefaultRotation = Rotation;
     }
 
@@ -182,9 +186,7 @@ public partial class WeaponController : Node3D
 
     public void Attack(StringName animName)
     {
-        if (rayCast.IsColliding() && rayCast != null 
-            && animName == "shoot" 
-            && rayCast.GetCollider() != null
+        if (animName == "shoot" 
             && CurrentArm.ArmStats.ClipSize > 0
             )
         {
@@ -192,26 +194,35 @@ public partial class WeaponController : Node3D
             GD.Print(CurrentArm.ArmStats.ClipSize);
 
             SfxManager.Instance.Play(CurrentArm.Name + "Shot",this);
+            CSignals.EmitSignal(nameof(CSignals.UpdateAmmoLabel));
 
-            var collider = rayCast.GetCollider() as Node3D;
-            if (collider.IsInGroup("enemy"))
+            CameraShakeAsync();
+
+            if (rayCast.IsColliding() && rayCast != null
+                && rayCast.GetCollider() != null
+                )
             {
-                var shapeIndex = rayCast.GetColliderShape();
-                GD.Print(shapeIndex);
-
-                switch (shapeIndex)
+                var collider = rayCast.GetCollider() as Node3D;
+                if (collider.IsInGroup("enemy"))
                 {
-                    case 0:
-                        collider.Call("ReceiveDamage", CurrentArm.ArmStats.BaseDamage);
-                        DamageNumbers.Instance.DisplayNumber((int)CurrentArm.ArmStats.BaseDamage, GetAdjustedCollisionPoint(), false);
-                        break;
+                    var shapeIndex = rayCast.GetColliderShape();
+                    GD.Print(shapeIndex);
 
-                    case 1:
-                        collider.Call("ReceiveDamage", CurrentArm.ArmStats.BaseDamage + 20);
-                        DamageNumbers.Instance.DisplayNumber((int)CurrentArm.ArmStats.BaseDamage + 20, GetAdjustedCollisionPoint(), true);
-                        break;
+                    switch (shapeIndex)
+                    {
+                        case 0:
+                            collider.Call("ReceiveDamage", CurrentArm.ArmStats.BaseDamage);
+                            DamageNumbers.Instance.DisplayNumber((int)CurrentArm.ArmStats.BaseDamage, GetAdjustedCollisionPoint(), false);
+                            break;
+
+                        case 1:
+                            collider.Call("ReceiveDamage", CurrentArm.ArmStats.BaseDamage + 20);
+                            DamageNumbers.Instance.DisplayNumber((int)CurrentArm.ArmStats.BaseDamage + 20, GetAdjustedCollisionPoint(), true);
+                            break;
+                    }
                 }
             }
+
         }
 
     }
@@ -275,6 +286,7 @@ public partial class WeaponController : Node3D
             CurrentWeaponIndex = newIndex;
             CurrentArm.Visible = true;
             CurrentArm.AnimStateMachine.Travel("idle");
+            CSignals.EmitSignal(nameof(CSignals.UpdateAmmoLabel));
         }
     }
 
@@ -294,31 +306,76 @@ public partial class WeaponController : Node3D
 
         camera3D.RotationDegrees = rotation;
     }
-
+    
     void CameraShake(double delta)
     {
         if (_shakeTimer > 0)
         {
             _shakeTimer -= (float)delta;
-            Vector3 shakeOffset = new Vector3(
+            _shakeTriggered = true;
+
+            shakeAmount = CurrentArm.ArmStats.ShakeAmount;
+
+            // Generate small random offsets for shake
+            _shakeOffset = new Vector3(
                 (float)GD.RandRange(-shakeAmount, shakeAmount),
                 (float)GD.RandRange(-shakeAmount, shakeAmount),
-                (float)GD.RandRange(-shakeAmount, shakeAmount)
+                //(float)GD.RandRange(-shakeAmount, shakeAmount)
+                0
             );
 
-            camera3D.Position = _originalPosition + shakeOffset;
-        } 
-        else
+            // Apply the shake effect as an offset
+            //camera3D.Rotation = camera3D.Rotation + _shakeOffset;
+            camera3D.RotateObjectLocal(_shakeOffset.Normalized(), 0);
+        }
+        else if (_shakeTriggered)
         {
-            // Reset position when shake ends
-            camera3D.Position =  Position.Lerp(_originalPosition, shakeAmount);
+            // Gradually reduce the shake offset when shake ends
+            _shakeOffset = _shakeOffset.Lerp(Vector3.Zero, (float)delta * 5f);
+            //camera3D.Rotation = camera3D.Rotation + _shakeOffset;
+            camera3D.RotateObjectLocal(_shakeOffset.Normalized(), 0);
+
+            // Stop applying shake adjustments once the offset is close to zero
+            if (_shakeOffset.Length() < 0.01f)
+            {
+                _shakeOffset = Vector3.Zero;
+                _shakeTriggered = false;
+            }
         }
     }
 
     void TriggerShake()
     {
-        _shakeTimer = shakeDuration;
+        _shakeTimer = CurrentArm.ArmStats.ShakeDuration;
+        _shakeTriggered = true;
     }
+
+    public async void CameraShakeAsync()
+    {
+        Transform3D initial_transform = camera3D.Transform;
+        float elapsed_time = 0.0f;
+
+        while (elapsed_time < CurrentArm.ArmStats.ShakeDuration)
+        {
+            var offset = new Vector3(
+                (float)GD.RandRange(-CurrentArm.ArmStats.ShakeAmount, CurrentArm.ArmStats.ShakeAmount),
+                (float)GD.RandRange(-CurrentArm.ArmStats.ShakeAmount, CurrentArm.ArmStats.ShakeAmount),
+                //(float)GD.RandRange(-shakeAmount, shakeAmount)
+                0.0f
+            );
+
+            Transform3D new_transform = initial_transform;
+            new_transform.Origin += offset;
+            camera3D.Transform = new_transform;
+
+            elapsed_time += (float)GetProcessDeltaTime();
+
+            await ToSignal(GetTree(), "process_frame");
+        }
+
+        camera3D.Transform = initial_transform;
+    }
+
 
     void Reload()
     {
@@ -332,5 +389,6 @@ public partial class WeaponController : Node3D
                 PlayerStats.Instance.RemoveAmmo(CurrentArm.Name);
             }
         }
+        CSignals.EmitSignal(nameof(CSignals.UpdateAmmoLabel));
     }
 }

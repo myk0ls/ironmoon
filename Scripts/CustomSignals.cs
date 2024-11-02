@@ -5,5 +5,5 @@ public partial class CustomSignals : Node
 {
 	[Signal] public delegate void GameModeChangedEventHandler();
 
-
+	[Signal] public delegate void UpdateAmmoLabelEventHandler();
 }

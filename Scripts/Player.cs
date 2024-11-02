@@ -22,7 +22,7 @@ public partial class Player : CharacterBody3D
 	public float ADSFOV = 60.0f;
 	const float SprintLerp = 20f;
 
-	Node3D WeaponController;
+	public Node3D WeaponController;
 	Node3D Builder;
 
 	CustomSignals CSignals;
