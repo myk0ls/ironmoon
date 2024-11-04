@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_qnbgc")
 BaseDamage = 20.0
-Range = 30.0
+Range = 40.0
 ClipSize = 35.0
 TotalClipSize = 35.0
 KnockBack = 0.0
@@ -13,4 +13,4 @@ RecoilAmount = 0.03
 RecoilSpeed = 8.0
 MaxRecoil = 5.0
 ShakeAmount = 0.05
-ShakeDuration = 0.02
+ShakeDuration = 0.03

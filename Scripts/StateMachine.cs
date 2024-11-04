@@ -11,6 +11,8 @@ public partial class StateMachine : Node
     private Dictionary<string, State> states;
     private State currentState;
 
+
+
     public override void _Ready()
     {
         states = new Dictionary<string, State>();
@@ -36,7 +38,7 @@ public partial class StateMachine : Node
 
     public override void _Process(double delta)
     {
-        currentState.Update();
+            currentState.Update();
     }
 
     public override void _UnhandledInput(InputEvent @event)

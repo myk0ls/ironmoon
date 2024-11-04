@@ -56,6 +56,6 @@ public partial class SfxManager : Node
        // duplicate.Finished += QueueFree;
         node.AddChild(duplicate);   
         node.GetNode<AudioStreamPlayer3D>(name).Play();
-        GD.Print("ADDED DEATH EFFECT");
+        //GD.Print("ADDED DEATH EFFECT");
     }
 }

@@ -5,12 +5,12 @@
 [resource]
 script = ExtResource("1_rurt5")
 BaseDamage = 50.0
-Range = 30.0
+Range = 40.0
 ClipSize = 6.0
 TotalClipSize = 6.0
 KnockBack = 0.0
 RecoilAmount = 0.15
 RecoilSpeed = 5.0
 MaxRecoil = 5.0
-ShakeAmount = 0.08
+ShakeAmount = 0.15
 ShakeDuration = 0.02

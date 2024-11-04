@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bntj0grxi01bd"]
+
+[ext_resource type="Texture2D" uid="uid://x53ktdv8te1m" path="res://Assets/Vfx/GAP_EasyExplosions_Textures/Flare00.PNG" id="1_jhcma"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1d3le"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_jhcma")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8p5o0"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_qun8a"]
+
+[node name="Vfx_Explosion" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_1d3le")
+amount = 20
+amount_ratio = 0.6
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_8p5o0")
+draw_pass_1 = SubResource("QuadMesh_qun8a")

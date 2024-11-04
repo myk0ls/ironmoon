@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ArmamentStats" load_steps=2 format=3 uid="uid://btjnuks4i4ytg"]
+
+[ext_resource type="Script" path="res://Resources/ArmamentResources/ArmamentStats.cs" id="1_mh87l"]
+
+[resource]
+script = ExtResource("1_mh87l")
+BaseDamage = 15.0
+Range = 5.0
+ClipSize = 100.0
+TotalClipSize = 1000.0
+KnockBack = 0.0
+RecoilAmount = 0.05
+RecoilSpeed = 5.0
+MaxRecoil = 5.0
+ShakeAmount = 0.1
+ShakeDuration = 0.02

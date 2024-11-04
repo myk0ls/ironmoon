@@ -36,9 +36,12 @@ public partial class Building : Node3D
         DetectionArea.Monitoring = true;
         CanAttack = false;
 
+        ToggleHealthBar();
+
         AttackTimer.Timeout += Fire;
         CSignals.GameModeChanged += ToggleDistanceRadius;
         CSignals.GameModeChanged += ToggleHealthBar;
+        CSignals.RepairMode += ToggleHealthBar;
         HealthBarUpdate += UpdateHealth;
     }
 
@@ -70,9 +73,12 @@ public partial class Building : Node3D
 
     void ToggleHealthBar()
     {
+        var weapon = PlayerNode.WeaponController as WeaponController;
         if (IsInstanceValid(HealthBarSprite))
         {
-            if (PlayerNode.currentMode == PlayerMode.Build)
+            if (PlayerNode.currentMode == PlayerMode.Build ||
+                weapon.CurrentArm.Name == "Wrench"
+                )
             {
                 HealthBarSprite.Visible = true;
             }
@@ -94,7 +100,19 @@ public partial class Building : Node3D
         EmitSignal(nameof(HealthBarUpdate));
 
         if (Health <= 0)
+        {
             QueueFree();
+        }
+    }
+
+    public void ReceiveRepair(int RepairAmount)
+    {
+        Health += RepairAmount;
+        if (Health > 100)
+        {
+            Health = 100;
+        }
+        EmitSignal(nameof(HealthBarUpdate));
     }
 
     void UpdateHealth()

@@ -62,6 +62,8 @@ public partial class PlayerStats : Node
             case "PPSH":
                 PPSHAmmo -= 1;
                 break;
+			default:
+				break;
         }
     }
 
@@ -76,7 +78,7 @@ public partial class PlayerStats : Node
             case "PPSH":
 				return PPSHAmmo;
 			default:
-				return 0f;
+				return 100f;
 
         }
     }

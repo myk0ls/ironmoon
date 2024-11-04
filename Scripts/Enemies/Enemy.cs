@@ -17,15 +17,17 @@ public partial class Enemy : CharacterBody3D
 
     Timer RemoveTimer { get; set; }
 
-    AnimationNodeStateMachinePlayback animationStateMachine { get; set; }
+    public AnimationNodeStateMachinePlayback animationStateMachine { get; set; }
 
     PhysicalBoneSimulator3D simulator { get; set; }
 
     Skeleton3D skeleton {  get; set; }
 
-    PathFollow3D PathToFollow;
+    public PathFollow3D PathToFollow;
 
     bool IsAlive = true;
+
+    public Node3D TargetNode { get; set; } = null;
 	
 	[Signal]
 	public delegate void DeathEventHandler();
@@ -80,17 +82,16 @@ public partial class Enemy : CharacterBody3D
         {
             velocity += GetGravity() * (float)delta;
         }
-
+        /*
         var pathProgress = PathToFollow.Progress + EnemyStats.WalkSpeed * (float)delta;
 
         if (PathToFollow.ProgressRatio == 1)
         {
             QueueFree();
-            //GetTree().ReloadCurrentScene();
         }
 
         PathToFollow.Progress = pathProgress;
-
+        */
         Velocity = velocity;
         MoveAndSlide();
     }

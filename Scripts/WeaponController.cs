@@ -81,16 +81,30 @@ public partial class WeaponController : Node3D
 
         ApplyCameraRecoil();
 
-        
 
-        if (Input.IsActionJustPressed("one"))
+
+        if (Input.IsActionJustPressed("one")
+            && CurrentArm.AnimStateMachine.GetCurrentNode() != "reload"
+            )
         {
             SwitchWeapon(0);
+            CSignals.EmitSignal(nameof(CSignals.RepairMode));
         }
 
-        if (Input.IsActionJustPressed("two"))
+        if (Input.IsActionJustPressed("two")
+            && CurrentArm.AnimStateMachine.GetCurrentNode() != "reload"
+            )
         {
             SwitchWeapon(1);
+            CSignals.EmitSignal(nameof(CSignals.RepairMode));
+        }
+
+        if (Input.IsActionJustPressed("three")
+            && CurrentArm.AnimStateMachine.GetCurrentNode() != "reload"
+            )
+        {
+            SwitchWeapon(2);
+            CSignals.EmitSignal(nameof(CSignals.RepairMode));
         }
 
 
@@ -281,12 +295,14 @@ public partial class WeaponController : Node3D
                 CurrentArm.Visible = false;
             }
 
-        
+            
             CurrentArm = ArmArray[newIndex];
             CurrentWeaponIndex = newIndex;
             CurrentArm.Visible = true;
             CurrentArm.AnimStateMachine.Travel("idle");
             CSignals.EmitSignal(nameof(CSignals.UpdateAmmoLabel));
+
+            rayCast.TargetPosition = new Vector3(0, 0, -CurrentArm.ArmStats.Range);
         }
     }
 
@@ -390,5 +406,21 @@ public partial class WeaponController : Node3D
             }
         }
         CSignals.EmitSignal(nameof(CSignals.UpdateAmmoLabel));
+    }
+
+    void Repair()
+    {
+        //CameraShakeAsync();
+
+
+        if (rayCast.IsColliding())
+        {
+            if (rayCast.GetCollider() is Building)
+            {
+                var building = (Building)rayCast.GetCollider();
+                building.ReceiveRepair(10);
+                SfxManager.Instance.Play("WrenchRepair", this);
+            }
+        }
     }
 }
