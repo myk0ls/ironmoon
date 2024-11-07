@@ -415,11 +415,18 @@ public partial class WeaponController : Node3D
 
         if (rayCast.IsColliding())
         {
-            if (rayCast.GetCollider() is Building)
+            if (rayCast.GetCollider() is Building
+                && PlayerStats.Instance.Gold >= 5
+                )
             {
                 var building = (Building)rayCast.GetCollider();
+
+                if (building.Health == 100)
+                    return;
+
                 building.ReceiveRepair(10);
-                SfxManager.Instance.Play("WrenchRepair", this);
+                PlayerStats.Instance.RemoveGears(5);
+                PlayerStats.Instance.EmitSignal(nameof(PlayerStats.Instance.UpdateGoldLabel));
             }
         }
     }

@@ -21,6 +21,8 @@ visible = false
 mesh = SubResource("SphereMesh_f14vb")
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000843048, 0.00543213, -0.00177002)
@@ -28,18 +30,22 @@ shape = SubResource("SphereShape3D_dkyxu")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0, 0)
+visible = false
 texture = ExtResource("2_w4h6l")
 
 [node name="Sprite3D2" type="Sprite3D" parent="."]
 transform = Transform3D(-4.37114e-09, -0.1, -4.37114e-09, 0, -4.37114e-09, 0.1, -0.1, 4.37114e-09, 1.91069e-16, 0, 0, 0)
+visible = false
 texture = ExtResource("2_w4h6l")
 
 [node name="Sprite3D3" type="Sprite3D" parent="."]
 transform = Transform3D(-4.37114e-09, -0.0707107, 0.0707107, 0, 0.0707107, 0.0707107, -0.1, 3.09086e-09, -3.09086e-09, 0, 0, 0)
+visible = false
 texture = ExtResource("2_w4h6l")
 
 [node name="Sprite3D4" type="Sprite3D" parent="."]
 transform = Transform3D(-4.37114e-09, 0.0707107, 0.0707107, 0, 0.0707107, -0.0707107, -0.1, -3.09086e-09, -3.09086e-09, 0, 0, 0)
+visible = false
 texture = ExtResource("2_w4h6l")
 
 [connection signal="body_entered" from="Area3D" to="." method="OnBulletEntered"]

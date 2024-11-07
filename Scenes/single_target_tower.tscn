@@ -18,6 +18,8 @@ inner_radius = 0.95
 viewport_path = NodePath("SubViewport")
 
 [node name="SingleTargetTower" type="StaticBody3D" groups=["building"]]
+collision_layer = 23
+collision_mask = 16
 script = ExtResource("1_tt6f7")
 
 [node name="Area3D" type="Area3D" parent="."]
@@ -28,6 +30,7 @@ collision_mask = 2
 shape = SubResource("SphereShape3D_1blkk")
 
 [node name="AttackTimer" type="Timer" parent="."]
+wait_time = 2.5
 
 [node name="TowerBuild" parent="." instance=ExtResource("2_htpsk")]
 visible = false

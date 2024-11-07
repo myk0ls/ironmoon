@@ -27,7 +27,11 @@ public partial class Enemy : CharacterBody3D
 
     bool IsAlive = true;
 
+    PackedScene GearScene;
+
     public Node3D TargetNode { get; set; } = null;
+
+    Node3D World;
 	
 	[Signal]
 	public delegate void DeathEventHandler();
@@ -44,6 +48,9 @@ public partial class Enemy : CharacterBody3D
         skeleton = Model.GetNode<Skeleton3D>("Armature/Skeleton3D");
         HitBox = GetNode<CollisionShape3D>("CollisionShape3D");
         simulator = skeleton.GetNode<PhysicalBoneSimulator3D>("PhysicalBoneSimulator3D");
+
+        World = GetNode<Node3D>("/root/World");
+        GearScene = ResourceLoader.Load<PackedScene>("res://Scenes/gear.tscn");
 
         //skeleton.PhysicalBonesStopSimulation();
 
@@ -131,11 +138,17 @@ public partial class Enemy : CharacterBody3D
         
             //QueueFree();
             //EmitSignal(nameof(Death));
-            PlayerStats.Instance.GainGold(5);
+            PlayerStats.Instance.GainGold(3);
             PlayerStats.Instance.EmitSignal(nameof(PlayerStats.Instance.UpdateGoldLabel));
         RemoveTimer.Start();
         SfxManager.Instance.Play("RobotDeath", this);
-        
+
+        Gear gear = (Gear)GearScene.Instantiate();
+        //gear.GlobalPosition = this.GlobalPosition;
+        //GetParent().GetParent().GetParent().AddChild(gear);
+        gear.Position = GlobalPosition;
+        World.AddChild(gear);
+
     }
 
     void Dying()

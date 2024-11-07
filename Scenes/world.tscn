@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dpdyvqyi3u2x7" path="res://Scenes/player.tscn" id="1_b63kr"]
 [ext_resource type="Script" path="res://Scenes/PathSpawner.cs" id="3_ygtur"]
 [ext_resource type="Texture2D" uid="uid://c2ld8ycp2t0r2" path="res://Assets/towerhotbox.png" id="6_8laws"]
+[ext_resource type="PackedScene" uid="uid://dv0uc63c3amu8" path="res://Scenes/gear.tscn" id="6_rmtjw"]
 [ext_resource type="PackedScene" uid="uid://dn773mu0uar45" path="res://Assets/Barrel.glb" id="8_c6kci"]
 [ext_resource type="Script" path="res://Scripts/Ui.cs" id="8_ul212"]
 
@@ -21,19 +22,17 @@ glow_enabled = true
 
 [sub_resource type="Curve3D" id="Curve3D_0nruu"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.178671, -0.593097, -5.93671, 0, 0, 0, 0, 0, 0, 0.37498, -0.536666, 7.94928, 0, 0, 0, 0, 0, 0, 0.597521, -0.685313, 11.5259, 0, 0, 0, 0, 0, 0, -0.337766, -0.754013, 14.5207, 0, 0, 0, 0, 0, 0, -3.52606, -0.336933, 18.7238, 0, 0, 0, 0, 0, 0, -5.56033, 0.611127, 27.2459, 0, 0, 0, 0, 0, 0, -5.68682, 2.58404, 34.5724),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.178671, -0.593097, -5.93671, 0, 0, 0, 0, 0, 0, 0.37498, -0.536666, 7.94928, 0, 0, 0, 0, 0, 0, 0.597521, -0.685313, 11.5259, 0, 0, 0, 0, 0, 0, -0.337766, -0.754013, 14.5207, 0, 0, 0, 0, 0, 0, -3.52606, -0.336933, 18.7238, 0, 0, 0, 0, 0, 0, -5.56033, 0.428074, 25.5371, 0, 0, 0, 0, 0, 0, -5.68682, 2.09831, 30.2518, 0, 0, 0, 0, 0, 0, -6.64509, 2.21958, 36.4557),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
 }
-point_count = 7
+point_count = 8
 
 [sub_resource type="Curve3D" id="Curve3D_atsit"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.178671, -0.593097, -5.93671, 0, 0, 0, 0, 0, 0, 0.37498, -0.536666, 7.94928, 0, 0, 0, 0, 0, 0, 0.597521, -0.685313, 11.5259, 0, 0, 0, 0, 0, 0, 1.20767, -0.754013, 14.5207, 0, 0, 0, 0, 0, 0, 3.57926, -0.336933, 18.7238, 0, 0, 0, 0, 0, 0, 5.56899, 0.611127, 27.2459, 0, 0, 0, 0, 0, 0, 5.70084, 2.58404, 34.5724),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.178671, -0.593097, -5.93671, 0, 0, 0, 0, 0, 0, 0.368238, -0.538604, 7.47236, 0, 0, 0, 0, 0, 0, 0.37498, -0.536666, 7.94928, 0, 0, 0, 0, 0, 0, 0.597521, -0.685313, 11.5259, 0, 0, 0, 0, 0, 0, 1.20767, -0.754013, 14.5207, 0, 0, 0, 0, 0, 0, 3.57926, -0.336933, 18.7238, 0, 0, 0, 0, 0, 0, 5.56899, 0.611127, 25.971, 0, 0, 0, 0, 0, 0, 5.70084, 2.18443, 29.8745, 0, 0, 0, 0, 0, 0, 6.30442, 2.19522, 37.0242),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
-point_count = 7
-
-[sub_resource type="Curve3D" id="Curve3D_j3rmv"]
+point_count = 9
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mu3y"]
 albedo_color = Color(0.89059, 0.89059, 0.89059, 1)
@@ -64,20 +63,17 @@ curve = SubResource("Curve3D_0nruu")
 script = ExtResource("3_ygtur")
 
 [node name="PathTimer" type="Timer" parent="Path3D"]
-wait_time = 3.0
+wait_time = 5.5
 autostart = true
 
 [node name="Path3D2" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.23982, 2.32616, -7.36233)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.23982, 2.32616, -7.25633)
 curve = SubResource("Curve3D_atsit")
 script = ExtResource("3_ygtur")
 
 [node name="PathTimer" type="Timer" parent="Path3D2"]
-wait_time = 3.0
+wait_time = 5.5
 autostart = true
-
-[node name="Path3D3" type="Path3D" parent="."]
-curve = SubResource("Curve3D_j3rmv")
 
 [node name="UI" type="Control" parent="."]
 layout_direction = 1
@@ -163,7 +159,7 @@ color = Color(0, 0, 0, 0.294118)
 
 [node name="Panel2" type="Panel" parent="UI"]
 layout_mode = 0
-offset_left = 1091.0
+offset_left = 1070.0
 offset_top = 628.0
 offset_right = 1151.0
 offset_bottom = 645.0
@@ -181,6 +177,15 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "0/0
 "
+
+[node name="Gear" parent="." instance=ExtResource("6_rmtjw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.44975, 8.20322, 24.2432)
+
+[node name="Gear2" parent="." instance=ExtResource("6_rmtjw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.92701, 8.20322, 24.2432)
+
+[node name="Gear3" parent="." instance=ExtResource("6_rmtjw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.04498, 8.20322, 24.2432)
 
 [node name="Level" type="Node3D" parent="."]
 

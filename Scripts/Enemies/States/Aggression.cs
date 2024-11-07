@@ -44,7 +44,7 @@ public partial class Aggression : State
         dir.Y = 0;
         dir = dir.Normalized();
 
-        _enemy.LookAt(dir);
+        _enemy.LookAt(_enemy.TargetNode.GlobalPosition, Vector3.Up);
 
         velocity.X = dir.X * _enemy.EnemyStats.WalkSpeed;
         velocity.Z = dir.Z * _enemy.EnemyStats.WalkSpeed;
@@ -77,5 +77,7 @@ public partial class Aggression : State
     void Dead()
     {
         _enemy.EmitSignal(nameof(_enemy.Death));
+        var BuildingBox = _enemy.GetNode<CollisionShape3D>("BuildingBox/CollisionShape3D");
+        BuildingBox.Disabled = true;   
     }
 }

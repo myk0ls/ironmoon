@@ -43,7 +43,7 @@ public partial class Bullet : Node3D
             //Rotation = LookDir;
 
             //LookAt(GlobalPosition + movement, Vector3.Up);
-            LookAt(Target.GlobalPosition, Vector3.Up);
+            //LookAt(Target.GlobalPosition, Vector3.Up);
 
 			//Translate(movement);
 

@@ -12,5 +12,5 @@ KnockBack = 0.0
 RecoilAmount = 0.03
 RecoilSpeed = 8.0
 MaxRecoil = 5.0
-ShakeAmount = 0.05
+ShakeAmount = 0.08
 ShakeDuration = 0.03

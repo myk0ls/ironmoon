@@ -4,7 +4,7 @@ using System;
 [GlobalClass]
 public partial class Building : Node3D
 {
-    int Health { get; set; } = 100;
+    public int Health { get; set; } = 100;
 	protected Timer AttackTimer { get; set; }
 	public Area3D DetectionArea;
 	Area3D CollisionArea;
@@ -113,6 +113,7 @@ public partial class Building : Node3D
             Health = 100;
         }
         EmitSignal(nameof(HealthBarUpdate));
+        SfxManager.Instance.Play("WrenchRepair", this);
     }
 
     void UpdateHealth()

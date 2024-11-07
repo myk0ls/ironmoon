@@ -8,4 +8,6 @@ public partial class CustomSignals : Node
     [Signal] public delegate void RepairModeEventHandler();
 
     [Signal] public delegate void UpdateAmmoLabelEventHandler();
+
+    [Signal] public delegate void InteractNodeUpdateEventHandler();
 }

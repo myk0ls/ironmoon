@@ -9,8 +9,8 @@ public partial class PlayerStats : Node
 	public int Gold = 350;
 
 	public int ShotgunAmmo = 0;
-    public int HandCannonAmmo = 100;
-	public int PPSHAmmo = 100;
+    public int HandCannonAmmo = 1000;
+	public int PPSHAmmo = 1000;
 
 	public static PlayerStats Instance { get; private set; }
 
@@ -33,6 +33,10 @@ public partial class PlayerStats : Node
 		Gold += Amount;
 	}
 
+	public void RemoveGears(int Amount)
+	{
+		Gold -= Amount;
+	}
 	public void GainAmmo(string AmmoName, int amount)
 	{
 		switch (AmmoName)
@@ -78,7 +82,7 @@ public partial class PlayerStats : Node
             case "PPSH":
 				return PPSHAmmo;
 			default:
-				return 100f;
+				return 1000f;
 
         }
     }
