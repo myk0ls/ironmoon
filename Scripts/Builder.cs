@@ -176,7 +176,6 @@ public partial class Builder : Node3D
     {
         foreach(Node node in placeTower.DetectionArea.GetOverlappingAreas())
         {
-            GD.Print(node.Name.ToString());
             if (node.GetParent() is Building)
             {
                 return false;
@@ -190,7 +189,7 @@ public partial class Builder : Node3D
     {
         if (placeTower.BuildRayCast.IsColliding())
         {
-            // if (placeTower.RayCast.GetCollider())
+            //if (placeTower.BuildRayCast.GetCollider().IsInGroup)
             return true;
         }
         return false;

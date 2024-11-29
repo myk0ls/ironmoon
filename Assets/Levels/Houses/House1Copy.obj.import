@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://xie6so64vb53"
+path="res://.godot/imported/House1Copy.obj-0d05ad976acf515e49e4831ba45cd7cf.mesh"
+
+[deps]
+
+files=["res://.godot/imported/House1Copy.obj-0d05ad976acf515e49e4831ba45cd7cf.mesh"]
+
+source_file="res://Assets/Levels/Houses/House1Copy.obj"
+dest_files=["res://.godot/imported/House1Copy.obj-0d05ad976acf515e49e4831ba45cd7cf.mesh", "res://.godot/imported/House1Copy.obj-0d05ad976acf515e49e4831ba45cd7cf.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -107,6 +107,14 @@ public partial class WeaponController : Node3D
             CSignals.EmitSignal(nameof(CSignals.RepairMode));
         }
 
+        if (Input.IsActionJustPressed("four")
+            && CurrentArm.AnimStateMachine.GetCurrentNode() != "reload"
+            )
+        {
+            SwitchWeapon(3);
+            CSignals.EmitSignal(nameof(CSignals.RepairMode));
+        }
+
 
         if (Input.IsActionJustPressed("sprint") && CurrentArm.ArmPlayer.IsPlaying() == false 
             && !Input.IsActionPressed("attack2"))

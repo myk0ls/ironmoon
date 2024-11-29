@@ -8,7 +8,8 @@ public partial class Ui : Control
 	Label GoldLabel;
 	Label FPSLabel;
 	Label AmmoLabel;
-	ItemList TowerList;
+    Panel ShopPanel;
+    ItemList TowerList;
 	CustomSignals CSignals;
 
 	// Called when the node enters the scene tree for the first time.
@@ -19,14 +20,14 @@ public partial class Ui : Control
 		SellBar = GetNode<ProgressBar>("SellBar");
         GoldLabel = GetNode<Label>("GoldLabel");
 		FPSLabel = GetNode<Label>("FPSLabel");
-		TowerList = GetNode<ItemList>("TowerList");
 		AmmoLabel = GetNode<Label>("AmmoLabel");
+		ShopPanel = GetNode<Panel>("ShopPanel");
 
         SellBar.Value = PlayerNode.SellTimer.WaitTime - PlayerNode.SellTimer.TimeLeft;
 
 		PlayerStats.Instance.UpdateGoldLabel += UpdateGold;
-		CSignals.GameModeChanged += ToggleHotBar;
 		CSignals.UpdateAmmoLabel += UpdateAmmoLabel;
+		CSignals.ShopView += ShowShop;
 
         GoldLabel.Text = String.Format("GEARS: {0}", PlayerStats.Instance.Gold);
     }
@@ -55,7 +56,7 @@ public partial class Ui : Control
 			else
 				FPSLabel.Visible = false;
 		}
-
+		/*
 		if (Input.IsActionJustPressed("one") && PlayerNode.currentMode == PlayerMode.Build)
 		{
 			if (!TowerList.IsAnythingSelected())
@@ -73,6 +74,7 @@ public partial class Ui : Control
 				TowerList.DeselectAll();
 			}
         }
+		*/
     }
 
     void UpdateGold()
@@ -80,20 +82,22 @@ public partial class Ui : Control
 		GoldLabel.Text = String.Format("GEARS: {0}", PlayerStats.Instance.Gold);
 	}
 
-	void ToggleHotBar()
-	{
-		if (TowerList.Visible == false)
-		{
-			TowerList.Visible = true;
-		}
-		else
-			TowerList.Visible = false;
-	}
-
 	void UpdateAmmoLabel()
 	{
 		var weapon = PlayerNode.WeaponController as WeaponController;
 		AmmoLabel.Text = weapon.CurrentArm.ArmStats.ClipSize.ToString() + "/" +
 			PlayerStats.Instance.GetAmmo(weapon.CurrentArm.Name);
+	}
+
+	void ShowShop()
+	{
+		if (ShopPanel.Visible == false)
+		{
+			ShopPanel.Visible = true;
+		}
+		else
+		{
+			ShopPanel.Visible = false;
+		}
 	}
 }

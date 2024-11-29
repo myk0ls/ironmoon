@@ -1,9 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://ddmlaq0toslu2"]
+[gd_scene load_steps=13 format=3 uid="uid://ddmlaq0toslu2"]
 
 [ext_resource type="PackedScene" uid="uid://dpdyvqyi3u2x7" path="res://Scenes/player.tscn" id="1_b63kr"]
 [ext_resource type="Script" path="res://Scenes/PathSpawner.cs" id="3_ygtur"]
-[ext_resource type="Texture2D" uid="uid://c2ld8ycp2t0r2" path="res://Assets/towerhotbox.png" id="6_8laws"]
-[ext_resource type="PackedScene" uid="uid://dv0uc63c3amu8" path="res://Scenes/gear.tscn" id="6_rmtjw"]
 [ext_resource type="PackedScene" uid="uid://dn773mu0uar45" path="res://Assets/Barrel.glb" id="8_c6kci"]
 [ext_resource type="Script" path="res://Scripts/Ui.cs" id="8_ul212"]
 
@@ -123,24 +121,6 @@ offset_right = 41.0
 offset_bottom = 25.0
 text = "FPS:"
 
-[node name="TowerList" type="ItemList" parent="UI"]
-visible = false
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -117.5
-offset_top = -77.0
-offset_right = 117.5
-grow_horizontal = 2
-grow_vertical = 0
-item_count = 2
-max_columns = 3
-item_0/text = "1"
-item_0/icon = ExtResource("6_8laws")
-
 [node name="ColorRect" type="ColorRect" parent="UI"]
 visible = false
 layout_mode = 1
@@ -177,15 +157,6 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "0/0
 "
-
-[node name="Gear" parent="." instance=ExtResource("6_rmtjw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.44975, 8.20322, 24.2432)
-
-[node name="Gear2" parent="." instance=ExtResource("6_rmtjw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.92701, 8.20322, 24.2432)
-
-[node name="Gear3" parent="." instance=ExtResource("6_rmtjw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.04498, 8.20322, 24.2432)
 
 [node name="Level" type="Node3D" parent="."]
 

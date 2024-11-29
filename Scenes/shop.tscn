@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcbjsdttewlqo"]
+
+[ext_resource type="Script" path="res://Scenes/Shop.cs" id="1_68x7w"]
+[ext_resource type="PackedScene" uid="uid://ny4p1r0re5k2" path="res://Assets/Levels/Houses/Shop.glb" id="1_jv44w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cc5ec"]
+size = Vector3(5.22693, 3.26788, 1.91321)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jd5bk"]
+radius = 3.51473
+
+[node name="Shop" type="Node3D"]
+script = ExtResource("1_68x7w")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000793397, 1.13394, 0.456604)
+shape = SubResource("BoxShape3D_cc5ec")
+
+[node name="ShopModel" parent="." instance=ExtResource("1_jv44w")]
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 128
+collision_mask = 36
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_jd5bk")
+
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

@@ -8,7 +8,7 @@ public partial class PlayerStats : Node
 	public int Mana = 100;
 	public int Gold = 350;
 
-	public int ShotgunAmmo = 0;
+	public int ShotgunAmmo = 1000;
     public int HandCannonAmmo = 1000;
 	public int PPSHAmmo = 1000;
 

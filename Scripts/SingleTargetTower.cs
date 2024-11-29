@@ -91,7 +91,6 @@ public partial class SingleTargetTower : Building
         {
             for (int i = 0; i < bodies.Count; i++)
             {
-                GD.Print(bodies[i].ToString());
                 if (bodies[i] is CharacterBody3D &&
                     bodies[i].IsInGroup("enemy"))
                 {

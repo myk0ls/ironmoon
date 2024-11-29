@@ -12,6 +12,7 @@ public partial class Building : Node3D
 	public RayCast3D BuildRayCast;
     ProgressBar HealthBar;
     Sprite3D HealthBarSprite;
+    public CollisionShape3D TowerShape;
 
 	Player PlayerNode;
     CustomSignals CSignals;
@@ -29,6 +30,7 @@ public partial class Building : Node3D
         BuildRayCast = GetNode<RayCast3D>("BuildRayCast");
         HealthBarSprite = GetNode<Sprite3D>("HealthBarSprite");
         HealthBar = GetNode<ProgressBar>("SubViewport/HealthBar");
+        TowerShape = GetNode<CollisionShape3D>("CollisionShape3D");
 
         CSignals = GetNode<CustomSignals>("/root/CustomSignals");
 
