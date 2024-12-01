@@ -134,6 +134,7 @@ public partial class WeaponController : Node3D
             if (CurrentArm.ArmStats.ClipSize < CurrentArm.ArmStats.TotalClipSize
                 && PlayerStats.Instance.GetAmmo(CurrentArm.Name) > 0
                 && CurrentArm.AnimStateMachine.GetCurrentNode() != "shoot"
+                && CurrentArm.AnimStateMachine.GetCurrentNode() != "reload"
                 )
             {
                 SfxManager.Instance.Play(CurrentArm.Name + "Reload", this);
@@ -157,6 +158,15 @@ public partial class WeaponController : Node3D
             if (Input.IsActionPressed("attack"))
             {
                 CurrentArm.AnimStateMachine.Travel("shoot");
+            }
+        }
+        else if (CurrentArm.ArmStats.ClipSize == 0
+            && CurrentArm.AnimStateMachine.GetCurrentNode() != "reload")
+        {
+            if (Input.IsActionPressed("attack"))
+            {
+                SfxManager.Instance.Play(CurrentArm.Name + "Reload", this);
+                CurrentArm.AnimStateMachine.Travel("reload");
             }
         }
         
@@ -246,6 +256,7 @@ public partial class WeaponController : Node3D
             }
 
         }
+            
 
     }
 

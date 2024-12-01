@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Shop : Node3D
+public partial class Shop : StaticBody3D
 {
 	CustomSignals CSignals;
 

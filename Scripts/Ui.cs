@@ -91,13 +91,23 @@ public partial class Ui : Control
 
 	void ShowShop()
 	{
+		/*
 		if (ShopPanel.Visible == false)
 		{
 			ShopPanel.Visible = true;
+			GD.Print("SHOPAS");
 		}
 		else
 		{
 			ShopPanel.Visible = false;
 		}
+		*/
+
+		if (Input.IsActionJustPressed("interact"))
+		{
+			ShopPanel.Visible = true;
+		}
+		else
+			ShopPanel.Visible = false;
 	}
 }
