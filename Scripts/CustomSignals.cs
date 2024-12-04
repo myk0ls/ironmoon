@@ -12,4 +12,7 @@ public partial class CustomSignals : Node
     [Signal] public delegate void InteractNodeUpdateEventHandler();
     
     [Signal] public delegate void ShopViewEventHandler();
+
+    [Signal] public delegate void ShopViewCloseEventHandler();
+
 }

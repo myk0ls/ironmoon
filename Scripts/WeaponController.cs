@@ -9,7 +9,7 @@ public partial class WeaponController : Node3D
     /// weapon bob and sway parameters
     /// </summary>
 	Vector3 MouseMov;
-    float SwayThreshold = 20;
+    float SwayThreshold = 10;
     float SwaySens = 2f;
     float SwayAmount = 0.15f;
     float SwaySpeed = 5;
@@ -163,7 +163,7 @@ public partial class WeaponController : Node3D
         else if (CurrentArm.ArmStats.ClipSize == 0
             && CurrentArm.AnimStateMachine.GetCurrentNode() != "reload")
         {
-            if (Input.IsActionPressed("attack"))
+            if (Input.IsActionJustPressed("attack"))
             {
                 SfxManager.Instance.Play(CurrentArm.Name + "Reload", this);
                 CurrentArm.AnimStateMachine.Travel("reload");

@@ -25,7 +25,7 @@ public partial class Shop : StaticBody3D
 	{
 		if (node is Player)
 		{
-            CSignals.EmitSignal(nameof(CSignals.ShopView));
+            CSignals.EmitSignal(nameof(CSignals.ShopViewClose));
         }
 	}
 }

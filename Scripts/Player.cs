@@ -43,6 +43,9 @@ public partial class Player : CharacterBody3D
 		CSignals = GetNode<CustomSignals>("/root/CustomSignals");
 		
 		PositionC = Camera.Transform.Origin.Y;
+
+		CSignals.ShopView += OnShopMode;
+        CSignals.ShopViewClose += OffShopMode;
     }
 
     public override void _Process(double delta)
@@ -108,7 +111,7 @@ public partial class Player : CharacterBody3D
 
     public override void _Input(InputEvent @event)
     {
-        if (@event is InputEventMouseMotion)
+        if (@event is InputEventMouseMotion && currentMode != PlayerMode.Shop)
 		{
 			InputEventMouseMotion motion = (@event as InputEventMouseMotion);
             Rotation = new Vector3(Rotation.X, Rotation.Y - motion.Relative.X / 1000 * Sensitivity, Rotation.Z);
@@ -201,10 +204,29 @@ public partial class Player : CharacterBody3D
     {
 		Builder.Call("_ProcessBuild", delta);
     }
+
+	void OnShopMode()
+	{
+		if (currentMode != PlayerMode.Shop)
+		{
+			currentMode = PlayerMode.Shop;
+            Input.MouseMode = Input.MouseModeEnum.Visible;
+        }
+    }
+
+	void OffShopMode()
+	{
+        if (currentMode == PlayerMode.Shop)
+        {
+            Input.MouseMode = Input.MouseModeEnum.Captured;
+            EnterCombatMode();
+        }
+    }
 }
 
 public enum PlayerMode
 {
 	Combat,
-	Build
+	Build,
+	Shop
 }

@@ -28,6 +28,7 @@ public partial class Ui : Control
 		PlayerStats.Instance.UpdateGoldLabel += UpdateGold;
 		CSignals.UpdateAmmoLabel += UpdateAmmoLabel;
 		CSignals.ShopView += ShowShop;
+		CSignals.ShopViewClose += CloseShop;
 
         GoldLabel.Text = String.Format("GEARS: {0}", PlayerStats.Instance.Gold);
     }
@@ -91,23 +92,23 @@ public partial class Ui : Control
 
 	void ShowShop()
 	{
-		/*
+		
 		if (ShopPanel.Visible == false)
 		{
 			ShopPanel.Visible = true;
 			GD.Print("SHOPAS");
 		}
 		else
-		{
 			ShopPanel.Visible = false;
-		}
-		*/
+		
+	}
 
-		if (Input.IsActionJustPressed("interact"))
+	void CloseShop()
+	{
+		if (ShopPanel.Visible == true)
 		{
-			ShopPanel.Visible = true;
-		}
-		else
 			ShopPanel.Visible = false;
+		}
 	}
 }
+

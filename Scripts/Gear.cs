@@ -20,10 +20,10 @@ public partial class Gear : RigidBody3D
 		//QueueFree();
 		PlayerStats.Instance.GainGold(1);
 		PlayerStats.Instance.EmitSignal(nameof(PlayerStats.Instance.UpdateGoldLabel));
-		SfxManager.Instance.Play("GearPickup", this);
+		SfxManager.Instance.Play("GearPickup", GetNode<Player>("/root/World/Player"));
 		CSignals.EmitSignal(nameof(CSignals.InteractNodeUpdate));
-		//QueueFree();
-		var audio = GetNode<AudioStreamPlayer3D>("GearPickup");
-		audio.Finished += QueueFree;
+		QueueFree();
+		//var audio = GetNode<AudioStreamPlayer3D>("GearPickup");
+		//audio.Finished += QueueFree;
 	}
 }
