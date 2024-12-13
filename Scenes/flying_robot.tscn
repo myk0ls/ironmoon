@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://boxbexd8futdw"]
+
+[ext_resource type="Script" path="res://Scripts/StateMachine.cs" id="1_p5ti6"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Enemy.cs" id="1_qk8cj"]
+[ext_resource type="Script" path="res://Scripts/Enemies/States/Progress.cs" id="2_a8uo3"]
+[ext_resource type="Resource" uid="uid://d1axi7npak78e" path="res://Resources/EnemyResources/Enemies/small_robot_spider.tres" id="2_i4u7s"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vl56o"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_gvydi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8rhgj"]
+
+[node name="FlyingRobot" type="CharacterBody3D" node_paths=PackedStringArray("Model") groups=["enemy", "flying"]]
+collision_layer = 2
+collision_mask = 17
+script = ExtResource("1_qk8cj")
+EnemyStats = ExtResource("2_i4u7s")
+Model = NodePath("FlyingRobotModel")
+
+[node name="FlyingRobotModel" type="Node3D" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="FlyingRobotModel"]
+tree_root = SubResource("AnimationNodeStateMachine_vl56o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FlyingRobotModel"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FlyingRobotModel"]
+mesh = SubResource("PrismMesh_gvydi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.241123, 0)
+shape = SubResource("BoxShape3D_8rhgj")
+
+[node name="RemoveTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("1_p5ti6")
+initialNode = NodePath("Progress")
+
+[node name="Progress" type="Node" parent="StateMachine"]
+script = ExtResource("2_a8uo3")

@@ -80,25 +80,14 @@ public partial class Enemy : CharacterBody3D
             return;
         }
         
-
-
         Vector3 velocity = Velocity;
 
         // Add the gravity.
-        if (!IsOnFloor())
+        if (!IsOnFloor() && !IsInGroup("flying"))
         {
             velocity += GetGravity() * (float)delta;
         }
-        /*
-        var pathProgress = PathToFollow.Progress + EnemyStats.WalkSpeed * (float)delta;
 
-        if (PathToFollow.ProgressRatio == 1)
-        {
-            QueueFree();
-        }
-
-        PathToFollow.Progress = pathProgress;
-        */
         Velocity = velocity;
         MoveAndSlide();
     }
@@ -127,7 +116,7 @@ public partial class Enemy : CharacterBody3D
             simulator.Active = true;
             //skeleton.PhysicalBonesStartSimulation();
             */
-            animationStateMachine.Travel("Die");
+            //animationStateMachine.Travel("Die");
 
             EmitSignal(nameof(Death));
         }

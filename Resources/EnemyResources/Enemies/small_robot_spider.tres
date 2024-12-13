@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_y4jey")
 Health = 25.0
-WalkSpeed = 3.0
+WalkSpeed = 2.0
 CriticalHitChance = 20.0
 DropChance = 0.0
 AttackDamage = 0.0

@@ -37,6 +37,7 @@ project/assembly_name="escaperoom"
 
 enemy="group for enemies"
 building=""
+flying=""
 
 [input]
 

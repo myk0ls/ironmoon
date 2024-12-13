@@ -397,7 +397,7 @@ offset_bottom = 51.0
 grow_horizontal = 2
 
 [node name="Path3D" type="Path3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -8.59677, 1.59316, 31.3209)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -8.59677, 4.17615, 31.3209)
 curve = SubResource("Curve3D_vcdpy")
 script = ExtResource("6_suf8t")
 
@@ -406,7 +406,7 @@ wait_time = 5.5
 autostart = true
 
 [node name="Path3D2" type="Path3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6.91631, 2.32616, 29.5931)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6.91631, 4.90915, 29.5931)
 curve = SubResource("Curve3D_xq4me")
 script = ExtResource("6_suf8t")
 
@@ -513,5 +513,17 @@ transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 
 
 [node name="Barrel4" parent="Props" instance=ExtResource("8_ktfo1")]
 transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, -12.1432, 2.06585, 3.87948)
+
+[node name="WaveManager" type="Node" parent="."]
+
+[node name="Wave1" type="Node" parent="WaveManager"]
+
+[node name="Wave2" type="Node" parent="WaveManager"]
+
+[node name="Wave3" type="Node" parent="WaveManager"]
+
+[node name="Wave4" type="Node" parent="WaveManager"]
+
+[node name="Wave5" type="Node" parent="WaveManager"]
 
 [editable path="Level0-WIP"]
