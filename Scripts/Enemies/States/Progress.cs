@@ -18,7 +18,7 @@ public partial class Progress : State
     public override void Update()
     {
         //base.Enter();
-        if (!IsInstanceValid(_enemy))
+        if (!IsInstanceValid(_enemy) || !_enemy.IsAlive)
             return;
         
         var pathProgress = _enemy.PathToFollow.Progress + _enemy.EnemyStats.WalkSpeed * (float)GetProcessDeltaTime();

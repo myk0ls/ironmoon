@@ -451,56 +451,56 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.498947, 3.32938, 42.4824)
 size = Vector3(27.1992, 7.65875, 3.01251)
 material = SubResource("StandardMaterial3D_24ceg")
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Lights" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17807, 14.3529)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Node3D"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.47704, 1.44908, 2.57904)
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="Node3D"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.59964, 1.44908, 2.16099)
 
-[node name="OmniLight3D15" type="OmniLight3D" parent="Node3D"]
+[node name="OmniLight3D15" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.579096, 3.2556, 5.0278)
 omni_range = 12.7024
 
-[node name="OmniLight3D11" type="OmniLight3D" parent="Node3D"]
+[node name="OmniLight3D11" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.92982, 1.44908, -6.18713)
 
-[node name="OmniLight3D12" type="OmniLight3D" parent="Node3D"]
+[node name="OmniLight3D12" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.59489, 1.44908, -6.18713)
 
-[node name="OmniLight3D7" type="OmniLight3D" parent="Node3D"]
+[node name="OmniLight3D7" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.54002, 1.44908, -13.2803)
 omni_range = 12.0507
 
-[node name="OmniLight3D8" type="OmniLight3D" parent="Node3D"]
+[node name="OmniLight3D8" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.84574, 1.44908, -13.2803)
 omni_range = 7.14901
 
-[node name="OmniLight3D9" type="OmniLight3D" parent="Node3D"]
+[node name="OmniLight3D9" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.63998, 1.44908, -24.8046)
 
-[node name="OmniLight3D10" type="OmniLight3D" parent="Node3D"]
+[node name="OmniLight3D10" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.93562, 1.44908, -24.8046)
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="Node3D"]
+[node name="OmniLight3D3" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.97473, 1.44908, 11.8803)
 omni_range = 9.444
 
-[node name="OmniLight3D13" type="OmniLight3D" parent="Node3D"]
+[node name="OmniLight3D13" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.97473, 1.44908, 19.9333)
 
-[node name="OmniLight3D4" type="OmniLight3D" parent="Node3D"]
+[node name="OmniLight3D4" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.69211, 1.44908, 11.8803)
 
-[node name="OmniLight3D14" type="OmniLight3D" parent="Node3D"]
+[node name="OmniLight3D14" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.69211, 1.44908, 19.3851)
 
-[node name="OmniLight3D5" type="OmniLight3D" parent="Node3D"]
+[node name="OmniLight3D5" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.63998, 1.44908, 23.3546)
 
-[node name="OmniLight3D6" type="OmniLight3D" parent="Node3D"]
+[node name="OmniLight3D6" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.93562, 1.44908, 23.3546)
 
 [node name="Props" type="Node3D" parent="."]

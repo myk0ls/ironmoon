@@ -25,16 +25,21 @@ public partial class Enemy : CharacterBody3D
 
     public PathFollow3D PathToFollow;
 
-    bool IsAlive = true;
+    public bool IsAlive = true;
 
     PackedScene GearScene;
 
     public Node3D TargetNode { get; set; } = null;
 
     Node3D World;
-	
-	[Signal]
+
+    PackedScene ExplosionVfx;
+
+
+    [Signal]
 	public delegate void DeathEventHandler();
+
+
 
 
 	// Called when the node enters the scene tree for the first time.
@@ -51,6 +56,7 @@ public partial class Enemy : CharacterBody3D
 
         World = GetNode<Node3D>("/root/World");
         GearScene = ResourceLoader.Load<PackedScene>("res://Scenes/gear.tscn");
+        ExplosionVfx = ResourceLoader.Load<PackedScene>("res://Shaders/Explosion/explosion.tscn");
 
         //skeleton.PhysicalBonesStopSimulation();
 
@@ -116,7 +122,10 @@ public partial class Enemy : CharacterBody3D
             simulator.Active = true;
             //skeleton.PhysicalBonesStartSimulation();
             */
-            //animationStateMachine.Travel("Die");
+
+            PlayVfx(ExplosionVfx);
+
+            animationStateMachine.Travel("Die");
 
             EmitSignal(nameof(Death));
         }
@@ -145,4 +154,16 @@ public partial class Enemy : CharacterBody3D
         //animationStateMachine.Travel("Die");
 
     }
+
+    void PlayVfx(PackedScene vfxScene)
+    {
+        Vfx vfxInstance = vfxScene.Instantiate() as Vfx;
+        vfxInstance.Position = Model.Position;
+        AddChild(vfxInstance);
+        GD.Print("PRIDETAS VFX");
+
+        //GetNode<Vfx>(vfxInstance.Name.ToString()).Activate();
+        vfxInstance.Activate();
+    }
+
 }

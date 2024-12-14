@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cppkqoyg1wgv5"]
+
+[ext_resource type="Script" path="res://Shaders/Vfx.cs" id="1_x2da6"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ygk3e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0qju2"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="TorusMesh" id="TorusMesh_hroa3"]
+material = SubResource("StandardMaterial3D_0qju2")
+rings = 12
+ring_segments = 16
+
+[node name="ElectricShock" type="Node3D"]
+script = ExtResource("1_x2da6")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_ygk3e")
+draw_pass_1 = SubResource("TorusMesh_hroa3")

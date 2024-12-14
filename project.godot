@@ -130,3 +130,4 @@ four={
 [physics]
 
 common/physics_ticks_per_second=75
+3d/physics_engine="JoltPhysics3D"

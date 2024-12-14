@@ -9,6 +9,9 @@ public partial class PathSpawner : Path3D
     PackedScene FlyingPathFollow;
     Timer PathTimer;
 	Random random = new Random();
+
+	Vector3 DefaultPosition;
+
 	// Called when the node enters the scene tree for the first time.
 	
 	public override void _Ready()
@@ -18,6 +21,8 @@ public partial class PathSpawner : Path3D
 		BigPathFollow = ResourceLoader.Load<PackedScene>("res://Scenes/pathFollowSpawnBigSpider.tscn");
 		SmallPathFollow = ResourceLoader.Load<PackedScene>("res://Scenes/pathFollowSpawnSmallSpider.tscn");
 		FlyingPathFollow = ResourceLoader.Load<PackedScene>("res://Scenes/pathFollowFlying.tscn");
+
+		DefaultPosition = GlobalPosition;
 
         PathTimer = GetNode<Timer>("PathTimer");
 
@@ -34,7 +39,9 @@ public partial class PathSpawner : Path3D
 	{
 		GD.Print("spawning");
 		PathFollow3D newPath = (PathFollow3D)GetPathFollow().Instantiate();
+		//MovePathToSide();
 		AddChild(newPath);
+		//GlobalPosition = DefaultPosition;
 	}
 
     
@@ -50,9 +57,16 @@ public partial class PathSpawner : Path3D
 		else return FlyingPathFollow;
 	}
 	
-    PackedScene GetPathFollow(char a)
+	void MovePathToSide()
+	{
+		int distance = random.Next(-1,1);
+		GlobalPosition = new Vector3(GlobalPosition.X + distance, GlobalPosition.Y, GlobalPosition.Z);
+	}
+	
+	/*
+    PackedScene GetPathFollow()
 	{
 		return FlyingPathFollow;
     }
-
+	*/
 }

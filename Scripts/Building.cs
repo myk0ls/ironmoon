@@ -4,7 +4,7 @@ using System;
 [GlobalClass]
 public partial class Building : Node3D
 {
-    public int Health { get; set; } = 100;
+    public int Health { get; set; } = 50;
 	protected Timer AttackTimer { get; set; }
 	public Area3D DetectionArea;
 	Area3D CollisionArea;
@@ -16,7 +16,10 @@ public partial class Building : Node3D
 
 	Player PlayerNode;
     CustomSignals CSignals;
+    PackedScene ExplosionVfx;
+    PackedScene SmokeVfx;
     public bool CanAttack;
+
 
     [Signal] public delegate void HealthBarUpdateEventHandler();
 
@@ -50,6 +53,8 @@ public partial class Building : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+
+
 	}
 
     public virtual void Fire()
@@ -101,8 +106,15 @@ public partial class Building : Node3D
         Health -= Damage;
         EmitSignal(nameof(HealthBarUpdate));
 
+        if (Health <= 50)
+        {
+            PlayVfx(SmokeVfx);
+        }
+
+
         if (Health <= 0)
         {
+            PlayVfx(ExplosionVfx);
             QueueFree();
         }
     }
@@ -121,5 +133,17 @@ public partial class Building : Node3D
     void UpdateHealth()
     {
         HealthBar.Value = Health;
+    }
+
+
+    void PlayVfx(PackedScene vfxScene)
+    {
+        Vfx vfxInstance = vfxScene.Instantiate() as Vfx;
+        vfxInstance.Position = Position;
+        AddChild(vfxInstance);
+        GD.Print("PRIDETAS VFX");
+
+        //GetNode<Vfx>(vfxInstance.Name.ToString()).Activate();
+        vfxInstance.ActivateContinous();
     }
 }
