@@ -15,4 +15,11 @@ public partial class CustomSignals : Node
 
     [Signal] public delegate void ShopViewCloseEventHandler();
 
+    [Signal] public delegate void UpdateCurrentWaveEventHandler(int wave);
+
+    [Signal] public delegate void WaveEndedEventHandler();
+
+    [Signal] public delegate void ActiveEnemyKilledEventHandler();
+
+    [Signal] public delegate void IntermissionLabelEventHandler();
 }

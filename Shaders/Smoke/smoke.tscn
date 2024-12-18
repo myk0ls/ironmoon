@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://kco8eit1l446"]
+[gd_scene load_steps=11 format=3 uid="uid://kco8eit1l446"]
+
+[ext_resource type="Script" path="res://Shaders/Vfx.cs" id="1_o2n0a"]
 
 [sub_resource type="Curve" id="Curve_fn7ai"]
 _data = [Vector2(0, 0.054945), 0.0, 0.0, 0, 0, Vector2(0.565217, 0.857143), 0.0, 0.0, 0, 0, Vector2(1, 0.054945), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_qi27p"]
+[sub_resource type="CurveTexture" id="CurveTexture_bprpx"]
 curve = SubResource("Curve_fn7ai")
 
 [sub_resource type="Curve" id="Curve_psbv8"]
@@ -12,14 +14,14 @@ max_value = 2.0
 _data = [Vector2(0.0144928, 2), 0.0, 0.0, 0, 0, Vector2(0.985507, 1.01099), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_cjsmm"]
+[sub_resource type="CurveTexture" id="CurveTexture_isegf"]
 curve = SubResource("Curve_psbv8")
 
 [sub_resource type="Curve" id="Curve_frxjr"]
 _data = [Vector2(0, 0.043956), 0.0, 0.0, 0, 0, Vector2(0.253623, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0659341), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_oqtab"]
+[sub_resource type="CurveTexture" id="CurveTexture_gn3e0"]
 curve = SubResource("Curve_frxjr")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eps2m"]
@@ -31,21 +33,22 @@ initial_velocity_max = 2.0
 gravity = Vector3(0, 5, 0)
 scale_min = 0.5
 scale_max = 1.5
-scale_curve = SubResource("CurveTexture_oqtab")
+scale_curve = SubResource("CurveTexture_gn3e0")
 color = Color(0.102244, 0.0603415, 6.01634e-09, 1)
-alpha_curve = SubResource("CurveTexture_qi27p")
-emission_curve = SubResource("CurveTexture_cjsmm")
+alpha_curve = SubResource("CurveTexture_bprpx")
+emission_curve = SubResource("CurveTexture_isegf")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_evnby"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yk2qj"]
 transparency = 1
 vertex_color_use_as_albedo = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_frs1h"]
-material = SubResource("StandardMaterial3D_evnby")
+material = SubResource("StandardMaterial3D_yk2qj")
 radial_segments = 8
 rings = 4
 
 [node name="Smoke" type="Node3D"]
+script = ExtResource("1_o2n0a")
 
 [node name="Smoke" type="GPUParticles3D" parent="."]
 emitting = false

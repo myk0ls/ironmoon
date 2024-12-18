@@ -26,7 +26,7 @@ public partial class PathSpawner : Path3D
 
         PathTimer = GetNode<Timer>("PathTimer");
 
-		PathTimer.Timeout += AddPathFollow;
+		//PathTimer.Timeout += AddPathFollow;
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,8 +44,38 @@ public partial class PathSpawner : Path3D
 		//GlobalPosition = DefaultPosition;
 	}
 
-    
-	PackedScene GetPathFollow()
+    public void AddPathFollow(string enemyType)
+    {
+        PackedScene selectedScene;
+
+        switch (enemyType)
+        {
+            case "SpiderSmall":
+                selectedScene = SmallPathFollow;
+                break;
+            case "SpiderMedium":
+                selectedScene = PathFollow;
+                break;
+            case "SpiderBig":
+                selectedScene = BigPathFollow;
+                break;
+            case "FlyingBot":
+                selectedScene = FlyingPathFollow;
+                break;
+            default:
+                GD.PrintErr($"Unknown enemy type: {enemyType}");
+                return;
+        }
+
+        PathFollow3D newPath = (PathFollow3D)selectedScene.Instantiate();
+		AddChild(newPath);
+		//MovePathToSide(newPath);
+        GD.Print($"Spawned {enemyType} on {Name}");
+		//GlobalPosition = DefaultPosition;
+    }
+
+
+    PackedScene GetPathFollow()
 	{
 		float value = random.Next(1, 11);
 		if (value < 8)
@@ -57,16 +87,19 @@ public partial class PathSpawner : Path3D
 		else return FlyingPathFollow;
 	}
 	
-	void MovePathToSide()
+	/*
+	void MovePathToSide(PathFollow3D newPath)
 	{
-		int distance = random.Next(-1,1);
-		GlobalPosition = new Vector3(GlobalPosition.X + distance, GlobalPosition.Y, GlobalPosition.Z);
+		int distance = random.Next(-100,100);
+		GD.Print($"distance: {distance}");
+        newPath.Position = new Vector3(newPath.Position.X + distance, newPath.Position.Y, newPath.Position.Z);
 	}
-	
+	*/
+
 	/*
     PackedScene GetPathFollow()
 	{
-		return FlyingPathFollow;
+		return SmallPathFollow;
     }
 	*/
 }

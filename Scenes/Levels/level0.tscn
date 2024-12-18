@@ -1,13 +1,16 @@
-[gd_scene load_steps=17 format=3 uid="uid://df8e5pbbx75bc"]
+[gd_scene load_steps=25 format=3 uid="uid://df8e5pbbx75bc"]
 
 [ext_resource type="PackedScene" uid="uid://dpdyvqyi3u2x7" path="res://Scenes/player.tscn" id="1_513jj"]
 [ext_resource type="PackedScene" uid="uid://bsqiotokbsa6s" path="res://Assets/Levels/Houses/House1.glb" id="4_pwh7v"]
 [ext_resource type="Script" path="res://Scripts/Ui.cs" id="5_ec78d"]
+[ext_resource type="Theme" uid="uid://7fb73ota5opl" path="res://Resources/Theme/theme.tres" id="5_kl1ku"]
 [ext_resource type="PackedScene" uid="uid://b6u51r48h8ota" path="res://Assets/Levels/Houses/House2.glb" id="5_q6xa0"]
 [ext_resource type="Script" path="res://Scenes/PathSpawner.cs" id="6_suf8t"]
 [ext_resource type="PackedScene" uid="uid://bcbjsdttewlqo" path="res://Scenes/shop.tscn" id="7_ow8sr"]
 [ext_resource type="PackedScene" uid="uid://dnyt0xmdrmabw" path="res://Assets/Levels/Houses/Level0-WIP.glb" id="7_qrv0l"]
 [ext_resource type="PackedScene" uid="uid://dn773mu0uar45" path="res://Assets/Barrel.glb" id="8_ktfo1"]
+[ext_resource type="Script" path="res://Scenes/Levels/WaveManager.cs" id="9_7i248"]
+[ext_resource type="Resource" uid="uid://k0kmr3bgy65" path="res://Resources/WaveResources/Level0/wave0.tres" id="10_556fd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_51p0u"]
 sky_top_color = Color(0.282716, 0.226059, 0.173989, 1)
@@ -33,6 +36,55 @@ volumetric_fog_density = 0.0185
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v5abv"]
 albedo_color = Color(0, 0.286275, 0.34902, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_ipn42"]
+font_size = 45
+
+[sub_resource type="Animation" id="Animation_hfm3r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WaveLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_q0r38"]
+resource_name = "ShowWave"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WaveLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2.2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_74ket"]
+_data = {
+"RESET": SubResource("Animation_hfm3r"),
+"ShowWave": SubResource("Animation_q0r38")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_k7e62"]
+font_size = 70
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_24ceg"]
+transparency = 2
+alpha_scissor_threshold = 0.217
+alpha_antialiasing_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
 [sub_resource type="Curve3D" id="Curve3D_vcdpy"]
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.178671, -0.593097, -12.0818, 0, 0, 0, 0, 0, 0, 0.37498, -0.536666, 7.94928, 0, 0, 0, 0, 0, 0, 0.597521, -0.685313, 11.5259, 0, 0, 0, 0, 0, 0, -0.337766, -0.754013, 14.5207, 0, 0, 0, 0, 0, 0, -0.751092, -0.757953, 21.3909, 0, 0, 0, 0, 0, 0, -5.56033, -0.538232, 25.5371, 0, 0, 0, 0, 0, 0, -5.68682, -0.563397, 30.2518, 0, 0, 0, 0, 0, 0, -6.64509, -0.385587, 41.2943),
@@ -46,12 +98,6 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 9
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_24ceg"]
-transparency = 2
-alpha_scissor_threshold = 0.217
-alpha_antialiasing_mode = 0
-albedo_color = Color(0, 0, 0, 1)
 
 [node name="World" type="Node3D"]
 
@@ -277,6 +323,7 @@ anchor_right = 0.614783
 anchor_bottom = 0.787037
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_kl1ku")
 max_value = 1.0
 metadata/_edit_use_anchors_ = true
 
@@ -307,6 +354,7 @@ offset_right = 47.5
 offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("5_kl1ku")
 text = "Gold:
 "
 
@@ -353,6 +401,7 @@ offset_left = -40.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
+theme = ExtResource("5_kl1ku")
 text = "0/0
 "
 
@@ -383,6 +432,7 @@ anchor_bottom = 1.0
 offset_top = -31.0
 offset_right = 152.0
 grow_vertical = 0
+theme = ExtResource("5_kl1ku")
 text = "HP:"
 
 [node name="Panel3" type="Panel" parent="UI"]
@@ -393,26 +443,44 @@ anchor_right = 0.5
 offset_left = -115.0
 offset_top = 11.0
 offset_right = 115.0
-offset_bottom = 51.0
+offset_bottom = 55.0
 grow_horizontal = 2
 
-[node name="Path3D" type="Path3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -8.59677, 4.17615, 31.3209)
-curve = SubResource("Curve3D_vcdpy")
-script = ExtResource("6_suf8t")
+[node name="IntermissionLabel" type="Label" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = 460.0
+offset_top = 11.0
+offset_right = 690.0
+offset_bottom = 57.0
+theme = ExtResource("5_kl1ku")
+text = "10
+"
+label_settings = SubResource("LabelSettings_ipn42")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="PathTimer" type="Timer" parent="Path3D"]
-wait_time = 5.5
-autostart = true
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
+libraries = {
+"": SubResource("AnimationLibrary_74ket")
+}
 
-[node name="Path3D2" type="Path3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6.91631, 4.90915, 29.5931)
-curve = SubResource("Curve3D_xq4me")
-script = ExtResource("6_suf8t")
-
-[node name="PathTimer" type="Timer" parent="Path3D2"]
-wait_time = 5.5
-autostart = true
+[node name="WaveLabel" type="Label" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -190.0
+offset_top = 82.0
+offset_right = 190.0
+offset_bottom = 216.0
+grow_horizontal = 2
+theme = ExtResource("5_kl1ku")
+text = "Wave 0"
+label_settings = SubResource("LabelSettings_k7e62")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Shop" parent="." instance=ExtResource("7_ow8sr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.22964, 0.859117, -11.9507)
@@ -515,15 +583,34 @@ transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 
 transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, -12.1432, 2.06585, 3.87948)
 
 [node name="WaveManager" type="Node" parent="."]
+script = ExtResource("9_7i248")
+waves = Array[Object]([ExtResource("10_556fd")])
 
-[node name="Wave1" type="Node" parent="WaveManager"]
+[node name="WaveTimer" type="Timer" parent="WaveManager"]
+wait_time = 5.5
 
-[node name="Wave2" type="Node" parent="WaveManager"]
+[node name="IntermissionTimer" type="Timer" parent="WaveManager"]
+wait_time = 10.0
+one_shot = true
 
-[node name="Wave3" type="Node" parent="WaveManager"]
+[node name="Lanes" type="Node3D" parent="."]
 
-[node name="Wave4" type="Node" parent="WaveManager"]
+[node name="Path3D" type="Path3D" parent="Lanes"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -8.59677, 4.17615, 31.3209)
+curve = SubResource("Curve3D_vcdpy")
+script = ExtResource("6_suf8t")
 
-[node name="Wave5" type="Node" parent="WaveManager"]
+[node name="PathTimer" type="Timer" parent="Lanes/Path3D"]
+wait_time = 5.5
+autostart = true
+
+[node name="Path3D2" type="Path3D" parent="Lanes"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6.91631, 4.90915, 29.5931)
+curve = SubResource("Curve3D_xq4me")
+script = ExtResource("6_suf8t")
+
+[node name="PathTimer" type="Timer" parent="Lanes/Path3D2"]
+wait_time = 5.5
+autostart = true
 
 [editable path="Level0-WIP"]

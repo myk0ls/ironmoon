@@ -16,7 +16,7 @@ public partial class SfxManager : Node
         foreach (Node child in GetChildren())
         {
             sfxs.Add(child.Name, (AudioStreamPlayer3D)child);
-            GD.Print(child.Name);
+            //GD.Print(child.Name);
         }
 
         foreach (KeyValuePair<string, AudioStreamPlayer3D> entry in sfxs)

@@ -11,6 +11,10 @@ public partial class Ui : Control
     Panel ShopPanel;
     ItemList TowerList;
 	CustomSignals CSignals;
+	Label WaveLabel;
+    Label IntermissionLabel;
+	Timer IntermissionTimer;
+	AnimationPlayer animationPlayer;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -22,6 +26,10 @@ public partial class Ui : Control
 		FPSLabel = GetNode<Label>("FPSLabel");
 		AmmoLabel = GetNode<Label>("AmmoLabel");
 		ShopPanel = GetNode<Panel>("ShopPanel");
+        WaveLabel = GetNode<Label>("WaveLabel");
+        IntermissionLabel = GetNode<Label>("IntermissionLabel");
+		IntermissionTimer = GetNode<Timer>("/root/World/WaveManager/IntermissionTimer");
+		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 
         SellBar.Value = PlayerNode.SellTimer.WaitTime - PlayerNode.SellTimer.TimeLeft;
 
@@ -29,6 +37,9 @@ public partial class Ui : Control
 		CSignals.UpdateAmmoLabel += UpdateAmmoLabel;
 		CSignals.ShopView += ShowShop;
 		CSignals.ShopViewClose += CloseShop;
+		CSignals.IntermissionLabel += ToggleIntermissionLabel;
+		CSignals.UpdateCurrentWave += (currentWave) => ShowWaveLabel(currentWave);
+		CSignals.WaveEnded += ShowWaveEndedLabel;
 
         GoldLabel.Text = String.Format("GEARS: {0}", PlayerStats.Instance.Gold);
     }
@@ -46,6 +57,12 @@ public partial class Ui : Control
 
 		if (FPSLabel.Visible)
 			FPSLabel.Text = String.Format("FPS:{0}", Engine.GetFramesPerSecond());
+
+		if (!IntermissionTimer.IsStopped())
+		{
+            //IntermissionLabel.Text = String.Format("{0:0.#}",IntermissionTimer.TimeLeft.ToString());
+            IntermissionLabel.Text = IntermissionTimer.TimeLeft.ToString("0");
+        }
 	}
 
     public override void _Input(InputEvent @event)
@@ -110,5 +127,38 @@ public partial class Ui : Control
 			ShopPanel.Visible = false;
 		}
 	}
+
+	void ToggleIntermissionLabel()
+	{
+		if (!IntermissionLabel.Visible)
+		{
+			IntermissionLabel.Visible = true;
+		}
+		else
+			IntermissionLabel.Visible = false;
+
+    }
+
+	void ShowWaveLabel(int currentWave)
+	{
+		if (WaveLabel.Visible == false)
+		{
+			WaveLabel.Visible = true;
+		}
+		WaveLabel.Text = "Wave " + (currentWave + 1);
+		animationPlayer.Play("ShowWave");
+
+		//WaveLabel.Visible = false;
+	}
+
+	void ShowWaveEndedLabel()
+	{
+        if (WaveLabel.Visible == false)
+        {
+            WaveLabel.Visible = true;
+        }
+        WaveLabel.Text = "Wave Completed";
+        animationPlayer.Play("ShowWave");
+    }
 }
 

@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://b8e8wijrjfn6y" path="res://Assets/TowerBuild.glb" id="2_htpsk"]
 [ext_resource type="PackedScene" uid="uid://d0n4i0kfjiehe" path="res://Assets/Models/MachineGunTower/machine_gun_tower.tscn" id="3_cmnel"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_1blkk"]
-radius = 4.80494
+[sub_resource type="SphereShape3D" id="SphereShape3D_mwbau"]
+radius = 4.30252
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lptp8"]
 radius = 0.887864
@@ -27,7 +27,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0260615, 1.11014, -0.022050
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("SphereShape3D_1blkk")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.57044, 0)
+shape = SubResource("SphereShape3D_mwbau")
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 2.5

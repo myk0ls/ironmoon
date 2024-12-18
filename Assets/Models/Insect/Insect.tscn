@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://c0oo538vj6jb5"]
+[gd_scene load_steps=23 format=4 uid="uid://c0oo538vj6jb5"]
 
 [ext_resource type="Script" path="res://Assets/Models/RobotSpider/skeleton_3d.gd" id="1_6ojoy"]
 
@@ -116,9 +116,24 @@ height = 0.713638
 
 [sub_resource type="Animation" id="Animation_cgr1h"]
 resource_name = "Die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_38o2k"]
 resource_name = "IdlePose"
+
+[sub_resource type="Animation" id="Animation_6tkhn"]
+length = 0.001
 
 [sub_resource type="Animation" id="Animation_1ouig"]
 resource_name = "Walk"
@@ -143,6 +158,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.0333333, 1, 0, 0, 0, 1, 0
 _data = {
 "Die": SubResource("Animation_cgr1h"),
 "IdlePose": SubResource("Animation_38o2k"),
+"RESET": SubResource("Animation_6tkhn"),
 "Walk": SubResource("Animation_1ouig")
 }
 
@@ -260,9 +276,9 @@ mesh = SubResource("ArrayMesh_05o4s")
 skeleton = NodePath("")
 
 [node name="Physical Bone Bone_001" type="PhysicalBone3D" parent="Armature/Skeleton3D"]
-transform = Transform3D(5.51727, 0, 0, 0, 0, -5.51727, 0, 5.51727, 0, 0, 2.17342, 0)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.355602)
-body_offset = Transform3D(5.51727, 0, 0, 0, 0, -5.51727, 0, 5.51727, 0, 0, 1.96195, 0)
+transform = Transform3D(5.51727, 0, 0, 0, 1.07288e-06, -5.51727, 0, 5.51727, 1.07288e-06, 0, 2.17064, -1.3262e-06)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.71321e-07, 0.355098)
+body_offset = Transform3D(5.51727, 0, 0, 0, 1.07288e-06, -5.51727, 0, 5.51727, 1.07288e-06, 0, 1.95917, -1.3262e-06)
 bone_name = "Bone.001"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/Physical Bone Bone_001"]
@@ -270,10 +286,10 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_63tvl")
 
 [node name="Physical Bone Bone_002" type="PhysicalBone3D" parent="Armature/Skeleton3D"]
-transform = Transform3D(5.51714, 0.0376698, 0, 0, 0, -5.51727, -0.0376698, 5.51714, 0, 0, 4.38078, 0)
+transform = Transform3D(5.51714, 0.0376398, 3.54166e-08, -9.31324e-09, 6.5565e-06, -5.51727, -0.0376398, 5.51714, 6.55641e-06, 0, 4.37758, -5.51367e-06)
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0162659)
-body_offset = Transform3D(5.51714, 0.0376699, 0, 0, 0, -5.51727, -0.0376698, 5.51714, 0, 0, 0.0897431, 0)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.79124e-09, 9.80682e-07, 0.0156865)
+body_offset = Transform3D(5.51714, 0.0376398, 3.54166e-08, -9.31323e-09, 6.55651e-06, -5.51727, -0.0376398, 5.51715, 6.55642e-06, 0, 0.0865464, -5.51367e-06)
 bone_name = "Bone.002"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0

@@ -1,10 +1,11 @@
 using Godot;
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 [GlobalClass]
 public partial class Building : Node3D
 {
-    public int Health { get; set; } = 50;
+    public int Health { get; set; } = 100;
 	protected Timer AttackTimer { get; set; }
 	public Area3D DetectionArea;
 	Area3D CollisionArea;
@@ -19,9 +20,11 @@ public partial class Building : Node3D
     PackedScene ExplosionVfx;
     PackedScene SmokeVfx;
     public bool CanAttack;
+    bool IsCriticalCondition;
 
 
     [Signal] public delegate void HealthBarUpdateEventHandler();
+    [Signal] public delegate void CriticalConditionEventHandler();
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -36,10 +39,13 @@ public partial class Building : Node3D
         TowerShape = GetNode<CollisionShape3D>("CollisionShape3D");
 
         CSignals = GetNode<CustomSignals>("/root/CustomSignals");
+        ExplosionVfx = ResourceLoader.Load<PackedScene>("res://Shaders/Explosion/explosion.tscn");
+        SmokeVfx = ResourceLoader.Load<PackedScene>("res://Shaders/Smoke/smoke.tscn");
 
         HealthBar.Value = Health;
         DetectionArea.Monitoring = true;
         CanAttack = false;
+        IsCriticalCondition = false;
 
         ToggleHealthBar();
 
@@ -48,6 +54,7 @@ public partial class Building : Node3D
         CSignals.GameModeChanged += ToggleHealthBar;
         CSignals.RepairMode += ToggleHealthBar;
         HealthBarUpdate += UpdateHealth;
+        CriticalCondition += ToggleCriticalCondition;
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -106,16 +113,15 @@ public partial class Building : Node3D
         Health -= Damage;
         EmitSignal(nameof(HealthBarUpdate));
 
-        if (Health <= 50)
+        if (Health <= 50 && !IsCriticalCondition)
         {
-            PlayVfx(SmokeVfx);
+            EmitSignal(nameof(CriticalCondition));
         }
-
 
         if (Health <= 0)
         {
-            PlayVfx(ExplosionVfx);
-            QueueFree();
+            VfxManager.Instance.Play("Explotion", this, TowerShape.Position);
+            GetTree().CreateTimer(1).Timeout += QueueFree;
         }
     }
 
@@ -126,6 +132,10 @@ public partial class Building : Node3D
         {
             Health = 100;
         }
+
+        if (Health > 50 && IsCriticalCondition)
+            ToggleCriticalCondition();
+
         EmitSignal(nameof(HealthBarUpdate));
         SfxManager.Instance.Play("WrenchRepair", this);
     }
@@ -135,15 +145,18 @@ public partial class Building : Node3D
         HealthBar.Value = Health;
     }
 
-
-    void PlayVfx(PackedScene vfxScene)
+    void ToggleCriticalCondition()
     {
-        Vfx vfxInstance = vfxScene.Instantiate() as Vfx;
-        vfxInstance.Position = Position;
-        AddChild(vfxInstance);
-        GD.Print("PRIDETAS VFX");
+        if (!IsCriticalCondition)
+        {
+            IsCriticalCondition = true;
+            VfxManager.Instance.PlayLoop("Smoke", this, TowerShape.Position);
+        }
+        else
+        {
+            IsCriticalCondition = false;
+            VfxManager.Instance.Stop("Smoke", this);
+        }
 
-        //GetNode<Vfx>(vfxInstance.Name.ToString()).Activate();
-        vfxInstance.ActivateContinous();
     }
 }

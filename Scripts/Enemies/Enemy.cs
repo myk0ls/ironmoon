@@ -35,6 +35,7 @@ public partial class Enemy : CharacterBody3D
 
     PackedScene ExplosionVfx;
 
+    CustomSignals CSignals;
 
     [Signal]
 	public delegate void DeathEventHandler();
@@ -54,6 +55,7 @@ public partial class Enemy : CharacterBody3D
         HitBox = GetNode<CollisionShape3D>("CollisionShape3D");
         simulator = skeleton.GetNode<PhysicalBoneSimulator3D>("PhysicalBoneSimulator3D");
 
+        CSignals = GetNode<CustomSignals>("/root/CustomSignals");
         World = GetNode<Node3D>("/root/World");
         GearScene = ResourceLoader.Load<PackedScene>("res://Scenes/gear.tscn");
         ExplosionVfx = ResourceLoader.Load<PackedScene>("res://Shaders/Explosion/explosion.tscn");
@@ -123,21 +125,20 @@ public partial class Enemy : CharacterBody3D
             //skeleton.PhysicalBonesStartSimulation();
             */
 
-            PlayVfx(ExplosionVfx);
+            //PlayVfx(ExplosionVfx);
+            VfxManager.Instance.Play("Explosion", this, Model.Position);
 
             animationStateMachine.Travel("Die");
 
             EmitSignal(nameof(Death));
+            CSignals.EmitSignal(nameof(CSignals.ActiveEnemyKilled));
         }
     }
 
     public void Die()
     {
-        
-            //QueueFree();
-            //EmitSignal(nameof(Death));
-            PlayerStats.Instance.GainGold(3);
-            PlayerStats.Instance.EmitSignal(nameof(PlayerStats.Instance.UpdateGoldLabel));
+        PlayerStats.Instance.GainGold(3);
+        PlayerStats.Instance.EmitSignal(nameof(PlayerStats.Instance.UpdateGoldLabel));
         RemoveTimer.Start();
         SfxManager.Instance.Play("RobotDeath", this);
 
@@ -148,22 +149,4 @@ public partial class Enemy : CharacterBody3D
         World.AddChild(gear);
 
     }
-
-    void Dying()
-    {
-        //animationStateMachine.Travel("Die");
-
-    }
-
-    void PlayVfx(PackedScene vfxScene)
-    {
-        Vfx vfxInstance = vfxScene.Instantiate() as Vfx;
-        vfxInstance.Position = Model.Position;
-        AddChild(vfxInstance);
-        GD.Print("PRIDETAS VFX");
-
-        //GetNode<Vfx>(vfxInstance.Name.ToString()).Activate();
-        vfxInstance.Activate();
-    }
-
 }

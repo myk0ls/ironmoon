@@ -9,8 +9,8 @@ albedo_color = Color(1, 0.141176, 0, 1)
 [sub_resource type="SphereMesh" id="SphereMesh_f14vb"]
 material = SubResource("StandardMaterial3D_xo8ro")
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_dkyxu"]
-radius = 0.0738602
+[sub_resource type="SphereShape3D" id="SphereShape3D_ybwmw"]
+radius = 0.0336716
 
 [node name="Bullet" type="Node3D"]
 script = ExtResource("1_a442q")
@@ -25,8 +25,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000843048, 0.00543213, -0.00177002)
-shape = SubResource("SphereShape3D_dkyxu")
+shape = SubResource("SphereShape3D_ybwmw")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0, 0)

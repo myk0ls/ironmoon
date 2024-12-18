@@ -40,6 +40,7 @@ public partial class Progress : State
     {
         if (node is Building)
         {
+            GD.Print("RADO BUILDINGAAA");
             _enemy.TargetNode = (Node3D)node;
             machine.TransitionTo("Aggression");
         }

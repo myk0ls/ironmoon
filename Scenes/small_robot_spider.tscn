@@ -10,13 +10,14 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3ncg7"]
 height = 1.81546
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_e6wa8"]
-radius = 11.8258
+[sub_resource type="SphereShape3D" id="SphereShape3D_tfwey"]
+radius = 9.04276
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0s6ki"]
-radius = 0.731414
+radius = 2.72958
+height = 5.45917
 
-[node name="SmallRobotSpider" type="CharacterBody3D" node_paths=PackedStringArray("Model")]
+[node name="SmallRobotSpider" type="CharacterBody3D" node_paths=PackedStringArray("Model") groups=["enemy"]]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 collision_layer = 2
 collision_mask = 17
@@ -28,44 +29,44 @@ Model = NodePath("RobotSpiderModel")
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="RobotSpiderModel/Armature" index="0"]
-bones/1/position = Vector3(1.50042, -0.18793, 1.19467)
-bones/2/position = Vector3(0, 0, 0)
-bones/3/rotation = Quaternion(0.18325, -0.0895914, -0.391443, 0.89731)
-bones/4/rotation = Quaternion(0.297137, -0.102009, -0.571523, 0.758067)
-bones/5/rotation = Quaternion(-0.140482, 0.237848, -0.50033, 0.820587)
-bones/6/rotation = Quaternion(0.280831, 0.466106, -0.542806, 0.63972)
-bones/8/rotation = Quaternion(0.185017, -0.0911131, 0.389769, 0.897523)
-bones/9/rotation = Quaternion(0.351086, 0.0865029, 0.675292, 0.642835)
-bones/10/rotation = Quaternion(-0.0712644, -0.0798484, 0.282845, 0.953176)
-bones/11/rotation = Quaternion(0.362866, -0.361292, 0.701366, 0.495865)
-bones/12/position = Vector3(1.52557, -0.452432, -1.07085)
-bones/16/position = Vector3(-1.50042, -0.445627, 0.67748)
-bones/17/position = Vector3(-1.52557, -0.194735, -0.553663)
+bones/1/position = Vector3(1.50042, -0.273758, 1.2562)
+bones/2/position = Vector3(0, 0.028396, 0)
+bones/3/rotation = Quaternion(0.224878, -0.102502, -0.441888, 0.862356)
+bones/4/rotation = Quaternion(0.276188, -0.106816, -0.53123, 0.793792)
+bones/5/rotation = Quaternion(-0.167641, 0.26528, -0.547325, 0.77586)
+bones/6/rotation = Quaternion(0.24444, 0.498646, -0.472467, 0.68438)
+bones/8/rotation = Quaternion(0.187063, -0.144853, 0.389809, 0.889986)
+bones/9/rotation = Quaternion(0.35796, 0.084115, 0.688514, 0.62509)
+bones/10/rotation = Quaternion(-0.0859856, -0.0535785, 0.33275, 0.937557)
+bones/11/rotation = Quaternion(0.36071, -0.36482, 0.697199, 0.500707)
+bones/12/position = Vector3(1.52557, -0.452432, -1.21062)
+bones/16/position = Vector3(-1.50042, -0.445627, 0.537714)
+bones/17/position = Vector3(-1.52557, -0.280563, -0.492132)
 
 [node name="Physical Bone Bone_002" parent="RobotSpiderModel/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.770441, -0.105216, -1.54531, 0, 1.72593, -0.117514, 1.54889, -0.052336, -0.768661, 0.224413, 0.0383936, 0.111627)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98023e-07, 0.00203363, 0.145084)
+transform = Transform3D(-0.770441, -0.105216, -1.54531, 0, 1.72593, -0.117514, 1.54889, -0.052336, -0.768661, 0.224413, 0.0419354, 0.111627)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6077e-07, 0.00203366, 0.145084)
 body_offset = Transform3D(-0.770441, -0.105216, -1.54531, 0, 1.72593, -0.117514, 1.54889, -0.052336, -0.768661, 0.224413, 0.0135394, 0.111627)
 
 [node name="Physical Bone UpperLeg_L_001" parent="RobotSpiderModel/Armature/Skeleton3D" index="2"]
-transform = Transform3D(1.05189, -0.11896, -1.36822, -1.28177, -0.703918, -0.924229, -0.493181, 1.57575, -0.516163, 0.752866, 0.260077, 0.344408)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000771948, -0.00440652, 0.222005)
-body_offset = Transform3D(1.66735, 0.449372, -0.103216, -0.171741, 0.245898, -1.70372, -0.427895, 1.65234, 0.281615, 0.0261818, 0.379186, -0.055569)
+transform = Transform3D(1.01888, -0.179996, -1.38641, -1.30771, -0.729375, -0.866344, -0.4944, 1.55828, -0.565646, 0.75661, 0.250636, 0.355315)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00077169, -0.00440677, 0.222005)
+body_offset = Transform3D(1.66735, 0.449372, -0.103216, -0.171741, 0.245898, -1.70372, -0.427894, 1.65234, 0.281616, 0.0261814, 0.379185, -0.0555688)
 
 [node name="Physical Bone UpperLeg_L_002" parent="RobotSpiderModel/Armature/Skeleton3D" index="3"]
-transform = Transform3D(1.20143, 0.644704, -1.06469, -1.10997, -0.114594, -1.32192, -0.563177, 1.60121, 0.334077, 0.653249, 0.319332, -0.259351)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00282948, -0.000404015, 0.207668)
-body_offset = Transform3D(1.53063, -0.073074, 0.80279, 0.769956, -0.377625, -1.5024, 0.238704, 1.68662, -0.301597, -0.171074, 0.309669, 0.062638)
+transform = Transform3D(1.12565, 0.697654, -1.11302, -1.17794, -0.112625, -1.26191, -0.581371, 1.579, 0.401763, 0.663521, 0.310605, -0.273365)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00282958, -0.00040378, 0.207668)
+body_offset = Transform3D(1.53063, -0.073074, 0.802789, 0.769955, -0.377625, -1.5024, 0.238704, 1.68662, -0.301598, -0.171074, 0.309669, 0.0626378)
 
 [node name="Physical Bone UpperLeg_R_001" parent="RobotSpiderModel/Armature/Skeleton3D" index="4"]
-transform = Transform3D(1.46362, 0.130702, 0.912888, 0.903406, -0.547154, -1.37008, 0.185221, 1.6359, -0.531181, -0.647825, 0.357466, 0.336245)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00022704, 0.00149777, 0.217408)
-body_offset = Transform3D(1.62901, 0.316871, -0.48842, -0.489485, -0.0403468, -1.65874, -0.315223, 1.70018, 0.0516659, 0.105342, 0.360795, -0.0137075)
+transform = Transform3D(1.46705, 0.0470431, 0.915527, 0.876089, -0.580677, -1.37402, 0.269947, 1.62888, -0.516263, -0.648274, 0.36192, 0.332993)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000226875, 0.00149775, 0.217407)
+body_offset = Transform3D(1.62901, 0.316871, -0.48842, -0.489485, -0.040347, -1.65874, -0.315223, 1.70018, 0.0516655, 0.105342, 0.360794, -0.0137074)
 
 [node name="Physical Bone UpperLeg_R_002" parent="RobotSpiderModel/Armature/Skeleton3D" index="5"]
-transform = Transform3D(0.603872, -0.890987, 1.3543, 1.58395, 0.0166379, -0.695325, 0.345098, 1.48273, 0.82161, -0.744588, 0.189185, -0.370885)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00496521, -0.00438278, 0.223289)
-body_offset = Transform3D(1.49029, -0.568506, 0.669683, 0.781054, 0.253975, -1.52253, 0.402031, 1.61398, 0.475472, -0.159424, 0.337198, -0.10109)
+transform = Transform3D(0.608183, -0.849984, 1.37851, 1.59062, 0.0367021, -0.679134, 0.30444, 1.50626, 0.79444, -0.749836, 0.189166, -0.364513)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00496545, -0.00438284, 0.223288)
+body_offset = Transform3D(1.49029, -0.568506, 0.669683, 0.781054, 0.253976, -1.52253, 0.402031, 1.61398, 0.475473, -0.159424, 0.337198, -0.10109)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0999011, 0)
@@ -79,14 +80,7 @@ collision_layer = 16
 collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AgroBox"]
-shape = SubResource("SphereShape3D_e6wa8")
-
-[node name="BuildingBox" type="Area3D" parent="."]
-collision_layer = 16
-collision_mask = 16
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BuildingBox"]
-shape = SubResource("CapsuleShape3D_0s6ki")
+shape = SubResource("SphereShape3D_tfwey")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("4_jv3fr")
@@ -97,6 +91,13 @@ script = ExtResource("5_jw4us")
 
 [node name="Aggression" type="Node" parent="StateMachine"]
 script = ExtResource("6_lsump")
+
+[node name="BuildingBox" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BuildingBox"]
+shape = SubResource("CapsuleShape3D_0s6ki")
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 2.0

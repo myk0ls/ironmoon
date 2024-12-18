@@ -35,6 +35,8 @@ public partial class WeaponController : Node3D
     int CurrentWeaponIndex { get; set; } = -1;
     public Armament CurrentArm = null;
 
+    PackedScene BulletDecal;
+
     Player player;
     RayCast3D rayCast;
     Camera3D camera3D;
@@ -60,6 +62,7 @@ public partial class WeaponController : Node3D
         player = GetNode<Player>("/root/World/Player");
         rayCast = GetParent().GetNode<RayCast3D>("RayCast3D");
         CSignals = GetNode<CustomSignals>("/root/CustomSignals");
+        BulletDecal = ResourceLoader.Load<PackedScene>("res://Scenes/bullet_hole.tscn");
 
         //CurrentArm = ArmArray[CurrentWeaponIndex];
         SwitchWeapon(0);
@@ -253,6 +256,8 @@ public partial class WeaponController : Node3D
                             break;
                     }
                 }
+
+                AddBulletDecal();
             }
 
         }
@@ -448,5 +453,14 @@ public partial class WeaponController : Node3D
                 PlayerStats.Instance.EmitSignal(nameof(PlayerStats.Instance.UpdateGoldLabel));
             }
         }
+    }
+
+    void AddBulletDecal()
+    {
+        var decal = BulletDecal.Instantiate() as Decal;
+        var collisionPoint = rayCast.GetCollisionPoint();
+        decal.Position = collisionPoint;
+        GetTree().CreateTimer(3).Timeout += decal.QueueFree;
+        GetNode("/root/World").AddChild(decal);
     }
 }

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WaveStats" load_steps=2 format=3 uid="uid://k0kmr3bgy65"]
+
+[ext_resource type="Script" path="res://Resources/WaveResources/WaveStats.cs" id="1_ckhpn"]
+
+[resource]
+script = ExtResource("1_ckhpn")
+SpiderSmall = 5
+SpiderMedium = 0
+SpiderBig = 0
+FlyingBot = 0

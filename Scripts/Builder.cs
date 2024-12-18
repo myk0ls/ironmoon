@@ -60,6 +60,8 @@ public partial class Builder : Node3D
                     child.QueueFree();
                 }
 
+                VfxManager.Instance.Play("Dust", placeTower, placeTower.TowerShape.Position);
+
                 PlayerStats.Instance.Gold -= 100;
                 PlayerStats.Instance.EmitSignal(nameof(PlayerStats.Instance.UpdateGoldLabel));
                 GD.Print("GOLD:" + PlayerStats.Instance.Gold);
