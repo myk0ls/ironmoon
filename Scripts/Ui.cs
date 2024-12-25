@@ -8,7 +8,8 @@ public partial class Ui : Control
 	Label GoldLabel;
 	Label FPSLabel;
 	Label AmmoLabel;
-    Panel ShopPanel;
+	Label HealthLabel;
+	Panel ShopPanel;
     ItemList TowerList;
 	CustomSignals CSignals;
 	Label WaveLabel;
@@ -27,14 +28,17 @@ public partial class Ui : Control
 		AmmoLabel = GetNode<Label>("AmmoLabel");
 		ShopPanel = GetNode<Panel>("ShopPanel");
         WaveLabel = GetNode<Label>("WaveLabel");
-        IntermissionLabel = GetNode<Label>("IntermissionLabel");
+		HealthLabel = GetNode<Label>("HealthBar/HealthLabel");
+		IntermissionLabel = GetNode<Label>("IntermissionLabel");
 		IntermissionTimer = GetNode<Timer>("/root/World/WaveManager/IntermissionTimer");
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+		
 
         SellBar.Value = PlayerNode.SellTimer.WaitTime - PlayerNode.SellTimer.TimeLeft;
 
 		PlayerStats.Instance.UpdateGoldLabel += UpdateGold;
 		CSignals.UpdateAmmoLabel += UpdateAmmoLabel;
+		PlayerStats.Instance.UpdateHPLabel += UpdateHp;
 		CSignals.ShopView += ShowShop;
 		CSignals.ShopViewClose += CloseShop;
 		CSignals.IntermissionLabel += ToggleIntermissionLabel;
@@ -42,6 +46,7 @@ public partial class Ui : Control
 		CSignals.WaveEnded += ShowWaveEndedLabel;
 
         GoldLabel.Text = String.Format("GEARS: {0}", PlayerStats.Instance.Gold);
+		UpdateHp();
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -98,6 +103,11 @@ public partial class Ui : Control
     void UpdateGold()
 	{
 		GoldLabel.Text = String.Format("GEARS: {0}", PlayerStats.Instance.Gold);
+	}
+
+	void UpdateHp()
+	{
+		HealthLabel.Text = String.Format("HP: {0}", PlayerStats.Instance.GetHealth());
 	}
 
 	void UpdateAmmoLabel()

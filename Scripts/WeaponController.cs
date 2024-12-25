@@ -85,9 +85,9 @@ public partial class WeaponController : Node3D
         ApplyCameraRecoil();
 
 
-
         if (Input.IsActionJustPressed("one")
             && CurrentArm.AnimStateMachine.GetCurrentNode() != "reload"
+            && ArmArray[0].IsOwned
             )
         {
             SwitchWeapon(0);
@@ -96,6 +96,7 @@ public partial class WeaponController : Node3D
 
         if (Input.IsActionJustPressed("two")
             && CurrentArm.AnimStateMachine.GetCurrentNode() != "reload"
+            && ArmArray[1].IsOwned
             )
         {
             SwitchWeapon(1);
@@ -104,6 +105,7 @@ public partial class WeaponController : Node3D
 
         if (Input.IsActionJustPressed("three")
             && CurrentArm.AnimStateMachine.GetCurrentNode() != "reload"
+            && ArmArray[2].IsOwned
             )
         {
             SwitchWeapon(2);
@@ -112,6 +114,7 @@ public partial class WeaponController : Node3D
 
         if (Input.IsActionJustPressed("four")
             && CurrentArm.AnimStateMachine.GetCurrentNode() != "reload"
+            && ArmArray[3].IsOwned
             )
         {
             SwitchWeapon(3);
@@ -440,7 +443,7 @@ public partial class WeaponController : Node3D
         if (rayCast.IsColliding())
         {
             if (rayCast.GetCollider() is Building
-                && PlayerStats.Instance.Gold >= 5
+                && PlayerStats.Instance.Gold >= PlayerStats.Instance.RepairCost
                 )
             {
                 var building = (Building)rayCast.GetCollider();
@@ -449,7 +452,7 @@ public partial class WeaponController : Node3D
                     return;
 
                 building.ReceiveRepair(10);
-                PlayerStats.Instance.RemoveGears(5);
+                PlayerStats.Instance.RemoveGears(PlayerStats.Instance.RepairCost);
                 PlayerStats.Instance.EmitSignal(nameof(PlayerStats.Instance.UpdateGoldLabel));
             }
         }
@@ -462,5 +465,15 @@ public partial class WeaponController : Node3D
         decal.Position = collisionPoint;
         GetTree().CreateTimer(3).Timeout += decal.QueueFree;
         GetNode("/root/World").AddChild(decal);
+    }
+
+    public void UnlockWeapon(int index)
+    {
+        ArmArray[index].IsOwned = true;
+    }
+
+    public void UpgradeWeapon(int index, ArmamentStats armamentStats)
+    {
+        ArmArray[index].ArmStats = armamentStats;
     }
 }

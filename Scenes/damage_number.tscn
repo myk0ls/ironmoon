@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcd261dj351vg"]
+[gd_scene load_steps=6 format=3 uid="uid://bcd261dj351vg"]
 
 [ext_resource type="Script" path="res://Scripts/DamageNumber.cs" id="1_simei"]
+[ext_resource type="FontFile" uid="uid://ol7ckguyr0w0" path="res://Assets/Britannic T Regular/Britannic T Regular.ttf" id="2_ojw8n"]
 
 [sub_resource type="Animation" id="Animation_yvhq8"]
 length = 0.001
@@ -45,8 +46,9 @@ script = ExtResource("1_simei")
 [node name="DamageLabel" type="Label3D" parent="."]
 billboard = 1
 text = "ADAS"
+font = ExtResource("2_ojw8n")
 font_size = 100
-outline_size = 20
+outline_size = 25
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../DamageLabel")

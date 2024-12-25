@@ -1,16 +1,21 @@
-[gd_scene load_steps=25 format=3 uid="uid://df8e5pbbx75bc"]
+[gd_scene load_steps=31 format=3 uid="uid://df8e5pbbx75bc"]
 
 [ext_resource type="PackedScene" uid="uid://dpdyvqyi3u2x7" path="res://Scenes/player.tscn" id="1_513jj"]
 [ext_resource type="PackedScene" uid="uid://bsqiotokbsa6s" path="res://Assets/Levels/Houses/House1.glb" id="4_pwh7v"]
+[ext_resource type="Script" path="res://Scripts/ShopPanel.cs" id="5_0cs8i"]
 [ext_resource type="Script" path="res://Scripts/Ui.cs" id="5_ec78d"]
 [ext_resource type="Theme" uid="uid://7fb73ota5opl" path="res://Resources/Theme/theme.tres" id="5_kl1ku"]
 [ext_resource type="PackedScene" uid="uid://b6u51r48h8ota" path="res://Assets/Levels/Houses/House2.glb" id="5_q6xa0"]
 [ext_resource type="Script" path="res://Scenes/PathSpawner.cs" id="6_suf8t"]
 [ext_resource type="PackedScene" uid="uid://bcbjsdttewlqo" path="res://Scenes/shop.tscn" id="7_ow8sr"]
 [ext_resource type="PackedScene" uid="uid://dnyt0xmdrmabw" path="res://Assets/Levels/Houses/Level0-WIP.glb" id="7_qrv0l"]
+[ext_resource type="PackedScene" uid="uid://bbyrd4nx6mxfj" path="res://Assets/Models/Shop/Shop.glb" id="7_ufige"]
 [ext_resource type="PackedScene" uid="uid://dn773mu0uar45" path="res://Assets/Barrel.glb" id="8_ktfo1"]
 [ext_resource type="Script" path="res://Scenes/Levels/WaveManager.cs" id="9_7i248"]
-[ext_resource type="Resource" uid="uid://k0kmr3bgy65" path="res://Resources/WaveResources/Level0/wave0.tres" id="10_556fd"]
+[ext_resource type="Resource" uid="uid://bs2wa2t27xjwv" path="res://Resources/WaveResources/Level0/wave0.tres" id="10_556fd"]
+[ext_resource type="Script" path="res://Resources/WaveResources/WaveStats.cs" id="10_os6oj"]
+[ext_resource type="Resource" uid="uid://duktkxgedj5ho" path="res://Resources/WaveResources/Level0/wave1.tres" id="11_qlai5"]
+[ext_resource type="PackedScene" uid="uid://25tps8ft4340" path="res://Scenes/base.tscn" id="16_35bin"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_51p0u"]
 sky_top_color = Color(0.282716, 0.226059, 0.173989, 1)
@@ -84,6 +89,14 @@ transparency = 2
 alpha_scissor_threshold = 0.217
 alpha_antialiasing_mode = 0
 albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_cobb2"]
+resource_local_to_scene = true
+script = ExtResource("10_os6oj")
+SpiderSmall = 1
+SpiderMedium = 0
+SpiderBig = 0
+FlyingBot = 0
 
 [sub_resource type="Curve3D" id="Curve3D_vcdpy"]
 _data = {
@@ -287,32 +300,57 @@ offset_right = 290.0
 offset_bottom = 185.5
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("5_0cs8i")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/ShopPanel"]
+[node name="Upgrades" type="HBoxContainer" parent="UI/ShopPanel"]
 layout_mode = 0
-offset_left = 94.0
-offset_top = 202.5
-offset_right = 462.0
-offset_bottom = 252.5
+offset_left = 85.0
+offset_top = 50.5
+offset_right = 508.0
+offset_bottom = 120.5
 alignment = 1
 
-[node name="Button" type="Button" parent="UI/ShopPanel/HBoxContainer"]
+[node name="Button" type="Button" parent="UI/ShopPanel/Upgrades"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
+focus_mode = 0
 text = "Wrench UPG"
 
-[node name="Button2" type="Button" parent="UI/ShopPanel/HBoxContainer"]
+[node name="Button2" type="Button" parent="UI/ShopPanel/Upgrades"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
+focus_mode = 0
 text = "BUILD UPG"
 
-[node name="Button3" type="Button" parent="UI/ShopPanel/HBoxContainer"]
+[node name="Button3" type="Button" parent="UI/ShopPanel/Upgrades"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
+focus_mode = 0
 
-[node name="Button4" type="Button" parent="UI/ShopPanel/HBoxContainer"]
+[node name="Button4" type="Button" parent="UI/ShopPanel/Upgrades"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
+focus_mode = 0
+
+[node name="WeaponPurchase" type="VBoxContainer" parent="UI/ShopPanel"]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 188.5
+offset_right = 445.0
+offset_bottom = 310.5
+
+[node name="Button" type="Button" parent="UI/ShopPanel/WeaponPurchase"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+focus_mode = 0
+text = "PPSH"
+
+[node name="Button2" type="Button" parent="UI/ShopPanel/WeaponPurchase"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_vertical = 0
+focus_mode = 0
+text = "Shotgun"
 
 [node name="SellBar" type="ProgressBar" parent="UI"]
 layout_mode = 1
@@ -424,7 +462,7 @@ offset_top = -40.0
 offset_right = 91.0
 grow_vertical = 0
 
-[node name="Label" type="Label" parent="UI/HealthBar"]
+[node name="HealthLabel" type="Label" parent="UI/HealthBar"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -483,7 +521,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Shop" parent="." instance=ExtResource("7_ow8sr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.22964, 0.859117, -11.9507)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.11926, 0.95366, -0.445242)
+
+[node name="ShopModel" parent="." instance=ExtResource("7_ufige")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.95576, 0.123593, -0.693138)
 
 [node name="Level0-WIP" parent="." instance=ExtResource("7_qrv0l")]
 
@@ -584,10 +625,10 @@ transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 
 
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource("9_7i248")
-waves = Array[Object]([ExtResource("10_556fd")])
+waves = Array[Object]([ExtResource("10_556fd"), ExtResource("11_qlai5"), SubResource("Resource_cobb2")])
 
 [node name="WaveTimer" type="Timer" parent="WaveManager"]
-wait_time = 5.5
+wait_time = 3.0
 
 [node name="IntermissionTimer" type="Timer" parent="WaveManager"]
 wait_time = 10.0
@@ -612,5 +653,12 @@ script = ExtResource("6_suf8t")
 [node name="PathTimer" type="Timer" parent="Lanes/Path3D2"]
 wait_time = 5.5
 autostart = true
+
+[node name="Base" parent="." instance=ExtResource("16_35bin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.34016, 1.38984, -12.1925)
+
+[connection signal="pressed" from="UI/ShopPanel/Upgrades/Button" to="UI/ShopPanel" method="_on_button_pressed_wrench"]
+[connection signal="pressed" from="UI/ShopPanel/WeaponPurchase/Button" to="UI/ShopPanel" method="_on_button_pressed_ppsh"]
+[connection signal="pressed" from="UI/ShopPanel/WeaponPurchase/Button2" to="UI/ShopPanel" method="_on_button_2_pressed_shotgun"]
 
 [editable path="Level0-WIP"]

@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Resources/ArmamentResources/ArmamentStats.cs" id="1_mh87l"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_mh87l")
 BaseDamage = 15.0
 Range = 5.0

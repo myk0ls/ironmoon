@@ -19,6 +19,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000793397, 1.13394, 0.4566
 shape = SubResource("BoxShape3D_cc5ec")
 
 [node name="ShopModel" parent="." instance=ExtResource("1_jv44w")]
+visible = false
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 128

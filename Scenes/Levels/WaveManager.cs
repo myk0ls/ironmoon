@@ -28,6 +28,13 @@ public partial class WaveManager : Node
         IntermissionTimer = GetNode<Timer>("IntermissionTimer");
         CSignals = GetNode<CustomSignals>("/root/CustomSignals");
 
+		/*
+		for (int i = 0; i < waves.Count; i++)
+		{
+			WaveStats duplicate = (WaveStats)waves[i].Duplicate();
+			waves[i] = duplicate;
+		}
+		*/
         foreach (PathSpawner lane in GetNode<Node3D>("/root/World/Lanes/").GetChildren())
 		{
 			lanes.Add(lane);
@@ -49,7 +56,7 @@ public partial class WaveManager : Node
 
 	void StartWave()
 	{
-		if (currentWave > waves.Count)
+		if (currentWave >= waves.Count)
 		{
 			GD.Print("All waves complete");
 			return;
@@ -95,10 +102,12 @@ public partial class WaveManager : Node
         {
             GD.Print($"Wave {currentWave} complete!");
             currentWave++;
+			GD.Print(currentWave + " BLETTOKSWAVEDABAR");
 
             if (currentWave < waves.Count)
             {
                 IntermissionTimer.Start(); // Start the intermission timer for the next wave
+				WaveTimer.Stop();
                 CSignals.EmitSignal(nameof(CSignals.IntermissionLabel));
                 GD.Print($"INTERMISISJA");
             }
@@ -127,7 +136,11 @@ public partial class WaveManager : Node
                            waves[currentWave].FlyingBot;
 
         if (totalEnemies <= 0)
-            return null; // No enemies left to spawn
+		{
+			GD.Print("nebera priesu");
+			return null; // No enemies left to spawn
+
+		}
 
         int randomValue = (int)GD.Randi() % totalEnemies;
 

@@ -9,12 +9,12 @@
 [ext_resource type="Script" path="res://Scripts/Armaments/Armament.cs" id="6_48ee5"]
 [ext_resource type="PackedScene" uid="uid://dcao6lhv8iri4" path="res://Assets/Models/Wrench/Wrench.glb" id="6_gjnmx"]
 [ext_resource type="AnimationLibrary" uid="uid://dy2qvagfivgy5" path="res://Resources/Animations/ppsh.res" id="7_7ncc8"]
-[ext_resource type="Resource" uid="uid://bcjupa4xgxel1" path="res://Resources/ArmamentResources/Arms/ppshStats.tres" id="7_hmjy6"]
+[ext_resource type="Resource" uid="uid://bcjupa4xgxel1" path="res://Resources/ArmamentResources/Upgrades/ppsh1.tres" id="7_hmjy6"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dddj6hdec45wf" path="res://Assets/Models/PPSH/stateppsh.tres" id="8_1rrh3"]
 [ext_resource type="AnimationLibrary" uid="uid://bdyhamj4hiw3b" path="res://Resources/Animations/wrench.res" id="8_gvysi"]
 [ext_resource type="AnimationLibrary" uid="uid://27niq7whuocq" path="res://Resources/Animations/handcannon.res" id="9_lwhht"]
-[ext_resource type="Resource" uid="uid://b1nnmx61dmtw4" path="res://Resources/ArmamentResources/Arms/handcannon_stats.tres" id="9_r3xig"]
-[ext_resource type="Resource" uid="uid://b2w88bx7uw88k" path="res://Resources/ArmamentResources/Arms/shotgun_stats.tres" id="14_0q4al"]
+[ext_resource type="Resource" uid="uid://b1nnmx61dmtw4" path="res://Resources/ArmamentResources/Upgrades/handcannon1.tres" id="9_r3xig"]
+[ext_resource type="Resource" uid="uid://b2w88bx7uw88k" path="res://Resources/ArmamentResources/Upgrades/shotgun1.tres" id="14_0q4al"]
 [ext_resource type="AnimationLibrary" uid="uid://cwoa5et76ihvr" path="res://Resources/Animations/shotgun.res" id="16_455l5"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5xvmq"]
@@ -1543,6 +1543,7 @@ ArmStats = ExtResource("5_7pmio")
 ArmModel = NodePath("WrenchModel")
 DefaultPosition = Vector3(0.1, 0.05, -0.1)
 ADSPosition = Vector3(0.1, 0.05, -0.1)
+IsOwned = true
 
 [node name="WrenchModel" type="Node3D" parent="Camera3D/WeaponController/Wrench"]
 transform = Transform3D(1, 0, 0, 0, 0.98498, 0.172668, 0, -0.172668, 0.98498, 0, 0, 0)
@@ -1642,6 +1643,7 @@ ArmStats = ExtResource("9_r3xig")
 ArmModel = NodePath("HandCannonModel")
 DefaultPosition = Vector3(0.35, -0.14, -0.7)
 ADSPosition = Vector3(-0.012, -0.01, -0.45)
+IsOwned = true
 
 [node name="HandCannonModel" type="Node3D" parent="Camera3D/WeaponController/HandCannon"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)

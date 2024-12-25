@@ -21,6 +21,9 @@ public partial class Armament : Node3D
 
 	[Export]
 	public bool IsAuto;
+
+	[Export]
+	public bool IsOwned;
 	
 
     // Called when the node enters the scene tree for the first time.

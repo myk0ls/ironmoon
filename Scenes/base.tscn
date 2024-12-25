@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://25tps8ft4340"]
+
+[ext_resource type="Script" path="res://Scripts/Base.cs" id="1_tjv5y"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_g6sin"]
+radius = 1.808
+height = 1.653
+
+[node name="Base" type="Node3D"]
+script = ExtResource("1_tjv5y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_g6sin")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(256, 256)
+
+[node name="HealthBar" type="ProgressBar" parent="SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 1.0

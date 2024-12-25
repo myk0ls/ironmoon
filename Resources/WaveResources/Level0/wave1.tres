@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="WaveStats" load_steps=2 format=3 uid="uid://r0vofbf3sk57"]
+[gd_resource type="Resource" script_class="WaveStats" load_steps=2 format=3 uid="uid://duktkxgedj5ho"]
 
 [ext_resource type="Script" path="res://Resources/WaveResources/WaveStats.cs" id="1_ay6a3"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_ay6a3")
-SpiderSmall = 1
-SpiderMedium = 1
-SpiderBig = 1
+SpiderSmall = 3
+SpiderMedium = 4
+SpiderBig = 3
 FlyingBot = 1

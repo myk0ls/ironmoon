@@ -22,4 +22,8 @@ public partial class CustomSignals : Node
     [Signal] public delegate void ActiveEnemyKilledEventHandler();
 
     [Signal] public delegate void IntermissionLabelEventHandler();
+
+    [Signal] public delegate void PurchaseEventHandler(string item);
+
+    [Signal] public delegate void UpgradeItemEventHandler(string item, int level);
 }

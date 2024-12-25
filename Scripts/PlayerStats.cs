@@ -12,10 +12,14 @@ public partial class PlayerStats : Node
     public int HandCannonAmmo = 1000;
 	public int PPSHAmmo = 1000;
 
+	public int RepairCost = 20;
+
 	public static PlayerStats Instance { get; private set; }
 
 
     [Signal] public delegate void UpdateGoldLabelEventHandler();
+	[Signal] public delegate void UpdateHPLabelEventHandler();
+
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -86,4 +90,14 @@ public partial class PlayerStats : Node
 
         }
     }
+
+	public int GetHealth()
+	{
+		return Health;
+	}
+
+	public void ReceiveDamage(int damage)
+	{
+		Health -= damage;
+	}
 }
