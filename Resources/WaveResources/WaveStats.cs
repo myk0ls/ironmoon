@@ -16,14 +16,18 @@ public partial class WaveStats : Resource
     [Export]
     public int FlyingBot;
 
-    public WaveStats() : this(0, 0, 0, 0) { }
+    [Export]
+    public int Warden;
 
-    public WaveStats(int spiderSmall, int spiderMedium, int spiderBig, int flyingBot)
+    public WaveStats() : this(0, 0, 0, 0, 0) { }
+
+    public WaveStats(int spiderSmall, int spiderMedium, int spiderBig, int flyingBot, int warden)
     {
         SpiderSmall = spiderSmall;
         SpiderMedium = spiderMedium;
         SpiderBig = spiderBig;
         FlyingBot = flyingBot;
+        Warden = warden;
     }
 
 }

@@ -1,11 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8d5tg7k7d7mg"]
+[gd_scene load_steps=2 format=3 uid="uid://b8d5tg7k7d7mg"]
 
 [ext_resource type="PackedScene" uid="uid://blt5algnthjtf" path="res://Scenes/small_robot_spider.tscn" id="1_xqm8h"]
-[ext_resource type="Resource" uid="uid://d1axi7npak78e" path="res://Resources/EnemyResources/Enemies/small_robot_spider.tres" id="2_mudaq"]
 
 [node name="BigPathFollow3D" type="PathFollow3D"]
 transform = Transform3D(-0.998291, 0.00139864, 0.05835, 5.82074e-11, 0.999707, -0.023963, -0.0583667, -0.0239221, -0.998006, 0.178671, -0.593097, -5.93671)
 loop = false
 
 [node name="SmallRobotSpider" parent="." instance=ExtResource("1_xqm8h")]
-EnemyStats = ExtResource("2_mudaq")

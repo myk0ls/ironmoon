@@ -37,6 +37,8 @@ public partial class Enemy : CharacterBody3D
 
     CustomSignals CSignals;
 
+    public Base _base;
+
     [Signal]
 	public delegate void DeathEventHandler();
 
@@ -54,6 +56,7 @@ public partial class Enemy : CharacterBody3D
         skeleton = Model.GetNode<Skeleton3D>("Armature/Skeleton3D");
         HitBox = GetNode<CollisionShape3D>("CollisionShape3D");
         simulator = skeleton.GetNode<PhysicalBoneSimulator3D>("PhysicalBoneSimulator3D");
+        _base = GetNode<Base>("/root/World/Base");
 
         CSignals = GetNode<CustomSignals>("/root/CustomSignals");
         World = GetNode<Node3D>("/root/World");
@@ -114,6 +117,12 @@ public partial class Enemy : CharacterBody3D
             //SetCollisionLayerValue(2, true);
             SetCollisionLayerValue(2, false);
             SetCollisionLayerValue(3, true);
+            SetCollisionMaskValue(3, false);
+            SetCollisionMaskValue(5, false);
+            SetCollisionMaskValue(1, false);
+            SetCollisionLayerValue(3, false);
+            SetCollisionLayerValue(5, false);
+            SetCollisionLayerValue(1, false);
             HitBox.Disabled = true;
             //skeleton.PhysicalBonesStartSimulation();
 
@@ -137,7 +146,7 @@ public partial class Enemy : CharacterBody3D
 
     public void Die()
     {
-        PlayerStats.Instance.GainGold(3);
+        PlayerStats.Instance.GainGold(EnemyStats.Reward);
         PlayerStats.Instance.EmitSignal(nameof(PlayerStats.Instance.UpdateGoldLabel));
         RemoveTimer.Start();
         SfxManager.Instance.Play("RobotDeath", this);

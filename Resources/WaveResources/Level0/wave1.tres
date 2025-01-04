@@ -5,7 +5,8 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_ay6a3")
-SpiderSmall = 3
-SpiderMedium = 4
+SpiderSmall = 8
+SpiderMedium = 6
 SpiderBig = 3
 FlyingBot = 1
+Warden = 3

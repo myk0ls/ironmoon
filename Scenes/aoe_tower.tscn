@@ -9,7 +9,7 @@ radius = 4.80494
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lptp8"]
 radius = 0.887864
-height = 2.87482
+height = 2.47741
 
 [sub_resource type="TorusMesh" id="TorusMesh_irdvi"]
 inner_radius = 0.95
@@ -155,15 +155,16 @@ _data = {
 }
 
 [node name="AoETower" type="StaticBody3D" groups=["building"]]
-collision_layer = 16
-collision_mask = 23
+collision_layer = 23
+collision_mask = 16
 script = ExtResource("1_egpbm")
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11854, 0)
-collision_mask = 2
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0, -1.5789, 0)
 shape = SubResource("SphereShape3D_oh0ln")
 
 [node name="AttackTimer" type="Timer" parent="."]
@@ -173,7 +174,7 @@ wait_time = 3.0
 visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.1, 0, 0, 0, 1.09995, 0.0104823, 0, -0.0104823, 1.09995, 0, 0.31276, 0)
+transform = Transform3D(1.1, 0, 0, 0, 1.09995, 0.0104823, 0, -0.0104823, 1.09995, 0, -0.0228067, 0)
 shape = SubResource("CapsuleShape3D_lptp8")
 
 [node name="DistanceRadius" type="MeshInstance3D" parent="."]

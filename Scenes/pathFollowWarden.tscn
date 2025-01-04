@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://fsa4k3ai4tkx"]
+
+[ext_resource type="PackedScene" uid="uid://b7pgfed62wwon" path="res://Scenes/warden.tscn" id="1_ucckw"]
+
+[node name="PathFollow3D" type="PathFollow3D"]
+loop = false
+
+[node name="Warden" parent="." groups=["enemy"] instance=ExtResource("1_ucckw")]
+collision_layer = 2

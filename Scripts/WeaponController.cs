@@ -278,7 +278,7 @@ public partial class WeaponController : Node3D
             Rotation = Rotation.Lerp(MouseMov.Normalized() * SwayAmount + DefaultRotation, SwaySpeed * (float)delta);
         }
         else
-            Rotation = Rotation.Lerp(DefaultRotation, SwaySpeed * (float)delta);
+            Rotation = Rotation.Lerp(DefaultRotation, SwaySpeed * (float)delta * 5);
 
     }
 
@@ -301,7 +301,7 @@ public partial class WeaponController : Node3D
             Position = new Vector3(Position.X, bobOffset, Position.Z);
         }
         else
-            Position = Position.Lerp(new Vector3(Position.X, (float)StartY, Position.Z), BobSpeed);
+            Position = Position.Lerp(new Vector3(Position.X, (float)StartY, Position.Z), BobSpeed * (float)delta * 10000);
     }
 
     Vector3 GetAdjustedCollisionPoint()

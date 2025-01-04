@@ -5,7 +5,7 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_2i6xy")
-BaseDamage = 75.0
+BaseDamage = 30.0
 Range = 30.0
 ClipSize = 2.0
 TotalClipSize = 2.0

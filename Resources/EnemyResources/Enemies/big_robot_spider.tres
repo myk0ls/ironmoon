@@ -10,3 +10,4 @@ CriticalHitChance = 20.0
 DropChance = 0.0
 AttackDamage = 0.0
 AttackSpeed = 0.0
+Reward = 30

@@ -25,7 +25,9 @@ public partial class Progress : State
 
         if (_enemy.PathToFollow.ProgressRatio == 1)
         {
-            _enemy.QueueFree();
+            //_enemy.QueueFree();
+            //GetTree().CreateTimer(3).Timeout += DamageBase;
+            machine.TransitionTo("ProgressEnd");
         }
 
         _enemy.PathToFollow.Progress = pathProgress;
@@ -43,6 +45,12 @@ public partial class Progress : State
             GD.Print("RADO BUILDINGAAA");
             _enemy.TargetNode = (Node3D)node;
             machine.TransitionTo("Aggression");
+            return;
+        }
+
+        if (node is Player)
+        {
+
         }
     }
 }

@@ -276,9 +276,9 @@ mesh = SubResource("ArrayMesh_05o4s")
 skeleton = NodePath("")
 
 [node name="Physical Bone Bone_001" type="PhysicalBone3D" parent="Armature/Skeleton3D"]
-transform = Transform3D(5.51727, 0, 0, 0, 1.07288e-06, -5.51727, 0, 5.51727, 1.07288e-06, 0, 2.17064, -1.3262e-06)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.71321e-07, 0.355098)
-body_offset = Transform3D(5.51727, 0, 0, 0, 1.07288e-06, -5.51727, 0, 5.51727, 1.07288e-06, 0, 1.95917, -1.3262e-06)
+transform = Transform3D(5.51727, 0, 0, 0, 1.07288e-06, -5.51727, 0, 5.51727, 1.07288e-06, 0, 2.17003, -1.3262e-06)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.71342e-07, 0.354987)
+body_offset = Transform3D(5.51727, 0, 0, 0, 1.07288e-06, -5.51727, 0, 5.51727, 1.07288e-06, 0, 1.95856, -1.3262e-06)
 bone_name = "Bone.001"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/Physical Bone Bone_001"]
@@ -286,10 +286,10 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_63tvl")
 
 [node name="Physical Bone Bone_002" type="PhysicalBone3D" parent="Armature/Skeleton3D"]
-transform = Transform3D(5.51714, 0.0376398, 3.54166e-08, -9.31324e-09, 6.5565e-06, -5.51727, -0.0376398, 5.51714, 6.55641e-06, 0, 4.37758, -5.51367e-06)
+transform = Transform3D(5.51714, 0.0376398, 3.54166e-08, -9.31325e-09, 6.5565e-06, -5.51727, -0.0376398, 5.51714, 6.55641e-06, 0, 4.37694, -5.51365e-06)
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.79124e-09, 9.80682e-07, 0.0156865)
-body_offset = Transform3D(5.51714, 0.0376398, 3.54166e-08, -9.31323e-09, 6.55651e-06, -5.51727, -0.0376398, 5.51715, 6.55642e-06, 0, 0.0865464, -5.51367e-06)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.79142e-09, 9.80818e-07, 0.0155688)
+body_offset = Transform3D(5.51714, 0.0376398, 3.54166e-08, -9.31325e-09, 6.5565e-06, -5.51727, -0.0376398, 5.51714, 6.55641e-06, 0, 0.0858972, -5.51365e-06)
 bone_name = "Bone.002"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0

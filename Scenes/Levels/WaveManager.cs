@@ -125,20 +125,18 @@ public partial class WaveManager : Node
 		return wave.SpiderSmall +
 			   wave.SpiderMedium +
 			   wave.SpiderBig +
-			   wave.FlyingBot;
+			   wave.FlyingBot +
+			   wave.Warden;
 	}
 
     string GetRandomEnemyType()
     {
-        int totalEnemies = waves[currentWave].SpiderSmall +
-                           waves[currentWave].SpiderMedium +
-                           waves[currentWave].SpiderBig +
-                           waves[currentWave].FlyingBot;
+		int totalEnemies = CalculateTotalUnits(waves[currentWave]);
 
         if (totalEnemies <= 0)
 		{
 			GD.Print("nebera priesu");
-			return null; // No enemies left to spawn
+			return null;
 
 		}
 
@@ -164,6 +162,13 @@ public partial class WaveManager : Node
             return "SpiderBig";
         }
         randomValue -= waves[currentWave].SpiderBig;
+		
+		if (randomValue < waves[currentWave].Warden)
+        {
+            waves[currentWave].Warden--;
+            return "Warden";
+        }
+        randomValue -= waves[currentWave].Warden;
 
         // Remaining is FlyingBot
         waves[currentWave].FlyingBot--;

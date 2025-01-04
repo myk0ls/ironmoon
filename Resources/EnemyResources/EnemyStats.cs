@@ -22,10 +22,13 @@ public partial class EnemyStats : Resource
     [Export]
     public float AttackSpeed { get; set; }
 
-    public EnemyStats(): this(0, 0, 0, 0, 0, 0) { }
+    [Export]
+    public int Reward { get; set; }
+
+    public EnemyStats(): this(0, 0, 0, 0, 0, 0, 0) { }
 
     public EnemyStats(float Health, float WalkSpeed, float CriticalHitChance, 
-        float DropChance, float AttackDamage, float AttackSpeed)
+        float DropChance, float AttackDamage, float AttackSpeed, int reward)
     {
         this.Health = Health;
         this.WalkSpeed = WalkSpeed;
@@ -33,5 +36,7 @@ public partial class EnemyStats : Resource
         this.DropChance = DropChance;
         this.AttackDamage = AttackDamage;
         this.AttackSpeed = AttackSpeed;
+        this.Reward = reward;
+
     }
 }

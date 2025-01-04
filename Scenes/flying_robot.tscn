@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://boxbexd8futdw"]
+[gd_scene load_steps=9 format=3 uid="uid://boxbexd8futdw"]
 
 [ext_resource type="Script" path="res://Scripts/StateMachine.cs" id="1_p5ti6"]
 [ext_resource type="Script" path="res://Scripts/Enemies/Enemy.cs" id="1_qk8cj"]
 [ext_resource type="Script" path="res://Scripts/Enemies/States/Progress.cs" id="2_a8uo3"]
 [ext_resource type="Resource" uid="uid://d1axi7npak78e" path="res://Resources/EnemyResources/Enemies/small_robot_spider.tres" id="2_i4u7s"]
 [ext_resource type="PackedScene" uid="uid://c0oo538vj6jb5" path="res://Assets/Models/Insect/Insect.tscn" id="5_crpf8"]
-[ext_resource type="Script" path="res://Scripts/Enemies/States/Aggression.cs" id="6_l4bwq"]
+[ext_resource type="Script" path="res://Scripts/Enemies/States/ProgressEnd.cs" id="7_xqo3u"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5jodp"]
 radius = 0.406075
@@ -13,12 +13,6 @@ height = 1.03769
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nne2r"]
 radius = 0.256776
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_a2f1q"]
-radius = 11.8258
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hb7k4"]
-radius = 0.731414
 
 [node name="FlyingRobot" type="CharacterBody3D" node_paths=PackedStringArray("Model") groups=["enemy", "flying"]]
 collision_layer = 2
@@ -48,26 +42,11 @@ initialNode = NodePath("Progress")
 [node name="Progress" type="Node" parent="StateMachine"]
 script = ExtResource("2_a8uo3")
 
-[node name="Aggression" type="Node" parent="StateMachine"]
-script = ExtResource("6_l4bwq")
-
-[node name="AgroBox" type="Area3D" parent="."]
-collision_layer = 16
-collision_mask = 16
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AgroBox"]
-shape = SubResource("SphereShape3D_a2f1q")
-
-[node name="BuildingBox" type="Area3D" parent="."]
-collision_layer = 16
-collision_mask = 16
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BuildingBox"]
-shape = SubResource("CapsuleShape3D_hb7k4")
+[node name="ProgressEnd" type="Node" parent="StateMachine"]
+script = ExtResource("7_xqo3u")
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
-[connection signal="body_entered" from="AgroBox" to="StateMachine/Progress" method="OnEnterAgroBox"]
-[connection signal="body_entered" from="BuildingBox" to="StateMachine/Aggression" method="OnBuildingBoxEntered"]
+[node name="BaseAttackTimer" type="Timer" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://df8e5pbbx75bc"]
+[gd_scene load_steps=30 format=3 uid="uid://df8e5pbbx75bc"]
 
 [ext_resource type="PackedScene" uid="uid://dpdyvqyi3u2x7" path="res://Scenes/player.tscn" id="1_513jj"]
 [ext_resource type="PackedScene" uid="uid://bsqiotokbsa6s" path="res://Assets/Levels/Houses/House1.glb" id="4_pwh7v"]
@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dn773mu0uar45" path="res://Assets/Barrel.glb" id="8_ktfo1"]
 [ext_resource type="Script" path="res://Scenes/Levels/WaveManager.cs" id="9_7i248"]
 [ext_resource type="Resource" uid="uid://bs2wa2t27xjwv" path="res://Resources/WaveResources/Level0/wave0.tres" id="10_556fd"]
-[ext_resource type="Script" path="res://Resources/WaveResources/WaveStats.cs" id="10_os6oj"]
 [ext_resource type="Resource" uid="uid://duktkxgedj5ho" path="res://Resources/WaveResources/Level0/wave1.tres" id="11_qlai5"]
+[ext_resource type="Resource" uid="uid://rltjj4woern6" path="res://Resources/WaveResources/Level0/wave2.tres" id="14_peev4"]
 [ext_resource type="PackedScene" uid="uid://25tps8ft4340" path="res://Scenes/base.tscn" id="16_35bin"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_51p0u"]
@@ -89,14 +89,6 @@ transparency = 2
 alpha_scissor_threshold = 0.217
 alpha_antialiasing_mode = 0
 albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Resource" id="Resource_cobb2"]
-resource_local_to_scene = true
-script = ExtResource("10_os6oj")
-SpiderSmall = 1
-SpiderMedium = 0
-SpiderBig = 0
-FlyingBot = 0
 
 [sub_resource type="Curve3D" id="Curve3D_vcdpy"]
 _data = {
@@ -372,10 +364,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -59.0
-offset_top = -76.0
-offset_right = 58.0
-offset_bottom = -10.0
+offset_left = 354.0
+offset_top = -34.0
+offset_right = 461.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -386,10 +378,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -48.5
-offset_top = -56.0
-offset_right = 47.5
-offset_bottom = -10.0
+offset_left = 365.0
+offset_top = -25.0
+offset_right = 461.0
+offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("5_kl1ku")
@@ -478,19 +470,18 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -115.0
-offset_top = 11.0
-offset_right = 115.0
-offset_bottom = 55.0
+offset_left = -69.5
+offset_right = 69.5
+offset_bottom = 44.0
 grow_horizontal = 2
 
 [node name="IntermissionLabel" type="Label" parent="UI"]
 visible = false
 layout_mode = 0
 offset_left = 460.0
-offset_top = 11.0
+offset_top = -3.0
 offset_right = 690.0
-offset_bottom = 57.0
+offset_bottom = 47.0
 theme = ExtResource("5_kl1ku")
 text = "10
 "
@@ -520,6 +511,23 @@ label_settings = SubResource("LabelSettings_k7e62")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BaseHealthBar" type="ProgressBar" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -125.5
+offset_top = -27.0
+offset_right = 125.5
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("5_kl1ku")
+max_value = 1000.0
+step = 1.0
+show_percentage = false
+
 [node name="Shop" parent="." instance=ExtResource("7_ow8sr")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.11926, 0.95366, -0.445242)
 
@@ -530,6 +538,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.955
 
 [node name="CSGBox3D62" parent="Level0-WIP" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1.41968, 0, 0, 0, 1, 0.685486, 2.67487, -14.9168)
+visible = false
 
 [node name="CSGBox3D142" parent="Level0-WIP" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7887, -0.165494, 29.5702)
@@ -557,6 +566,11 @@ transform = Transform3D(-0.783085, 0, -8.88447e-07, 0, 4.02853, 0, 2.55161e-07, 
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.498947, 3.32938, 42.4824)
+size = Vector3(27.1992, 7.65875, 3.01251)
+material = SubResource("StandardMaterial3D_24ceg")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.498947, 3.32938, -16.39)
 size = Vector3(27.1992, 7.65875, 3.01251)
 material = SubResource("StandardMaterial3D_24ceg")
 
@@ -625,7 +639,7 @@ transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 
 
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource("9_7i248")
-waves = Array[Object]([ExtResource("10_556fd"), ExtResource("11_qlai5"), SubResource("Resource_cobb2")])
+waves = Array[Object]([ExtResource("10_556fd"), ExtResource("11_qlai5"), ExtResource("14_peev4")])
 
 [node name="WaveTimer" type="Timer" parent="WaveManager"]
 wait_time = 3.0

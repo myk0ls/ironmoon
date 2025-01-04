@@ -1,15 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://bilchqhvk5r0"]
+[gd_scene load_steps=7 format=3 uid="uid://bilchqhvk5r0"]
 
 [ext_resource type="Script" path="res://Scripts/SingleTargetTower.cs" id="1_tt6f7"]
-[ext_resource type="PackedScene" uid="uid://b8e8wijrjfn6y" path="res://Assets/TowerBuild.glb" id="2_htpsk"]
 [ext_resource type="PackedScene" uid="uid://d0n4i0kfjiehe" path="res://Assets/Models/MachineGunTower/machine_gun_tower.tscn" id="3_cmnel"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_mwbau"]
-radius = 4.30252
+[sub_resource type="SphereShape3D" id="SphereShape3D_e5nym"]
+radius = 4.80494
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lptp8"]
 radius = 0.887864
-height = 2.87482
+height = 2.02921
 
 [sub_resource type="TorusMesh" id="TorusMesh_irdvi"]
 inner_radius = 0.95
@@ -24,20 +23,17 @@ script = ExtResource("1_tt6f7")
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0260615, 1.11014, -0.0220504)
-collision_mask = 2
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.57044, 0)
-shape = SubResource("SphereShape3D_mwbau")
+transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0, -1.53441, 0)
+shape = SubResource("SphereShape3D_e5nym")
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 2.5
 
-[node name="TowerBuild" parent="." instance=ExtResource("2_htpsk")]
-visible = false
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.1, 0, 0, 0, 1.09995, 0.0104823, 0, -0.0104823, 1.09995, 0, 0.31276, 0)
+transform = Transform3D(1.1, 0, 0, 0, 1.09995, 0.0104823, 0, -0.0104823, 1.09995, 0, -0.100213, 0)
 shape = SubResource("CapsuleShape3D_lptp8")
 
 [node name="DistanceRadius" type="MeshInstance3D" parent="."]

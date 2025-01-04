@@ -131,6 +131,7 @@ public partial class Building : Node3D
         if (Health > 100)
         {
             Health = 100;
+            return;
         }
 
         if (Health > 50 && IsCriticalCondition)

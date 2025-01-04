@@ -7,6 +7,7 @@ public partial class PathSpawner : Path3D
 	PackedScene BigPathFollow;
     PackedScene SmallPathFollow;
     PackedScene FlyingPathFollow;
+	PackedScene WardenFollow;
     Timer PathTimer;
 	Random random = new Random();
 
@@ -21,6 +22,7 @@ public partial class PathSpawner : Path3D
 		BigPathFollow = ResourceLoader.Load<PackedScene>("res://Scenes/pathFollowSpawnBigSpider.tscn");
 		SmallPathFollow = ResourceLoader.Load<PackedScene>("res://Scenes/pathFollowSpawnSmallSpider.tscn");
 		FlyingPathFollow = ResourceLoader.Load<PackedScene>("res://Scenes/pathFollowFlying.tscn");
+		WardenFollow = ResourceLoader.Load<PackedScene>("res://Scenes/pathFollowWarden.tscn");
 
 		DefaultPosition = GlobalPosition;
 
@@ -62,6 +64,9 @@ public partial class PathSpawner : Path3D
             case "FlyingBot":
                 selectedScene = FlyingPathFollow;
                 break;
+			case "Warden":
+				selectedScene = WardenFollow;
+				break;
             default:
                 GD.PrintErr($"Unknown enemy type: {enemyType}");
                 return;

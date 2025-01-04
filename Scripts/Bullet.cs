@@ -77,6 +77,6 @@ public partial class Bullet : Node3D
 	public void Remove()
 	{
 		QueueFree();
-		Zomb.Death -= Remove;
+		//Zomb.Death -= Remove;
 	}
 }

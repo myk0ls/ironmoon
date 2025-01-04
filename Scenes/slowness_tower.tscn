@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://dao7v7jdkp5sc"]
+
+[ext_resource type="Script" path="res://Scripts/SlownessTower.cs" id="1_2oajv"]
+[ext_resource type="PackedScene" uid="uid://b8e8wijrjfn6y" path="res://Assets/TowerBuild.glb" id="2_gddnn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5mqo6"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5osf6"]
+radius = 4.80494
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p33cq"]
+radius = 0.887864
+height = 2.47741
+
+[sub_resource type="TorusMesh" id="TorusMesh_01ehc"]
+inner_radius = 0.95
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7rekh"]
+viewport_path = NodePath("SubViewport")
+
+[node name="SlownessTower" type="StaticBody3D"]
+collision_layer = 7
+collision_mask = 16
+script = ExtResource("1_2oajv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_5mqo6")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.611143, 0)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0, 0, 0)
+shape = SubResource("SphereShape3D_5osf6")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="TowerBuild" parent="." instance=ExtResource("2_gddnn")]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.1, 0, 0, 0, 1.09995, 0.0104823, 0, -0.0104823, 1.09995, 0, -0.0228067, 0)
+shape = SubResource("CapsuleShape3D_p33cq")
+
+[node name="DistanceRadius" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.2, 0, 0, 0, 1, 0, 0, 0, 4.2, 0, -0.736615, 0)
+mesh = SubResource("TorusMesh_01ehc")
+
+[node name="BuildRayCast" type="RayCast3D" parent="."]
+target_position = Vector3(0, -1.2, 0)
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(256, 256)
+
+[node name="HealthBar" type="ProgressBar" parent="SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 1.0
+
+[node name="HealthBarSprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24335, 0)
+visible = false
+billboard = 2
+texture = SubResource("ViewportTexture_7rekh")
+
+[connection signal="body_entered" from="Area3D" to="." method="OnEntered"]
+[connection signal="body_exited" from="Area3D" to="." method="OnExited"]

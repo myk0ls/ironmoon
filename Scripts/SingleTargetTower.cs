@@ -24,6 +24,14 @@ public partial class SingleTargetTower : Building
         TargetEnemy = null;
     }
 
+    public override void _PhysicsProcess(double delta)
+    {
+        if (TargetNode == null)
+        {
+
+        }
+    }
+
     void SetTargetNode(Node3D node)
     {
         TargetNode = node;
@@ -69,6 +77,7 @@ public partial class SingleTargetTower : Building
             Bullet newBullet = (Bullet)Bullet.Instantiate();
             newBullet.SetTarget(TargetNode);
             Head.AddChild(newBullet);
+            
 
             Vector3 Direction = (TargetNode.GlobalPosition - GlobalPosition).Normalized();
             //TowerHead.LookAt(-TargetNode.GlobalPosition, Vector3.Up);

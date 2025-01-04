@@ -16,6 +16,7 @@ public partial class Ui : Control
     Label IntermissionLabel;
 	Timer IntermissionTimer;
 	AnimationPlayer animationPlayer;
+	ProgressBar BaseHealthBar;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -32,7 +33,7 @@ public partial class Ui : Control
 		IntermissionLabel = GetNode<Label>("IntermissionLabel");
 		IntermissionTimer = GetNode<Timer>("/root/World/WaveManager/IntermissionTimer");
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-		
+		BaseHealthBar = GetNode<ProgressBar>("BaseHealthBar");
 
         SellBar.Value = PlayerNode.SellTimer.WaitTime - PlayerNode.SellTimer.TimeLeft;
 
@@ -44,9 +45,11 @@ public partial class Ui : Control
 		CSignals.IntermissionLabel += ToggleIntermissionLabel;
 		CSignals.UpdateCurrentWave += (currentWave) => ShowWaveLabel(currentWave);
 		CSignals.WaveEnded += ShowWaveEndedLabel;
+		CSignals.BaseHealthUpdate += (health) => UpdateBaseHealthBar(health);
 
         GoldLabel.Text = String.Format("GEARS: {0}", PlayerStats.Instance.Gold);
 		UpdateHp();
+		UpdateBaseHealthBar(1000);
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -170,5 +173,10 @@ public partial class Ui : Control
         WaveLabel.Text = "Wave Completed";
         animationPlayer.Play("ShowWave");
     }
+
+	void UpdateBaseHealthBar(int health)
+	{
+		BaseHealthBar.Value = health;
+	}
 }
 

@@ -7,6 +7,7 @@ public partial class Builder : Node3D
     PackedScene TowerScene;
     PackedScene SingleTargetTowerScene;
     PackedScene AoeTowerScene;
+    PackedScene SlownessTowerScene;
     CustomSignals CSignals;
     Building TargetTower;
     Timer SellTimer;
@@ -21,6 +22,7 @@ public partial class Builder : Node3D
         TowerScene = ResourceLoader.Load<PackedScene>("res://Scenes/tower.tscn");
         SingleTargetTowerScene = ResourceLoader.Load<PackedScene>("res://Scenes/single_target_tower.tscn");
         AoeTowerScene = ResourceLoader.Load<PackedScene>("res://Scenes/aoe_tower.tscn");
+        SlownessTowerScene = ResourceLoader.Load<PackedScene>("res://Scenes/slowness_tower.tscn");
         SellTimer = GetParent().GetNode<Timer>("SellTimer");
 
         SellTimer.Timeout += FinishSellBuilding;
@@ -53,7 +55,6 @@ public partial class Builder : Node3D
                 placeTower.CanAttack = true;
                 placeTower.Reparent(GetParent().GetParent());
                 //placeTower.CollisionLayer = 1;
-
 
                 foreach (Node child in GetChildren())
                 {
@@ -135,6 +136,23 @@ public partial class Builder : Node3D
             }
         }
 
+        if (Input.IsActionJustPressed("three"))
+        {
+            if (!isInSelection)
+            {
+                TestSlownessTower();
+                isInSelection = true;
+            }
+            else if (isInSelection)
+            {
+                foreach (Node child in GetChildren())
+                {
+                    child.QueueFree();
+                }
+                isInSelection = false;
+            }
+        }
+
     }
 
     void TestTower()
@@ -149,6 +167,12 @@ public partial class Builder : Node3D
     void TestAOETower()
     {
         AoETower newTower = (AoETower)AoeTowerScene.Instantiate();
+        AddChild(newTower);
+    }
+
+    void TestSlownessTower()
+    {
+        SlownessTower newTower = (SlownessTower)SlownessTowerScene.Instantiate();
         AddChild(newTower);
     }
 
@@ -180,6 +204,10 @@ public partial class Builder : Node3D
         {
             if (node.GetParent() is Building)
             {
+                if (placeTower is SlownessTower)
+                {
+                    return true;
+                }
                 return false;
             }    
         }
