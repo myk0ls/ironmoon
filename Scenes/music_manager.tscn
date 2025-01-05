@@ -1,9 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5mxl8ijuqjav"]
+[gd_scene load_steps=3 format=3 uid="uid://b5mxl8ijuqjav"]
 
 [ext_resource type="Script" path="res://Scripts/MusicManager.cs" id="1_tffpe"]
+[ext_resource type="AudioStream" uid="uid://cad6myeg5pb4y" path="res://Assets/Audio/Music/main menu maybe.wav" id="2_vfyd1"]
 
 [node name="MusicManager" type="Node"]
 script = ExtResource("1_tffpe")
 
 [node name="Song1" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="MainMenu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_vfyd1")
 bus = &"Music"

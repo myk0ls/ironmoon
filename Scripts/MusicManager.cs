@@ -24,7 +24,7 @@ public partial class MusicManager : Node
             entry.Value.Finished += () => Instance.Play(entry.Key);
         }
 
-        Instance.Play("Song1");
+        //Instance.Play("Song1");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,6 +50,21 @@ public partial class MusicManager : Node
         if (!music[name].Playing)
         {
             music[name].Play();
+        }
+    }
+
+    public void Stop(string name)
+    {
+        if (!music.ContainsKey(name))
+            return;
+
+        foreach (KeyValuePair<string, AudioStreamPlayer> entry in music)
+        {
+            // stop it
+            if (entry.Key == name)
+            {
+                entry.Value.Stop();
+            }
         }
     }
 }

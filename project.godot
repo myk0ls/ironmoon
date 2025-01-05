@@ -21,9 +21,9 @@ config/icon="res://icon.svg"
 PlayerStats="*res://Scripts/PlayerStats.cs"
 DamageNumbers="*res://Scripts/DamageNumbers.cs"
 CustomSignals="*res://Scripts/CustomSignals.cs"
-MusicManager="*res://Scripts/MusicManager.cs"
 SfxManager="*res://Scenes/sfx_manager.tscn"
 VfxManager="*res://Scenes/vfx_manager.tscn"
+MusicManager="*res://Scenes/music_manager.tscn"
 
 [display]
 

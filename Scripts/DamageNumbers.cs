@@ -12,7 +12,7 @@ public partial class DamageNumbers : Node
 	public override void _Ready()
 	{
 		Instance = this;
-		World = GetNode<Node3D>("/root/World");
+		//World = GetNode<Node3D>("/root/World");
 		NumberScene = ResourceLoader.Load<PackedScene>("res://Scenes/damage_number.tscn");
 	}
 
@@ -52,7 +52,7 @@ public partial class DamageNumbers : Node
 	public void DisplayNumber(int Value, Vector3 Position, bool IsCritical = false)
 	{
 		DamageNumber Number = NumberScene.Instantiate() as DamageNumber;
-		World.AddChild(Number);
+        GetNode<Node3D>("/root/World").AddChild(Number);
 
 		Number.GlobalPosition = Position;
 		Number.DamageLabel.Text = Value.ToString();

@@ -70,6 +70,13 @@ public partial class Ui : Control
 		{
             //IntermissionLabel.Text = String.Format("{0:0.#}",IntermissionTimer.TimeLeft.ToString());
             IntermissionLabel.Text = IntermissionTimer.TimeLeft.ToString("0");
+           /*
+			if (IntermissionLabel.Text == "5" || IntermissionLabel.Text == "4" || IntermissionLabel.Text == "3" ||
+				IntermissionLabel.Text == "2" || IntermissionLabel.Text == "1" || IntermissionLabel.Text == "0")
+            {
+                SfxManager.Instance.Play("ClockTick", PlayerNode);
+            }
+		   */
         }
 	}
 
