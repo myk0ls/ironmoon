@@ -1,0 +1,29 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b64wc0jk83s2q"]
+
+[sub_resource type="Shader" id="Shader_n06k6"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+
+
+
+void fragment() {
+// ColorConstant:3
+	vec4 n_out3p0 = vec4(0.780000, 0.007800, 0.007800, 1.000000);
+
+
+// FloatConstant:2
+	float n_out2p0 = 0.300000;
+
+
+// Output:0
+	ALBEDO = vec3(n_out3p0.xyz);
+	ALPHA = n_out2p0;
+
+
+}
+"
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_n06k6")

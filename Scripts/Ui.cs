@@ -17,6 +17,7 @@ public partial class Ui : Control
 	Timer IntermissionTimer;
 	AnimationPlayer animationPlayer;
 	ProgressBar BaseHealthBar;
+	GridContainer TowerContainer;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -34,6 +35,7 @@ public partial class Ui : Control
 		IntermissionTimer = GetNode<Timer>("/root/World/WaveManager/IntermissionTimer");
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		BaseHealthBar = GetNode<ProgressBar>("BaseHealthBar");
+		TowerContainer = GetNode<GridContainer>("TowerContainer");
 
         SellBar.Value = PlayerNode.SellTimer.WaitTime - PlayerNode.SellTimer.TimeLeft;
 
@@ -46,6 +48,7 @@ public partial class Ui : Control
 		CSignals.UpdateCurrentWave += (currentWave) => ShowWaveLabel(currentWave);
 		CSignals.WaveEnded += ShowWaveEndedLabel;
 		CSignals.BaseHealthUpdate += (health) => UpdateBaseHealthBar(health);
+		CSignals.GameModeChanged += ToggleTowerContainer;
 
         GoldLabel.Text = String.Format("GEARS: {0}", PlayerStats.Instance.Gold);
 		UpdateHp();
@@ -68,15 +71,9 @@ public partial class Ui : Control
 
 		if (!IntermissionTimer.IsStopped())
 		{
-            //IntermissionLabel.Text = String.Format("{0:0.#}",IntermissionTimer.TimeLeft.ToString());
-            IntermissionLabel.Text = IntermissionTimer.TimeLeft.ToString("0");
-           /*
-			if (IntermissionLabel.Text == "5" || IntermissionLabel.Text == "4" || IntermissionLabel.Text == "3" ||
-				IntermissionLabel.Text == "2" || IntermissionLabel.Text == "1" || IntermissionLabel.Text == "0")
-            {
-                SfxManager.Instance.Play("ClockTick", PlayerNode);
-            }
-		   */
+			//IntermissionLabel.Text = String.Format("{0:0.#}",IntermissionTimer.TimeLeft.ToString());
+			IntermissionLabel.Text = IntermissionTimer.TimeLeft.ToString("0");
+			//IntermissionLabel.Text = "viekia";
         }
 	}
 
@@ -185,5 +182,15 @@ public partial class Ui : Control
 	{
 		BaseHealthBar.Value = health;
 	}
+
+    void ToggleTowerContainer()
+	{
+        if (!TowerContainer.Visible)
+        {
+            TowerContainer.Visible = true;
+        }
+        else
+            TowerContainer.Visible = false;
+    }
 }
 

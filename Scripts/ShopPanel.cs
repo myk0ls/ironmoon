@@ -24,6 +24,8 @@ public partial class ShopPanel : Panel
 			PlayerStats.Instance.Gold -= 100;
 			PlayerStats.Instance.EmitSignal(nameof(PlayerStats.Instance.UpdateGoldLabel));
 			GetNode<Button>("/root/World/UI/ShopPanel/WeaponPurchase/Button").Disabled = true;
+
+            SfxManager.Instance.Play("BoughtCash", this);
         }
 	}
 
@@ -35,6 +37,8 @@ public partial class ShopPanel : Panel
             PlayerStats.Instance.Gold -= 100;
             PlayerStats.Instance.EmitSignal(nameof(PlayerStats.Instance.UpdateGoldLabel));
             GetNode<Button>("/root/World/UI/ShopPanel/WeaponPurchase/Button2").Disabled = true;
+
+            SfxManager.Instance.Play("BoughtCash", this);
         }
     }
 
@@ -46,6 +50,8 @@ public partial class ShopPanel : Panel
             PlayerStats.Instance.Gold -= 50;
             PlayerStats.Instance.EmitSignal(nameof(PlayerStats.Instance.UpdateGoldLabel));
             GetNode<Button>("/root/World/UI/ShopPanel/Upgrades/Button").Disabled = true;
+
+			SfxManager.Instance.Play("BoughtCash", this);
         }
     }
 }

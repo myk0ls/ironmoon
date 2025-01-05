@@ -35,6 +35,16 @@ public partial class Builder : Node3D
 
     void _ProcessBuild(double delta)
     {
+        if (GetChildCount() != 0)
+        {
+            Building placeTower = (Building)GetChild(0);
+
+            // Check conditions and update shader
+            bool canBuild = CheckAreaIfAbleToBuild(placeTower) && CheckGroundIfAbleToBuild(placeTower);
+            string shaderName = canBuild ? "Green" : "Red";
+            placeTower._TowerModel.UpdateShader(shaderName);
+        }
+
         // build a towewr
         if (Input.IsActionJustPressed("attack"))
         {
@@ -56,12 +66,16 @@ public partial class Builder : Node3D
                 placeTower.Reparent(GetParent().GetParent());
                 //placeTower.CollisionLayer = 1;
 
+                placeTower._TowerModel.UpdateShader("default");
+
                 foreach (Node child in GetChildren())
                 {
                     child.QueueFree();
                 }
 
                 VfxManager.Instance.Play("Dust", placeTower, placeTower.TowerShape.Position);
+                SfxManager.Instance.Play("BoughtStomp", placeTower);
+                SfxManager.Instance.Play("BoughtCash", placeTower);
 
                 PlayerStats.Instance.Gold -= 100;
                 PlayerStats.Instance.EmitSignal(nameof(PlayerStats.Instance.UpdateGoldLabel));
@@ -200,20 +214,27 @@ public partial class Builder : Node3D
 
     bool CheckAreaIfAbleToBuild(Building placeTower)
     {
-        foreach(Node node in placeTower.DetectionArea.GetOverlappingAreas())
+        foreach (Node node in placeTower.DetectionArea.GetOverlappingAreas())
         {
-            if (node.GetParent() is Building)
+            if (node.GetParent() is Building otherBuilding)
             {
                 if (placeTower is SlownessTower)
                 {
                     return true;
                 }
+
+                if (otherBuilding is SlownessTower)
+                {
+                    continue;
+                }
+
                 return false;
-            }    
+            }
         }
+
         return true;
-        
     }
+
 
     bool CheckGroundIfAbleToBuild(Building placeTower)
     {

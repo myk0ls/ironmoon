@@ -38,6 +38,11 @@ public partial class Aggression : State
         if (IsAttacking)
             return;
 
+        if (!IsInstanceValid(_enemy.TargetNode))
+        {
+            machine.TransitionTo("Progress");
+        }
+
         Vector3 velocity = _enemy.Velocity;
 
         Vector3 dir = _enemy.TargetNode.GlobalPosition - _enemy.GlobalPosition;

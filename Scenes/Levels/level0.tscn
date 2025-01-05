@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://df8e5pbbx75bc"]
+[gd_scene load_steps=38 format=3 uid="uid://df8e5pbbx75bc"]
 
 [ext_resource type="PackedScene" uid="uid://dpdyvqyi3u2x7" path="res://Scenes/player.tscn" id="1_513jj"]
 [ext_resource type="PackedScene" uid="uid://bsqiotokbsa6s" path="res://Assets/Levels/Houses/House1.glb" id="4_pwh7v"]
@@ -6,10 +6,14 @@
 [ext_resource type="Script" path="res://Scripts/Ui.cs" id="5_ec78d"]
 [ext_resource type="Theme" uid="uid://7fb73ota5opl" path="res://Resources/Theme/theme.tres" id="5_kl1ku"]
 [ext_resource type="PackedScene" uid="uid://b6u51r48h8ota" path="res://Assets/Levels/Houses/House2.glb" id="5_q6xa0"]
+[ext_resource type="Texture2D" uid="uid://blwyudxqx3csr" path="res://Assets/Menus/Textures/Text Fields/Panel1.png" id="6_saagu"]
 [ext_resource type="Script" path="res://Scenes/PathSpawner.cs" id="6_suf8t"]
+[ext_resource type="Texture2D" uid="uid://cxroofbdakqht" path="res://Assets/Menus/Textures/Text Fields/1.png" id="7_5okr8"]
+[ext_resource type="Theme" uid="uid://i5lr87xdcsh1" path="res://Resources/Theme/MainTheme.tres" id="7_23w6t"]
 [ext_resource type="PackedScene" uid="uid://bcbjsdttewlqo" path="res://Scenes/shop.tscn" id="7_ow8sr"]
 [ext_resource type="PackedScene" uid="uid://dnyt0xmdrmabw" path="res://Assets/Levels/Houses/Level0-WIP.glb" id="7_qrv0l"]
 [ext_resource type="PackedScene" uid="uid://bbyrd4nx6mxfj" path="res://Assets/Models/Shop/Shop.glb" id="7_ufige"]
+[ext_resource type="Texture2D" uid="uid://cw7smd7tlw056" path="res://Assets/Menus/Textures/Text Fields/3.png" id="8_7dka8"]
 [ext_resource type="PackedScene" uid="uid://dn773mu0uar45" path="res://Assets/Barrel.glb" id="8_ktfo1"]
 [ext_resource type="Script" path="res://Scenes/Levels/WaveManager.cs" id="9_7i248"]
 [ext_resource type="Resource" uid="uid://bs2wa2t27xjwv" path="res://Resources/WaveResources/Level0/wave0.tres" id="10_556fd"]
@@ -41,8 +45,20 @@ volumetric_fog_density = 0.0185
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v5abv"]
 albedo_color = Color(0, 0.286275, 0.34902, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_ipn42"]
-font_size = 45
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fx102"]
+texture = ExtResource("6_saagu")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ywgq0"]
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pht0w"]
+line_spacing = 5.0
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mwwlb"]
+line_spacing = 5.0
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_hfm3r"]
 length = 0.001
@@ -84,6 +100,9 @@ _data = {
 [sub_resource type="LabelSettings" id="LabelSettings_k7e62"]
 font_size = 70
 
+[sub_resource type="LabelSettings" id="LabelSettings_20p1v"]
+font_size = 80
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_24ceg"]
 transparency = 2
 alpha_scissor_threshold = 0.217
@@ -107,8 +126,9 @@ point_count = 9
 [node name="World" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.974761, -0.0908064, 0.203948, 0.0741722, 0.729922, 0.679494, -0.210569, 0.677472, -0.704764, 0, 0, 0)
+transform = Transform3D(-0.974761, -0.0908065, 0.203948, 0.175914, 0.250074, 0.952112, -0.13746, 0.963959, -0.227788, 0, 0, 0)
 shadow_enabled = true
+shadow_blur = 7.606
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uifld")
@@ -280,61 +300,87 @@ script = ExtResource("5_ec78d")
 
 [node name="ShopPanel" type="Panel" parent="UI"]
 visible = false
+top_level = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -290.0
-offset_top = -185.5
-offset_right = 290.0
-offset_bottom = 185.5
+offset_left = -361.0
+offset_top = -301.0
+offset_right = 361.0
+offset_bottom = 301.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("7_23w6t")
+theme_override_styles/panel = SubResource("StyleBoxTexture_fx102")
 script = ExtResource("5_0cs8i")
 
 [node name="Upgrades" type="HBoxContainer" parent="UI/ShopPanel"]
-layout_mode = 0
-offset_left = 85.0
-offset_top = 50.5
-offset_right = 508.0
-offset_bottom = 120.5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.5
+offset_top = -66.0
+offset_right = 211.5
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
 [node name="Button" type="Button" parent="UI/ShopPanel/Upgrades"]
-custom_minimum_size = Vector2(100, 50)
+clip_contents = true
+custom_minimum_size = Vector2(95, 85)
 layout_mode = 2
 focus_mode = 0
+theme = ExtResource("7_23w6t")
 text = "Wrench UPG"
 
 [node name="Button2" type="Button" parent="UI/ShopPanel/Upgrades"]
-custom_minimum_size = Vector2(100, 50)
+clip_contents = true
+custom_minimum_size = Vector2(95, 85)
 layout_mode = 2
 focus_mode = 0
+theme = ExtResource("7_23w6t")
 text = "BUILD UPG"
 
 [node name="Button3" type="Button" parent="UI/ShopPanel/Upgrades"]
-custom_minimum_size = Vector2(100, 50)
+clip_contents = true
+custom_minimum_size = Vector2(95, 85)
 layout_mode = 2
 focus_mode = 0
+theme = ExtResource("7_23w6t")
 
 [node name="Button4" type="Button" parent="UI/ShopPanel/Upgrades"]
-custom_minimum_size = Vector2(100, 50)
+clip_contents = true
+custom_minimum_size = Vector2(95, 85)
 layout_mode = 2
 focus_mode = 0
+theme = ExtResource("7_23w6t")
 
 [node name="WeaponPurchase" type="VBoxContainer" parent="UI/ShopPanel"]
-layout_mode = 0
-offset_left = 142.0
-offset_top = 188.5
-offset_right = 445.0
-offset_bottom = 310.5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.5
+offset_top = 15.0
+offset_right = 151.5
+offset_bottom = 137.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Button" type="Button" parent="UI/ShopPanel/WeaponPurchase"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 focus_mode = 0
+theme = ExtResource("7_23w6t")
 text = "PPSH"
 
 [node name="Button2" type="Button" parent="UI/ShopPanel/WeaponPurchase"]
@@ -342,7 +388,19 @@ custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 size_flags_vertical = 0
 focus_mode = 0
+theme = ExtResource("7_23w6t")
 text = "Shotgun"
+
+[node name="4_shadow" type="Sprite2D" parent="UI"]
+modulate = Color(0.14, 0.14, 0.14, 0.443137)
+position = Vector2(1082, 602)
+scale = Vector2(0.274233, 0.274233)
+texture = ExtResource("8_7dka8")
+
+[node name="4" type="Sprite2D" parent="UI"]
+position = Vector2(1084, 601)
+scale = Vector2(0.274233, 0.274233)
+texture = ExtResource("8_7dka8")
 
 [node name="SellBar" type="ProgressBar" parent="UI"]
 layout_mode = 1
@@ -353,40 +411,9 @@ anchor_right = 0.614783
 anchor_bottom = 0.787037
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("5_kl1ku")
+theme = ExtResource("7_23w6t")
 max_value = 1.0
 metadata/_edit_use_anchors_ = true
-
-[node name="Panel" type="Panel" parent="UI"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 354.0
-offset_top = -34.0
-offset_right = 461.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="GoldLabel" type="Label" parent="UI"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 365.0
-offset_top = -25.0
-offset_right = 461.0
-offset_bottom = -6.0
-grow_horizontal = 2
-grow_vertical = 0
-theme = ExtResource("5_kl1ku")
-text = "Gold:
-"
 
 [node name="FPSLabel" type="Label" parent="UI"]
 visible = false
@@ -413,13 +440,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.294118)
 
-[node name="Panel2" type="Panel" parent="UI"]
-layout_mode = 0
-offset_left = 1070.0
-offset_top = 628.0
-offset_right = 1151.0
-offset_bottom = 645.0
-
 [node name="AmmoLabel" type="Label" parent="UI"]
 layout_mode = 1
 anchors_preset = 3
@@ -427,31 +447,60 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -23.0
+offset_left = -128.0
+offset_top = -76.0
+offset_right = -5.0
+offset_bottom = -8.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("5_kl1ku")
 text = "0/0
 "
+label_settings = SubResource("LabelSettings_ywgq0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="6" type="Sprite2D" parent="UI"]
+modulate = Color(0.172833, 0.172833, 0.172833, 0.47451)
+position = Vector2(70.445, 600.758)
+scale = Vector2(0.274, 0.274)
+texture = ExtResource("8_7dka8")
+flip_h = true
+
+[node name="5" type="Sprite2D" parent="UI"]
+position = Vector2(68.445, 598.758)
+scale = Vector2(0.274, 0.274)
+texture = ExtResource("8_7dka8")
+flip_h = true
+
+[node name="GoldLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -558.0
+offset_top = -50.0
+offset_right = -416.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("5_kl1ku")
+text = "Gold:
+"
+label_settings = SubResource("LabelSettings_pht0w")
+vertical_alignment = 1
 
 [node name="HealthBar" type="Control" parent="UI"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -44.0
-offset_right = 40.0
-offset_bottom = -4.0
-grow_vertical = 0
-
-[node name="Panel" type="Panel" parent="UI/HealthBar"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 91.0
+offset_left = 27.0
+offset_top = -91.0
+offset_right = 67.0
+offset_bottom = -51.0
 grow_vertical = 0
 
 [node name="HealthLabel" type="Label" parent="UI/HealthBar"]
@@ -459,41 +508,15 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -31.0
-offset_right = 152.0
+offset_left = -8.0
+offset_top = -28.0
+offset_right = 132.0
+offset_bottom = 16.0
 grow_vertical = 0
 theme = ExtResource("5_kl1ku")
 text = "HP:"
-
-[node name="IntermissionLabel" type="Label" parent="UI"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -74.0
-offset_bottom = 50.0
-grow_horizontal = 0
-theme = ExtResource("5_kl1ku")
-text = "10
-"
-label_settings = SubResource("LabelSettings_ipn42")
-horizontal_alignment = 1
+label_settings = SubResource("LabelSettings_mwwlb")
 vertical_alignment = 1
-
-[node name="Panel3" type="Panel" parent="UI/IntermissionLabel"]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -22.0
-offset_right = 35.0
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
 libraries = {
@@ -526,10 +549,42 @@ offset_left = -125.5
 offset_right = 125.5
 offset_bottom = 27.0
 grow_horizontal = 2
-theme = ExtResource("5_kl1ku")
+theme = ExtResource("7_23w6t")
 max_value = 1000.0
 step = 1.0
 show_percentage = false
+
+[node name="TowerContainer" type="GridContainer" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = 390.0
+offset_top = 535.0
+offset_right = 1643.0
+offset_bottom = 1179.0
+scale = Vector2(0.3, 0.3)
+columns = 3
+
+[node name="TextureRect" type="TextureRect" parent="UI/TowerContainer"]
+layout_mode = 2
+texture = ExtResource("7_5okr8")
+
+[node name="TextureRect2" type="TextureRect" parent="UI/TowerContainer"]
+layout_mode = 2
+texture = ExtResource("7_5okr8")
+
+[node name="TextureRect3" type="TextureRect" parent="UI/TowerContainer"]
+layout_mode = 2
+texture = ExtResource("7_5okr8")
+
+[node name="IntermissionLabel" type="Label" parent="UI"]
+visible = false
+layout_mode = 0
+offset_right = 84.0
+offset_bottom = 87.0
+theme = ExtResource("7_23w6t")
+text = "10
+"
+label_settings = SubResource("LabelSettings_20p1v")
 
 [node name="Shop" parent="." instance=ExtResource("7_ow8sr")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.11926, 0.95366, -0.445242)
@@ -579,6 +634,7 @@ material = SubResource("StandardMaterial3D_24ceg")
 
 [node name="Lights" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17807, 14.3529)
+visible = false
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.47704, 1.44908, 2.57904)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhdpqcltraj1b"]
+[gd_scene load_steps=6 format=3 uid="uid://bhdpqcltraj1b"]
 
 [ext_resource type="Script" path="res://Scripts/VfxManager.cs" id="1_0goyd"]
 [ext_resource type="PackedScene" uid="uid://0xoeinlr8vqs" path="res://Shaders/Explosion/explosion.tscn" id="2_dwu7v"]
 [ext_resource type="PackedScene" uid="uid://kco8eit1l446" path="res://Shaders/Smoke/smoke.tscn" id="3_upfk5"]
 [ext_resource type="PackedScene" uid="uid://cd78vuxv8w6jv" path="res://Shaders/Dust/dust.tscn" id="4_gufrt"]
+[ext_resource type="PackedScene" uid="uid://cppkqoyg1wgv5" path="res://Shaders/ElectricShock/electric_shock.tscn" id="5_m7oci"]
 
 [node name="VfxManager" type="Node"]
 script = ExtResource("1_0goyd")
@@ -13,3 +14,5 @@ script = ExtResource("1_0goyd")
 [node name="Smoke" parent="." instance=ExtResource("3_upfk5")]
 
 [node name="Dust" parent="." instance=ExtResource("4_gufrt")]
+
+[node name="ElectricShock" parent="." instance=ExtResource("5_m7oci")]

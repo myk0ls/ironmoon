@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bilchqhvk5r0"]
+[gd_scene load_steps=8 format=3 uid="uid://bilchqhvk5r0"]
 
 [ext_resource type="Script" path="res://Scripts/SingleTargetTower.cs" id="1_tt6f7"]
+[ext_resource type="Theme" uid="uid://i5lr87xdcsh1" path="res://Resources/Theme/MainTheme.tres" id="2_m2gug"]
 [ext_resource type="PackedScene" uid="uid://d0n4i0kfjiehe" path="res://Assets/Models/MachineGunTower/machine_gun_tower.tscn" id="3_cmnel"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e5nym"]
@@ -16,10 +17,11 @@ inner_radius = 0.95
 [sub_resource type="ViewportTexture" id="ViewportTexture_roxdu"]
 viewport_path = NodePath("SubViewport")
 
-[node name="SingleTargetTower" type="StaticBody3D" groups=["building"]]
+[node name="SingleTargetTower" type="StaticBody3D" node_paths=PackedStringArray("_TowerModel") groups=["building"]]
 collision_layer = 23
 collision_mask = 16
 script = ExtResource("1_tt6f7")
+_TowerModel = NodePath("MachineGunTower")
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0260615, 1.11014, -0.0220504)
@@ -60,6 +62,7 @@ offset_right = 128.0
 offset_bottom = -101.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_m2gug")
 step = 1.0
 
 [node name="HealthBarSprite" type="Sprite3D" parent="."]

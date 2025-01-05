@@ -1,0 +1,23 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://i5lr87xdcsh1"]
+
+[ext_resource type="FontFile" uid="uid://ol7ckguyr0w0" path="res://Assets/Britannic T Regular/Britannic T Regular.ttf" id="1_dregl"]
+[ext_resource type="Texture2D" uid="uid://cxroofbdakqht" path="res://Assets/Menus/Textures/Text Fields/1.png" id="1_vdnbu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4d7dw"]
+texture = ExtResource("1_vdnbu")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74vw6"]
+bg_color = Color(0.992157, 0.921569, 0.772549, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+corner_detail = 12
+shadow_size = 5
+
+[resource]
+default_font = ExtResource("1_dregl")
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/styles/normal = SubResource("StyleBoxTexture_4d7dw")
+ProgressBar/colors/font_color = Color(0, 0, 0, 1)
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_74vw6")

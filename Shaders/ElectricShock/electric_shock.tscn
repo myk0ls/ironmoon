@@ -1,14 +1,48 @@
-[gd_scene load_steps=5 format=3 uid="uid://cppkqoyg1wgv5"]
+[gd_scene load_steps=11 format=3 uid="uid://cppkqoyg1wgv5"]
 
 [ext_resource type="Script" path="res://Shaders/Vfx.cs" id="1_x2da6"]
 
+[sub_resource type="Gradient" id="Gradient_nrih5"]
+offsets = PackedFloat32Array(0.00574713, 0.982759)
+colors = PackedColorArray(0, 0, 0, 0.196078, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_derth"]
+gradient = SubResource("Gradient_nrih5")
+
+[sub_resource type="Curve" id="Curve_wh31a"]
+_data = [Vector2(0.00495049, 0.56044), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_3eq3y"]
+_data = [Vector2(0.00495049, 0.516483), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_7klmi"]
+_data = [Vector2(0, 0.527472), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_2ovnl"]
+curve_x = SubResource("Curve_wh31a")
+curve_y = SubResource("Curve_3eq3y")
+curve_z = SubResource("Curve_7klmi")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ygk3e"]
+lifetime_randomness = 0.98
+particle_flag_align_y = true
+gravity = Vector3(0, 9.8, 0)
+scale_min = 0.9
+scale_max = 1.1
+scale_curve = SubResource("CurveXYZTexture_2ovnl")
+color_ramp = SubResource("GradientTexture1D_derth")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0qju2"]
+transparency = 1
 vertex_color_use_as_albedo = true
+albedo_color = Color(0.82966, 0.955133, 1, 1)
 
 [sub_resource type="TorusMesh" id="TorusMesh_hroa3"]
 material = SubResource("StandardMaterial3D_0qju2")
+inner_radius = 1.071
 rings = 12
 ring_segments = 16
 
@@ -16,6 +50,12 @@ ring_segments = 16
 script = ExtResource("1_x2da6")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 50
+amount_ratio = 0.2435
+lifetime = 1.3
+speed_scale = 1.3
 fixed_fps = 60
+collision_base_size = 0.0
 process_material = SubResource("ParticleProcessMaterial_ygk3e")
 draw_pass_1 = SubResource("TorusMesh_hroa3")

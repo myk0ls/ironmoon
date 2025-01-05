@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=4 uid="uid://d0n4i0kfjiehe"]
+[gd_scene load_steps=14 format=4 uid="uid://d0n4i0kfjiehe"]
 
 [ext_resource type="Texture2D" uid="uid://5y12gpmkvsgv" path="res://Assets/Models/MachineGunTower/MachineGunTower_Head Base Color.png" id="1_jfev0"]
+[ext_resource type="Script" path="res://Scripts/TowerModel.cs" id="1_yce73"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c6g51"]
 resource_name = "Material.001"
@@ -183,6 +184,7 @@ _data = {
 }
 
 [node name="MachineGunTower" type="Node3D"]
+script = ExtResource("1_yce73")
 
 [node name="Base" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0)

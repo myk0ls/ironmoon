@@ -1,16 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://dao7v7jdkp5sc"]
+[gd_scene load_steps=10 format=3 uid="uid://dao7v7jdkp5sc"]
 
 [ext_resource type="Script" path="res://Scripts/SlownessTower.cs" id="1_2oajv"]
 [ext_resource type="PackedScene" uid="uid://b8e8wijrjfn6y" path="res://Assets/TowerBuild.glb" id="2_gddnn"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_5mqo6"]
+[ext_resource type="PackedScene" uid="uid://drvf0mj003orc" path="res://Assets/Models/SlownessTower/SlownessTower.glb" id="3_6i7gy"]
+[ext_resource type="Theme" uid="uid://i5lr87xdcsh1" path="res://Resources/Theme/MainTheme.tres" id="3_eo6ix"]
+[ext_resource type="Script" path="res://Scripts/TowerModel.cs" id="4_sp816"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5osf6"]
 radius = 4.80494
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p33cq"]
-radius = 0.887864
-height = 2.47741
+radius = 0.547208
+height = 2.08304
 
 [sub_resource type="TorusMesh" id="TorusMesh_01ehc"]
 inner_radius = 0.95
@@ -18,13 +19,11 @@ inner_radius = 0.95
 [sub_resource type="ViewportTexture" id="ViewportTexture_7rekh"]
 viewport_path = NodePath("SubViewport")
 
-[node name="SlownessTower" type="StaticBody3D"]
+[node name="SlownessTower" type="StaticBody3D" node_paths=PackedStringArray("_TowerModel")]
 collision_layer = 7
 collision_mask = 16
 script = ExtResource("1_2oajv")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_5mqo6")
+_TowerModel = NodePath("SlownessTower")
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.611143, 0)
@@ -41,7 +40,7 @@ wait_time = 0.05
 visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.1, 0, 0, 0, 1.09995, 0.0104823, 0, -0.0104823, 1.09995, 0, -0.0228067, 0)
+transform = Transform3D(1.1, 0, 0, 0, 1.09995, 0.0104823, 0, -0.0104823, 1.09995, 0, -0.0782016, 0)
 shape = SubResource("CapsuleShape3D_p33cq")
 
 [node name="DistanceRadius" type="MeshInstance3D" parent="."]
@@ -68,6 +67,7 @@ offset_right = 128.0
 offset_bottom = -101.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_eo6ix")
 step = 1.0
 
 [node name="HealthBarSprite" type="Sprite3D" parent="."]
@@ -75,6 +75,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24335, 0)
 visible = false
 billboard = 2
 texture = SubResource("ViewportTexture_7rekh")
+
+[node name="SlownessTower" parent="." instance=ExtResource("3_6i7gy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.958698, 0)
+script = ExtResource("4_sp816")
 
 [connection signal="body_entered" from="Area3D" to="." method="OnEntered"]
 [connection signal="body_exited" from="Area3D" to="." method="OnExited"]

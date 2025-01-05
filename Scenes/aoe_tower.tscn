@@ -1,7 +1,9 @@
-[gd_scene load_steps=17 format=4 uid="uid://c0jqid5na6r1d"]
+[gd_scene load_steps=19 format=4 uid="uid://c0jqid5na6r1d"]
 
 [ext_resource type="Script" path="res://Scripts/AoETower.cs" id="1_egpbm"]
 [ext_resource type="PackedScene" uid="uid://b8e8wijrjfn6y" path="res://Assets/TowerBuild.glb" id="2_2vdnn"]
+[ext_resource type="Script" path="res://Scripts/TowerModel.cs" id="3_dmoot"]
+[ext_resource type="Theme" uid="uid://i5lr87xdcsh1" path="res://Resources/Theme/MainTheme.tres" id="3_dq7mu"]
 [ext_resource type="Texture2D" uid="uid://byqise5y8kg52" path="res://Assets/Models/ElectricTower/ElectricTower_Head Base Color.png" id="3_rshkv"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oh0ln"]
@@ -154,10 +156,11 @@ _data = {
 "Shoot": SubResource("Animation_6mbmy")
 }
 
-[node name="AoETower" type="StaticBody3D" groups=["building"]]
+[node name="AoETower" type="StaticBody3D" node_paths=PackedStringArray("_TowerModel") groups=["building"]]
 collision_layer = 23
 collision_mask = 16
 script = ExtResource("1_egpbm")
+_TowerModel = NodePath("ElectricTower")
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11854, 0)
@@ -201,6 +204,7 @@ offset_right = 128.0
 offset_bottom = -101.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_dq7mu")
 step = 1.0
 
 [node name="HealthBarSprite" type="Sprite3D" parent="."]
@@ -211,6 +215,7 @@ texture = SubResource("ViewportTexture_qk5hw")
 
 [node name="ElectricTower" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.02337, 0)
+script = ExtResource("3_dmoot")
 
 [node name="Base" type="MeshInstance3D" parent="ElectricTower"]
 mesh = SubResource("ArrayMesh_yns77")

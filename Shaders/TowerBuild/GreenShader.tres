@@ -1,0 +1,25 @@
+[gd_resource type="Shader" format=3 uid="uid://b4riamhquyfak"]
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+
+
+
+void fragment() {
+// ColorConstant:3
+	vec4 n_out3p0 = vec4(0.007800, 0.780000, 0.046410, 1.000000);
+
+
+// FloatConstant:2
+	float n_out2p0 = 0.300000;
+
+
+// Output:0
+	ALBEDO = vec3(n_out3p0.xyz);
+	ALPHA = n_out2p0;
+
+
+}
+"

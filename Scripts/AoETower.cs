@@ -21,6 +21,7 @@ public partial class AoETower : Building
             if (bodies != null)
             {
                 TowerAnim.Play("Shoot");
+                VfxManager.Instance.Play("ElectricShock", this, _TowerModel.Position);
                 for (int i = 0; i < bodies.Count; i++)
                 {
                     ApplyEffect(bodies[i]);
@@ -36,6 +37,7 @@ public partial class AoETower : Building
             node.Call("ReceiveDamage", 24); 
             Enemy enem = node as Enemy;
             GD.Print("AFTER AOE DAMAGE: " + enem.EnemyStats.Health);
+            VfxManager.Instance.Play("ElectricShock", enem, enem.Position);
         }
     }
 }

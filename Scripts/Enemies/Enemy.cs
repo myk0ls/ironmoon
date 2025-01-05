@@ -136,7 +136,8 @@ public partial class Enemy : CharacterBody3D
 
             //PlayVfx(ExplosionVfx);
             VfxManager.Instance.Play("Explosion", this, Model.Position);
-
+            SfxManager.Instance.Play("ExplosionSound", this);
+                
             animationStateMachine.Travel("Die");
 
             EmitSignal(nameof(Death));

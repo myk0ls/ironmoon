@@ -278,7 +278,7 @@ public partial class WeaponController : Node3D
             Rotation = Rotation.Lerp(MouseMov.Normalized() * SwayAmount + DefaultRotation, SwaySpeed * (float)delta);
         }
         else
-            Rotation = Rotation.Lerp(DefaultRotation, SwaySpeed * (float)delta * 5);
+            Rotation = Rotation.Lerp(DefaultRotation, SwaySpeed * (float)delta * 2);
 
     }
 

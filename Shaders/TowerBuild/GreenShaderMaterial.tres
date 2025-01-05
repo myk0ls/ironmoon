@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://barehbr31v2mx"]
+
+[ext_resource type="Shader" uid="uid://b4riamhquyfak" path="res://Shaders/TowerBuild/GreenShader.tres" id="1_fybw4"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_fybw4")

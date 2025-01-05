@@ -15,6 +15,8 @@ public partial class Building : Node3D
     Sprite3D HealthBarSprite;
     public CollisionShape3D TowerShape;
 
+    [Export] public TowerModel _TowerModel;
+
 	Player PlayerNode;
     CustomSignals CSignals;
     PackedScene ExplosionVfx;
@@ -121,6 +123,7 @@ public partial class Building : Node3D
         if (Health <= 0)
         {
             VfxManager.Instance.Play("Explotion", this, TowerShape.Position);
+            SfxManager.Instance.Play("ExplosionSound", this);
             GetTree().CreateTimer(1).Timeout += QueueFree;
         }
     }
