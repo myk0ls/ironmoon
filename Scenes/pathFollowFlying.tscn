@@ -3,5 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://boxbexd8futdw" path="res://Scenes/flying_robot.tscn" id="1_w03os"]
 
 [node name="FlyingRobotPathFollow3D" type="PathFollow3D"]
+loop = false
 
 [node name="FlyingRobot" parent="." instance=ExtResource("1_w03os")]

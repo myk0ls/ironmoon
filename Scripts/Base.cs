@@ -6,10 +6,13 @@ public partial class Base : Node3D
 	public int Health = 1000;
 	CustomSignals CSignals;
 
+	bool Alive = true;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		CSignals = GetNode<CustomSignals>("/root/CustomSignals");
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,6 +22,9 @@ public partial class Base : Node3D
 
 	public void ReceiveDamage(int damage)
 	{
+		if (!Alive)
+			return;
+
 		Health -= damage;
 
 		//GD.Print($"BASE HEALTH:{Health}");
@@ -27,7 +33,9 @@ public partial class Base : Node3D
 
 		if (Health <= 0)
 		{
-			GetTree().ReloadCurrentScene();
+			//GetTree().ReloadCurrentScene();
+			CSignals.EmitSignal(nameof(CSignals.GameOver));
+			Alive = false;
 		}
 	}
 }

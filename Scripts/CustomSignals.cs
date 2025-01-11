@@ -28,4 +28,6 @@ public partial class CustomSignals : Node
     [Signal] public delegate void UpgradeItemEventHandler(string item, int level);
 
     [Signal] public delegate void BaseHealthUpdateEventHandler(int health);
+
+    [Signal] public delegate void GameOverEventHandler();
 }

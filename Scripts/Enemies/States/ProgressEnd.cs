@@ -38,6 +38,6 @@ public partial class ProgressEnd : State
 
     void DamageBase()
     {
-        _enemy._base.ReceiveDamage(1);
+        _enemy._base.ReceiveDamage((int)_enemy.EnemyStats.AttackDamage);
     }
 }

@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using System;
 
 public partial class Ui : Control
@@ -18,6 +18,7 @@ public partial class Ui : Control
 	AnimationPlayer animationPlayer;
 	ProgressBar BaseHealthBar;
 	GridContainer TowerContainer;
+	PackedScene MainMenuScene;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -36,6 +37,7 @@ public partial class Ui : Control
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		BaseHealthBar = GetNode<ProgressBar>("BaseHealthBar");
 		TowerContainer = GetNode<GridContainer>("TowerContainer");
+		MainMenuScene = ResourceLoader.Load<PackedScene>("res://Scenes/main_menu.tscn");
 
         SellBar.Value = PlayerNode.SellTimer.WaitTime - PlayerNode.SellTimer.TimeLeft;
 
@@ -49,6 +51,11 @@ public partial class Ui : Control
 		CSignals.WaveEnded += ShowWaveEndedLabel;
 		CSignals.BaseHealthUpdate += (health) => UpdateBaseHealthBar(health);
 		CSignals.GameModeChanged += ToggleTowerContainer;
+		//CSignals.UpdateCurrentWave += (currentWave) => TurnOffTowerContainerAfterTimer(currentWave);
+		CSignals.UpdateCurrentWave += (currentWave) => ToggleTowerContainer();
+		CSignals.GameOver += ShowGameOver;
+
+		GetNode<Control>("DeathScreen").Visible = false;
 
         GoldLabel.Text = String.Format("GEARS: {0}", PlayerStats.Instance.Gold);
 		UpdateHp();
@@ -122,6 +129,13 @@ public partial class Ui : Control
 		var weapon = PlayerNode.WeaponController as WeaponController;
 		AmmoLabel.Text = weapon.CurrentArm.ArmStats.ClipSize.ToString() + "/" +
 			PlayerStats.Instance.GetAmmo(weapon.CurrentArm.Name);
+
+		if (weapon.CurrentArm.Name == "Wrench" || weapon.CurrentArm.Name == "HandCannon")
+		{
+			AmmoLabel.Text = "∞";
+
+        }
+
 	}
 
 	void ShowShop()
@@ -185,12 +199,31 @@ public partial class Ui : Control
 
     void ToggleTowerContainer()
 	{
-        if (!TowerContainer.Visible)
+        if (!TowerContainer.Visible && PlayerNode.currentMode == PlayerMode.Build)
         {
             TowerContainer.Visible = true;
         }
         else
             TowerContainer.Visible = false;
     }
+
+	void TurnOffTowerContainerAfterTimer(int wave)
+	{
+        if (TowerContainer.Visible && PlayerNode.currentMode == PlayerMode.Build)
+        {
+            TowerContainer.Visible = false;
+        }
+    }
+
+	public void OnMainMenuButtonPressed()
+	{
+		GetTree().ChangeSceneToPacked(MainMenuScene);
+	}
+
+	void ShowGameOver()
+	{
+		animationPlayer.Play("Death");
+		SfxManager.Instance.Play("GameOverSound", PlayerNode);
+	}
 }
 

@@ -5,8 +5,8 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_ckhpn")
-SpiderSmall = 8
-SpiderMedium = 5
-SpiderBig = 1
+SpiderSmall = 2
+SpiderMedium = 2
+SpiderBig = 0
 FlyingBot = 4
 Warden = 1

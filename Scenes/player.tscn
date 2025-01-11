@@ -1510,8 +1510,8 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 radius = 1.71441
 
 [node name="Player" type="CharacterBody3D"]
-collision_layer = 4
-collision_mask = 3
+collision_layer = 132
+collision_mask = 131
 script = ExtResource("1_fo5ap")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -1531,7 +1531,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.182629)
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0264735, -0.00701773, -0.013231)
 target_position = Vector3(0, 0, -40)
-collision_mask = 23
+collision_mask = 151
 
 [node name="WeaponController" type="Node3D" parent="Camera3D"]
 script = ExtResource("3_aj2vn")

@@ -46,6 +46,8 @@ public partial class Player : CharacterBody3D
 
 		CSignals.ShopView += OnShopMode;
         CSignals.ShopViewClose += OffShopMode;
+		CSignals.UpdateCurrentWave += (int wave) => ChangePlayerModeAfterTimer(wave);
+		CSignals.GameOver += OnShopMode;
     }
 
     public override void _Process(double delta)
@@ -150,7 +152,7 @@ public partial class Player : CharacterBody3D
 
 	void ToggleMode()
 	{
-		if (currentMode == PlayerMode.Combat)
+		if (currentMode == PlayerMode.Combat && !GetNode<Timer>("/root/World/WaveManager/IntermissionTimer").IsStopped())
 		{
 			EnterBuildMode();
 		}
@@ -222,6 +224,14 @@ public partial class Player : CharacterBody3D
             EnterCombatMode();
         }
     }
+
+	void ChangePlayerModeAfterTimer(int wave)
+	{
+		if (currentMode is PlayerMode.Build)
+		{
+			EnterCombatMode();
+		}
+	}
 }
 
 public enum PlayerMode

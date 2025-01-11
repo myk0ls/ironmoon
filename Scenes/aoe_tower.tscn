@@ -1,7 +1,6 @@
-[gd_scene load_steps=19 format=4 uid="uid://c0jqid5na6r1d"]
+[gd_scene load_steps=18 format=4 uid="uid://c0jqid5na6r1d"]
 
 [ext_resource type="Script" path="res://Scripts/AoETower.cs" id="1_egpbm"]
-[ext_resource type="PackedScene" uid="uid://b8e8wijrjfn6y" path="res://Assets/TowerBuild.glb" id="2_2vdnn"]
 [ext_resource type="Script" path="res://Scripts/TowerModel.cs" id="3_dmoot"]
 [ext_resource type="Theme" uid="uid://i5lr87xdcsh1" path="res://Resources/Theme/MainTheme.tres" id="3_dq7mu"]
 [ext_resource type="Texture2D" uid="uid://byqise5y8kg52" path="res://Assets/Models/ElectricTower/ElectricTower_Head Base Color.png" id="3_rshkv"]
@@ -172,9 +171,6 @@ shape = SubResource("SphereShape3D_oh0ln")
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 3.0
-
-[node name="TowerBuild" parent="." instance=ExtResource("2_2vdnn")]
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.1, 0, 0, 0, 1.09995, 0.0104823, 0, -0.0104823, 1.09995, 0, -0.0228067, 0)

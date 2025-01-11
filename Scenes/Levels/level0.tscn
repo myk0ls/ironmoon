@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://df8e5pbbx75bc"]
+[gd_scene load_steps=41 format=3 uid="uid://df8e5pbbx75bc"]
 
 [ext_resource type="PackedScene" uid="uid://dpdyvqyi3u2x7" path="res://Scenes/player.tscn" id="1_513jj"]
 [ext_resource type="PackedScene" uid="uid://bsqiotokbsa6s" path="res://Assets/Levels/Houses/House1.glb" id="4_pwh7v"]
@@ -17,7 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://dn773mu0uar45" path="res://Assets/Barrel.glb" id="8_ktfo1"]
 [ext_resource type="Script" path="res://Scenes/Levels/WaveManager.cs" id="9_7i248"]
 [ext_resource type="Resource" uid="uid://bs2wa2t27xjwv" path="res://Resources/WaveResources/Level0/wave0.tres" id="10_556fd"]
+[ext_resource type="Texture2D" uid="uid://g56l573dqjd5" path="res://Assets/Menus/Towers/singleshot.png" id="11_h6dbp"]
 [ext_resource type="Resource" uid="uid://duktkxgedj5ho" path="res://Resources/WaveResources/Level0/wave1.tres" id="11_qlai5"]
+[ext_resource type="Texture2D" uid="uid://ck85ucmsdxrvb" path="res://Assets/Menus/Towers/aoe.png" id="12_meaaf"]
+[ext_resource type="Texture2D" uid="uid://b7rllcegrbao0" path="res://Assets/Menus/Towers/slowness.png" id="13_0bjv6"]
 [ext_resource type="Resource" uid="uid://rltjj4woern6" path="res://Resources/WaveResources/Level0/wave2.tres" id="14_peev4"]
 [ext_resource type="PackedScene" uid="uid://25tps8ft4340" path="res://Scenes/base.tscn" id="16_35bin"]
 
@@ -40,10 +43,8 @@ glow_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0185
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhrcw"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v5abv"]
-albedo_color = Color(0, 0.286275, 0.34902, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_k7e62"]
+font_size = 85
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fx102"]
 texture = ExtResource("6_saagu")
@@ -60,6 +61,70 @@ font_color = Color(0, 0, 0, 1)
 line_spacing = 5.0
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_bwy2y"]
+resource_name = "Death"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeathScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.454902)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeathScreen/GameOverLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.433333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DeathScreen/MainMenuButton:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DeathScreen:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DeathScreen/RetryButton:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_hfm3r"]
 length = 0.001
 tracks/0/type = "value"
@@ -69,6 +134,66 @@ tracks/0/path = NodePath("WaveLabel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeathScreen:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.454902)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DeathScreen/GameOverLabel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DeathScreen/MainMenuButton:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DeathScreen:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DeathScreen/RetryButton:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -93,15 +218,16 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_74ket"]
 _data = {
+"Death": SubResource("Animation_bwy2y"),
 "RESET": SubResource("Animation_hfm3r"),
 "ShowWave": SubResource("Animation_q0r38")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_k7e62"]
-font_size = 70
-
 [sub_resource type="LabelSettings" id="LabelSettings_20p1v"]
 font_size = 80
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sh7h2"]
+points = PackedVector3Array(-1, -1, -1, 1, -1, -1, -1, -1, 1, -1, 0.99973, -1, 1, -1, 1, 1, 0.99973, -1, -1, 0.99973, 1, -0.693814, 7.38238, -0.693814, 1, 0.99973, 1, 0.693618, 7.38238, -0.693814, -0.693814, 7.38238, 0.693618, -0.157009, 10.2238, -0.157009, 0.693618, 7.38238, 0.693618, 0.156813, 10.2238, -0.157009, -0.157009, 10.2238, 0.156813, 0.156813, 10.2238, 0.156813)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_24ceg"]
 transparency = 2
@@ -124,6 +250,7 @@ _data = {
 point_count = 9
 
 [node name="World" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00266314, 0.0193424, 0.00577736)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.974761, -0.0908065, 0.203948, 0.175914, 0.250074, 0.952112, -0.13746, 0.963959, -0.227788, 0, 0, 0)
@@ -207,87 +334,6 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -14.9061
 [node name="House30" parent="Houses" instance=ExtResource("4_pwh7v")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -14.9091, 0.0290506, 24.8239)
 
-[node name="Level" type="Node3D" parent="."]
-visible = false
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19068, -3.03766, -1.05835)
-use_collision = true
-size = Vector3(67.3416, 6.13342, 26.7554)
-material = SubResource("StandardMaterial3D_bhrcw")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12013, -3.78473, 30.853)
-use_collision = true
-size = Vector3(65.5696, 7.62756, 37.2217)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40057, -4.38534, 16.3703)
-size = Vector3(65.8822, 1, 8.52341)
-material = SubResource("StandardMaterial3D_v5abv")
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.685486, 2.67487, -14.9168)
-size = Vector3(37.4852, 6.34973, 1)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.541153, 2.54373, 39.1288)
-size = Vector3(42.8416, 6.08746, 1)
-
-[node name="CSGBox3D8" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5388, 0.125366, 15.6729)
-size = Vector3(1, 11.2244, 9.09985)
-
-[node name="CSGBox3D9" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.6129, 0.125366, 15.6729)
-size = Vector3(1, 11.2244, 9.09985)
-
-[node name="CSGBox3D10" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.792, -0.15625, -5.77734)
-size = Vector3(10, 0.6875, 19)
-
-[node name="CSGBox3D12" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2505, -0.15625, -5.77734)
-size = Vector3(10, 0.6875, 19)
-
-[node name="CSGBox3D16" type="CSGBox3D" parent="Level"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.893537, -0.121597, 11.0577)
-size = Vector3(2.52332, 0.6875, 13.7094)
-
-[node name="CSGBox3D15" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3145, -0.15625, 23.7729)
-size = Vector3(3, 0.6875, 46.3097)
-
-[node name="CSGBox3D13" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.366, -0.15625, -1.48442)
-size = Vector3(3, 0.6875, 27.5859)
-
-[node name="CSGBox3D14" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.366, -0.15625, 29.5702)
-size = Vector3(3, 0.6875, 34.5215)
-
-[node name="CSGBox3D18" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.45358, -0.118804, 18.028)
-size = Vector3(3, 0.6875, 11.437)
-
-[node name="CSGBox3D19" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.24017, -0.118804, 18.028)
-size = Vector3(3, 0.6875, 11.437)
-
-[node name="CSGBox3D17" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.897079, -0.119075, 35.2909)
-size = Vector3(13.6914, 0.6875, 23.0982)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2143, -0.472231, 15.8443)
-use_collision = true
-size = Vector3(13.3917, 1.00098, 7.09888)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8081, -0.472231, 15.8443)
-use_collision = true
-size = Vector3(14.0098, 1.00098, 7.09888)
-
 [node name="UI" type="Control" parent="."]
 layout_direction = 1
 layout_mode = 3
@@ -297,6 +343,78 @@ offset_bottom = 648.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 script = ExtResource("5_ec78d")
+
+[node name="DeathScreen" type="Control" parent="UI"]
+modulate = Color(1, 1, 1, 0.454902)
+anchors_preset = 0
+offset_right = 1153.0
+offset_bottom = 646.0
+
+[node name="GameOverLabel" type="Label" parent="UI/DeathScreen"]
+top_level = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = -67.0
+offset_right = 190.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_kl1ku")
+text = "Game Over"
+label_settings = SubResource("LabelSettings_k7e62")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="UI/DeathScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.74, 0, 0, 1)
+
+[node name="MainMenuButton" type="Button" parent="UI/DeathScreen"]
+modulate = Color(1, 1, 1, 0)
+top_level = true
+custom_minimum_size = Vector2(100, 70)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 9.0
+offset_top = 59.0
+offset_right = 109.0
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_23w6t")
+text = "Main Menu"
+
+[node name="RetryButton" type="Button" parent="UI/DeathScreen"]
+top_level = true
+custom_minimum_size = Vector2(100, 70)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.0
+offset_top = 59.0
+offset_right = 1.0
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_23w6t")
+text = "Retry"
 
 [node name="ShopPanel" type="Panel" parent="UI"]
 visible = false
@@ -454,8 +572,7 @@ offset_bottom = -8.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("5_kl1ku")
-text = "0/0
-"
+text = "∞"
 label_settings = SubResource("LabelSettings_ywgq0")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -568,13 +685,26 @@ columns = 3
 layout_mode = 2
 texture = ExtResource("7_5okr8")
 
+[node name="Singleshot" type="Sprite2D" parent="UI/TowerContainer/TextureRect"]
+position = Vector2(210, 186.667)
+texture = ExtResource("11_h6dbp")
+
 [node name="TextureRect2" type="TextureRect" parent="UI/TowerContainer"]
 layout_mode = 2
 texture = ExtResource("7_5okr8")
 
+[node name="Aoe" type="Sprite2D" parent="UI/TowerContainer/TextureRect2"]
+position = Vector2(214.333, 190)
+texture = ExtResource("12_meaaf")
+
 [node name="TextureRect3" type="TextureRect" parent="UI/TowerContainer"]
 layout_mode = 2
 texture = ExtResource("7_5okr8")
+
+[node name="Slowness" type="Sprite2D" parent="UI/TowerContainer/TextureRect3"]
+position = Vector2(212.958, 200)
+scale = Vector2(0.850836, 0.850836)
+texture = ExtResource("13_0bjv6")
 
 [node name="IntermissionLabel" type="Label" parent="UI"]
 visible = false
@@ -604,6 +734,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7887, -0.165494, 29.5702)
 [node name="CSGBox3D152" parent="Level0-WIP" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5561, -0.165494, 23.7729)
 
+[node name="CSGBox3D102_001" parent="Level0-WIP" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.16269, 8.83667, -0.212901, -5.77734)
+
 [node name="wall1_left_upper" parent="Level0-WIP" index="7"]
 transform = Transform3D(0.783085, 0, 0, 0, 4.02853, 0, 0, 0, 2.72663, 10.7073, 3.77818, 41.2761)
 
@@ -616,11 +749,19 @@ transform = Transform3D(-0.783085, 0, -8.88447e-07, 0, 4.02853, 0, 2.55161e-07, 
 [node name="wall1bake_left_001" parent="Level0-WIP" index="10"]
 transform = Transform3D(-0.783085, 0, -8.88447e-07, 0, 4.02853, 0, 2.55161e-07, 0, -2.72663, -12.5257, 3.77818, 41.2761)
 
+[node name="wall0_001Bake" parent="Level0-WIP" index="11"]
+layers = 5
+
 [node name="wall0_left_upper_002" parent="Level0-WIP" index="13"]
 transform = Transform3D(0.783085, 0, 0, 0, 4.02853, 0, 0, 0, 2.72663, 8.49342, 3.77818, 0.569522)
 
 [node name="wall0_left_upper_003" parent="Level0-WIP" index="14"]
 transform = Transform3D(-0.783085, 0, -8.88447e-07, 0, 4.02853, 0, 2.55161e-07, 0, -2.72663, -14.5184, 3.77818, 0.569522)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level0-WIP/Cube" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level0-WIP/Cube/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_sh7h2")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.498947, 3.32938, 42.4824)
@@ -704,7 +845,7 @@ waves = Array[Object]([ExtResource("10_556fd"), ExtResource("11_qlai5"), ExtReso
 wait_time = 3.0
 
 [node name="IntermissionTimer" type="Timer" parent="WaveManager"]
-wait_time = 10.0
+wait_time = 20.0
 one_shot = true
 
 [node name="Lanes" type="Node3D" parent="."]
@@ -728,8 +869,73 @@ wait_time = 5.5
 autostart = true
 
 [node name="Base" parent="." instance=ExtResource("16_35bin")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.34016, 1.38984, -12.1925)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.34016, 0.090827, -12.1925)
 
+[node name="Collisions" type="Node3D" parent="."]
+visible = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.73056, -0.470683, 15.3563)
+use_collision = true
+size = Vector3(26.5781, 1, 73.3638)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.976013, -0.187805, 28.338)
+use_collision = true
+size = Vector3(11.4923, 0.62439, 33.1965)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7108, -0.144336, 23.5674)
+use_collision = true
+size = Vector3(11.4923, 0.62439, 42.9811)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4789, -0.144336, 23.5674)
+use_collision = true
+size = Vector3(11.4923, 0.62439, 42.9811)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2228, -0.144336, -5.97653)
+use_collision = true
+size = Vector3(11.4923, 0.62439, 23.1049)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.24075, -0.119012, -5.97653)
+use_collision = true
+size = Vector3(11.4923, 0.62439, 23.1049)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5992, 3.5264, 23.5674)
+use_collision = true
+size = Vector3(2.84891, 7.91522, 42.9811)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5784, 3.5264, -5.91784)
+use_collision = true
+size = Vector3(4.9977, 7.91522, 18.4927)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.94544, 3.5264, -5.91784)
+use_collision = true
+size = Vector3(4.9977, 7.91522, 18.4927)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1358, 3.5264, 23.5674)
+use_collision = true
+size = Vector3(2.84891, 7.91522, 42.9811)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82313, 3.5264, 36.714)
+use_collision = true
+size = Vector3(8.14396, 7.91522, 16.6878)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.494649, 3.5264, -17.3573)
+layers = 4
+use_collision = true
+size = Vector3(28.0945, 7.91522, 8.6473)
+
+[connection signal="pressed" from="UI/DeathScreen/MainMenuButton" to="UI" method="OnMainMenuButtonPressed"]
 [connection signal="pressed" from="UI/ShopPanel/Upgrades/Button" to="UI/ShopPanel" method="_on_button_pressed_wrench"]
 [connection signal="pressed" from="UI/ShopPanel/WeaponPurchase/Button" to="UI/ShopPanel" method="_on_button_pressed_ppsh"]
 [connection signal="pressed" from="UI/ShopPanel/WeaponPurchase/Button2" to="UI/ShopPanel" method="_on_button_2_pressed_shotgun"]

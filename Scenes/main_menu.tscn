@@ -1,13 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://s5ockgosua3i"]
+[gd_scene load_steps=6 format=3 uid="uid://s5ockgosua3i"]
 
 [ext_resource type="Theme" uid="uid://7fb73ota5opl" path="res://Resources/Theme/theme.tres" id="1_dd0c7"]
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_xewxv"]
 [ext_resource type="Texture2D" uid="uid://d4gcyop4m4eoh" path="res://Assets/Menus/Textures/BG.png" id="2_y1n1k"]
-[ext_resource type="Texture2D" uid="uid://blwyudxqx3csr" path="res://Assets/Menus/Textures/Text Fields/Panel1.png" id="3_t3pnx"]
 [ext_resource type="Theme" uid="uid://i5lr87xdcsh1" path="res://Resources/Theme/MainTheme.tres" id="5_m2nuu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ypjf5"]
 font_size = 95
+font_color = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -22,11 +22,6 @@ script = ExtResource("1_xewxv")
 position = Vector2(577.444, 325.5)
 scale = Vector2(0.599074, 0.599074)
 texture = ExtResource("2_y1n1k")
-
-[node name="Panel1" type="Sprite2D" parent="."]
-position = Vector2(573, 323)
-scale = Vector2(0.705613, 0.705613)
-texture = ExtResource("3_t3pnx")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

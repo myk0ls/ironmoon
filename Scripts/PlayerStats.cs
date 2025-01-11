@@ -12,7 +12,11 @@ public partial class PlayerStats : Node
     public int HandCannonAmmo = 1000;
 	public int PPSHAmmo = 1000;
 
+	CustomSignals CSignals;
+
 	public int RepairCost = 20;
+
+	bool IsAlive = true;
 
 	public static PlayerStats Instance { get; private set; }
 
@@ -25,6 +29,7 @@ public partial class PlayerStats : Node
     public override void _Ready()
 	{
 		Instance = this;
+		CSignals = GetNode<CustomSignals>("/root/CustomSignals");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -98,6 +103,15 @@ public partial class PlayerStats : Node
 
 	public void ReceiveDamage(int damage)
 	{
+		if (!IsAlive) return;
+
 		Health -= damage;
+		EmitSignal(nameof(UpdateHPLabel));
+
+		if (Health <= 0)
+		{
+			CSignals.EmitSignal(nameof(CSignals.GameOver));
+			IsAlive = false;
+		}
 	}
 }

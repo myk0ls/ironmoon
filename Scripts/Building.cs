@@ -16,6 +16,7 @@ public partial class Building : Node3D
     public CollisionShape3D TowerShape;
 
     [Export] public TowerModel _TowerModel;
+    [Export] public int Price = 100;
 
 	Player PlayerNode;
     CustomSignals CSignals;

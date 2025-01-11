@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://67qlqmg1uhxg"]
+
+[ext_resource type="Script" path="res://Rocket.cs" id="1_wea58"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xo8ro"]
+albedo_color = Color(0.169245, 0.169245, 0.169245, 1)
+roughness = 0.65
+
+[sub_resource type="SphereMesh" id="SphereMesh_e1ff7"]
+material = SubResource("StandardMaterial3D_xo8ro")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8bp6j"]
+radius = 2.23306
+height = 4.46613
+
+[node name="Rocket" type="Node3D" groups=["enemy"]]
+script = ExtResource("1_wea58")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+mesh = SubResource("SphereMesh_e1ff7")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 132
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_8bp6j")
+
+[connection signal="body_entered" from="Area3D" to="." method="OnBodyEntered"]

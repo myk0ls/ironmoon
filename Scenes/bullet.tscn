@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://Scripts/Bullet.cs" id="1_a442q"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xo8ro"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yv4pt"]
 albedo_color = Color(1, 0.141176, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_f14vb"]
-material = SubResource("StandardMaterial3D_xo8ro")
+material = SubResource("StandardMaterial3D_yv4pt")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ekwja"]
 

@@ -8,5 +8,5 @@ script = ExtResource("1_ay6a3")
 SpiderSmall = 8
 SpiderMedium = 6
 SpiderBig = 3
-FlyingBot = 1
+FlyingBot = 6
 Warden = 3

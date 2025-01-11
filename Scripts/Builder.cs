@@ -39,8 +39,11 @@ public partial class Builder : Node3D
         {
             Building placeTower = (Building)GetChild(0);
 
-            // Check conditions and update shader
+
             bool canBuild = CheckAreaIfAbleToBuild(placeTower) && CheckGroundIfAbleToBuild(placeTower);
+
+
+
             string shaderName = canBuild ? "Green" : "Red";
             placeTower._TowerModel.UpdateShader(shaderName);
         }

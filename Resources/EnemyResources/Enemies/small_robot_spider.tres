@@ -8,6 +8,6 @@ Health = 30.0
 WalkSpeed = 2.0
 CriticalHitChance = 20.0
 DropChance = 0.0
-AttackDamage = 0.0
+AttackDamage = 10.0
 AttackSpeed = 0.0
 Reward = 10
